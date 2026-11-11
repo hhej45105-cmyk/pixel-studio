@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Pixel Studio — تصميم بوستات وإعلانات للسوشيال ميديا والمتاجر والألعاب.">
+<title>Pixel Studio | تصميمات تلفت الانتباه</title>
+<style>
+:root{--bg:#080914;--panel:#121326;--gold:#963cff;--muted:#aeb0c7;--white:#f7f6ff;--line:#29243f}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0%,#34205e 0,transparent 38%),var(--bg);color:var(--white);font-family:Tahoma,Arial,sans-serif;line-height:1.7}
+a{color:inherit;text-decoration:none}.wrap{width:min(1100px,92%);margin:auto}
+header{padding:22px 0;border-bottom:1px solid var(--line)}.nav{display:flex;align-items:center;justify-content:space-between;gap:16px}.logo{font-size:23px;font-weight:900;letter-spacing:.5px}.logo span{color:var(--gold)}.nav small{color:var(--muted)}
+.hero{padding:76px 0 58px;display:grid;grid-template-columns:1.15fr .85fr;gap:35px;align-items:center}.tag{display:inline-block;border:1px solid #6736a6;color:var(--gold);border-radius:30px;padding:5px 13px;font-size:13px}
+h1{font-size:clamp(35px,6vw,62px);line-height:1.18;margin:17px 0}.hero p{color:var(--muted);font-size:18px;max-width:600px}
+.btn{display:inline-block;background:var(--gold);color:#ffffff;padding:12px 22px;border-radius:12px;font-weight:bold;margin-top:12px}.hero-card{background:linear-gradient(145deg,#201b43,#111326 60%,#3b1d63);border:1px solid #563b82;border-radius:24px;padding:25px;min-height:290px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 22px 70px #0008}.hero-card b{font-size:30px}.hero-card strong{font-size:48px;color:var(--gold)}.hero-card small{color:#d2d6e3}
+section{padding:48px 0}.section-title{font-size:30px;margin:0 0 8px}.sub{color:var(--muted);margin:0 0 25px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.gallery-real .sample{transition:transform .2s ease,border-color .2s ease}.gallery-real .sample:hover{transform:translateY(-4px);border-color:var(--gold)}.sample,.price{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.poster{height:auto;aspect-ratio:1.5;position:relative;overflow:hidden;background:#090d18}
+.poster img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .35s ease}.sample:hover .poster img{transform:scale(1.035)}.poster .mini{font-size:11px;letter-spacing:2px}.poster .big{font-size:28px;font-weight:900;line-height:1.2}.poster .foot{font-size:12px}
+
+.sample-info{padding:14px 16px}.sample-info b{display:block}.sample-info small{color:var(--muted)}
+.view-btn{margin-top:12px;border:1px solid var(--gold);background:transparent;color:var(--gold);padding:8px 16px;border-radius:9px;font:inherit;font-weight:bold;cursor:pointer}.gallery-extra{display:none;padding:14px 16px;border-top:1px solid var(--line);background:#0d111c}.gallery-extra.open{display:block}.mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mini-poster{min-height:112px;border-radius:10px;padding:12px;display:flex;flex-direction:column;justify-content:space-between;font-weight:900;font-size:15px}.mini-poster small{font-size:10px;font-weight:normal}.mini-poster.one{background:linear-gradient(135deg,#17102d,#6d3bd1)}.mini-poster.two{background:linear-gradient(135deg,#101820,#bd8a35)}.gallery-note{color:var(--muted);font-size:12px;margin:10px 0 0}
+.prices{grid-template-columns:repeat(4,1fr)}.price{padding:20px}.price .count{color:var(--muted);font-size:14px}.price strong{display:block;font-size:31px;color:var(--gold);margin:8px 0}.price p{color:var(--muted);font-size:13px;min-height:44px}.price.featured{border-color:var(--gold);box-shadow:0 0 0 1px #963cff44}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.step{background:#101522;border:1px solid var(--line);border-radius:15px;padding:18px}.step em{font-style:normal;color:var(--gold);font-size:22px;font-weight:bold}
+.contact{background:linear-gradient(120deg,#1a1d2b,#29203a);border:1px solid #3b344b;border-radius:22px;padding:30px;text-align:center}.contact p{color:var(--muted)}
+footer{padding:28px 0;color:var(--muted);border-top:1px solid var(--line);font-size:13px;text-align:center}
+@media(max-width:800px){.hero{grid-template-columns:1fr;padding:48px 0}.grid{grid-template-columns:1fr 1fr}.prices{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr}}
+@media(max-width:480px){.grid{grid-template-columns:1fr}.prices{grid-template-columns:1fr 1fr}.price{padding:15px}.price strong{font-size:25px}}
+
+.order-area{padding:42px 0}.order-panel,.account-panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px;margin-top:18px}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}
+.field label{font-size:14px;color:#d9deea}.field input,.field select,.field textarea{width:100%;background:#090d18;color:var(--white);border:1px solid #30394f;border-radius:10px;padding:12px;font:inherit}
+.field textarea{min-height:105px;resize:vertical}.hint{color:var(--muted);font-size:13px}
+.form-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:18px}
+.account-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.account-tabs button,.submit-btn{border:0;border-radius:10px;padding:11px 18px;background:var(--gold);color:#ffffff;font-weight:800;cursor:pointer;font:inherit}
+.account-tabs button.secondary{background:#252c3e;color:var(--white)}
+.notice{border:1px solid #66512c;background:#211333;color:#e5d5ff;border-radius:10px;padding:12px;margin-top:14px;font-size:13px}
+@media(max-width:650px){.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.order-panel,.account-panel{padding:16px}}
+
+
+.card-actions{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.view-btn,.customize-btn{display:inline-block;margin-top:12px;border:1px solid var(--gold);background:transparent;color:#cda8ff;padding:8px 14px;border-radius:9px;font:inherit;font-weight:bold;cursor:pointer}.customize-btn{background:linear-gradient(110deg,#7434d8,#a33cff);border-color:transparent;color:white}.gallery-real .sample:hover{border-color:#963cff}.tag{border-color:#6736a6}.btn,.account-tabs button,.submit-btn{background:linear-gradient(110deg,#7434d8,#a33cff);color:white}.price.featured{border-color:#963cff}
+</style>
+</head>
+<body>
+<header><div class="wrap nav"><div class="logo">PIXEL <span>STUDIO</span></div><small>تصميمات تخلي مشروعك يبان</small></div></header>
+<main class="wrap">
+<div class="hero">
+ <div><span class="tag">تصميم سوشيال ميديا وإعلانات</span><h1>خلّي إعلانك<br><span style="color:var(--gold)">يلفت النظر</span></h1><p>بوستات وإعلانات مرتبة للمحلات والمتاجر وصفحات الألعاب. اختار الباقة المناسبة، وابعت تفاصيل فكرتك ونجهز لك تصميم يناسب نشاطك.</p><a class="btn" href="#prices">شوف الباقات والأسعار</a> <a class="btn" href="#order" style="margin-right:8px">اطلب تصميمك</a></div>
+ <div class="hero-card"><small>PIXEL STUDIO / CREATIVE DESIGN</small><b>فكرتك تستاهل<br>تصميم مميز</b><strong>DESIGN</strong><small>بوستات • إعلانات • عروض</small></div>
+</div>
+<section id="work"><h2 class="section-title">نماذج من شغلنا</h2><p class="sub">6 تصميمات إعلانية تجريبية بصور فعلية: ألعاب، جيم، مطاعم، ملابس، إلكترونيات وعروض. اضغط على أي تصميم لفتحه بالحجم الكامل.</p>
+<div class="grid gallery-real">
+ <article class="sample real-sample" data-project="متجر ألعاب">
+  <a class="poster" href="images/ad-1.jpg" target="_blank" rel="noopener" aria-label="عرض متجر ألعاب"><img src="images/ad-1.jpg" alt="متجر ألعاب - تصميم من PIXEL STUDIO" loading="lazy"></a>
+  <div class="sample-info"><b>متجر ألعاب</b><small>إعلان جيمينج احترافي وعروض الألعاب</small>
+   <div class="card-actions"><a class="view-btn" href="images/ad-1.jpg" target="_blank" rel="noopener">عرض التصميم</a><button class="customize-btn" type="button">تخصيص</button></div>
+  </div>
+ </article>
+ <article class="sample real-sample" data-project="جيم">
+  <a class="poster" href="images/ad-2.jpg" target="_blank" rel="noopener" aria-label="عرض إعلان جيم"><img src="images/ad-2.jpg" alt="إعلان جيم - تصميم من PIXEL STUDIO" loading="lazy"></a>
+  <div class="sample-info"><b>إعلان جيم</b><small>حملة رياضية واشتراكات الجيم</small>
+   <div class="card-actions"><a class="view-btn" href="images/ad-2.jpg" target="_blank" rel="noopener">عرض التصميم</a><button class="customize-btn" type="button">تخصيص</button></div>
+  </div>
+ </article>
+ <article class="sample real-sample" data-project="مطعم أو كافيه">
+  <a class="poster" href="images/ad-3.jpg" target="_blank" rel="noopener" aria-label="عرض إعلان مطعم"><img src="images/ad-3.jpg" alt="إعلان مطعم - تصميم من PIXEL STUDIO" loading="lazy"></a>
+  <div class="sample-info"><b>إعلان مطعم</b><small>إعلان وجبة وبراند مطعم</small>
+   <div class="card-actions"><a class="view-btn" href="images/ad-3.jpg" target="_blank" rel="noopener">عرض التصميم</a><button class="customize-btn" type="button">تخصيص</button></div>
+  </div>
+ </article>
+ <article class="sample real-sample" data-project="ملابس">
+  <a class="poster" href="images/ad-4.jpg" target="_blank" rel="noopener" aria-label="عرض متجر ملابس"><img src="images/ad-4.jpg" alt="متجر ملابس - تصميم من PIXEL STUDIO" loading="lazy"></a>
+  <div class="sample-info"><b>متجر ملابس</b><small>عرض منتجات وتشكيلة ملابس</small>
+   <div class="card-actions"><a class="view-btn" href="images/ad-4.jpg" target="_blank" rel="noopener">عرض التصميم</a><button class="customize-btn" type="button">تخصيص</button></div>
+  </div>
+ </article>
+ <article class="sample real-sample" data-project="إلكترونيات">
+  <a class="poster" href="images/ad-5.jpg" target="_blank" rel="noopener" aria-label="عرض محل إلكترونيات"><img src="images/ad-5.jpg" alt="محل إلكترونيات - تصميم من PIXEL STUDIO" loading="lazy"></a>
+  <div class="sample-info"><b>محل إلكترونيات</b><small>إعلان أجهزة وإكسسوارات</small>
+   <div class="card-actions"><a class="view-btn" href="images/ad-5.jpg" target="_blank" rel="noopener">عرض التصميم</a><button class="customize-btn" type="button">تخصيص</button></div>
+  </div>
+ </article>
+ <article class="sample real-sample" data-project="نوع آخر">
+  <a class="poster" href="images/ad-6.jpg" target="_blank" rel="noopener" aria-label="عرض عروض وخصومات"><img src="images/ad-6.jpg" alt="عروض وخصومات - تصميم من PIXEL STUDIO" loading="lazy"></a>
+  <div class="sample-info"><b>عروض وخصومات</b><small>تصميم ترويجي لخصومات المتاجر</small>
+   <div class="card-actions"><a class="view-btn" href="images/ad-6.jpg" target="_blank" rel="noopener">عرض التصميم</a><button class="customize-btn" type="button">تخصيص</button></div>
+  </div>
+ </article>
+</div></section>
+<section id="prices"><h2 class="section-title">باقات التصميم</h2><p class="sub">أسعار بداية مقترحة — السعر النهائي يتأكد بعد معرفة تفاصيل الطلب.</p>
+<div class="grid prices">
+ <article class="price"><span class="count">باقة البداية</span><strong>40 ج.م</strong><p>تصميم بوست واحد بمقاس مناسب للسوشيال ميديا.</p></article>
+ <article class="price"><span class="count">باقة صغيرة</span><strong>100 ج.م</strong><p>3 بوستات متناسقة لنفس النشاط أو الحملة.</p></article>
+ <article class="price featured"><span class="count">الأكثر توفيراً</span><strong>150 ج.م</strong><p>5 بوستات متنوعة لصفحتك أو متجرك.</p></article>
+ <article class="price"><span class="count">باقة متكاملة</span><strong>270 ج.م</strong><p>10 بوستات لمحتوى صفحتك وعروضك.</p></article>
+</div><p class="sub" style="font-size:12px;margin-top:12px">الأسعار لا تشمل كتابة محتوى طويل أو تعديلات كبيرة غير متفق عليها. يتم الاتفاق على التفاصيل قبل بدء التصميم.</p></section>
+<section><h2 class="section-title">طريقة الطلب</h2><p class="sub">3 خطوات بسيطة من أول الفكرة لحد استلام التصميم.</p><div class="steps">
+ <div class="step"><em>01</em><h3>ابعت فكرتك</h3><p class="sub">نوع النشاط، النص، الألوان، والمقاس المطلوب.</p></div>
+ <div class="step"><em>02</em><h3>نأكد التفاصيل</h3><p class="sub">نحدد الباقة والسعر وموعد التسليم قبل التنفيذ.</p></div>
+ <div class="step"><em>03</em><h3>استلم تصميمك</h3><p class="sub">تراجع التصميم وتطلب التعديلات المتفق عليها.</p></div>
+</div></section>
+<section id="account" class="order-area">
+ <h2 class="section-title">حسابك على PIXEL STUDIO</h2>
+ <p class="sub">واجهة تسجيل الدخول وإنشاء الحساب — هنفعّل الحسابات بشكل آمن عند ربط الموقع بخدمة تسجيل دخول.</p>
+ <div class="account-panel">
+  <div class="account-tabs"><button type="button" class="secondary" id="showLogin">تسجيل الدخول</button><button type="button" id="showRegister">إنشاء حساب</button></div>
+  <div id="accountMessage" class="hint">تسجيل الحسابات غير مفعّل حالياً؛ لن نطلب منك كلمة مرور قبل تجهيز نظام آمن.</div>
+ </div>
+</section>
+<section id="order" class="order-area">
+ <h2 class="section-title">اطلب تصميمك</h2>
+ <p class="sub">اكتب تفاصيل مشروعك، وسيلة التواصل، وطريقة الدفع المفضلة.</p>
+ <div class="order-panel">
+  <form id="orderForm">
+   <div class="form-grid">
+    <div class="field"><label for="customerName">اسمك</label><input id="customerName" name="customerName" required placeholder="الاسم"></div>
+    <div class="field"><label for="projectType">نوع المشروع</label><select id="projectType" name="projectType" required><option value="">اختار نوع المشروع</option><option>متجر ألعاب</option><option>جيم</option><option>مطعم أو كافيه</option><option>ملابس</option><option>إلكترونيات</option><option>نوع آخر</option></select></div>
+    <div class="field"><label for="designType">مطلوب تصميم إيه؟</label><select id="designType" name="designType" required><option value="">اختار الخدمة</option><option>بوست سوشيال ميديا</option><option>إعلان عرض أو خصم</option><option>لوجو</option><option>تصميمات متعددة</option><option>أخرى</option></select></div>
+    <div class="field"><label for="colors">الألوان المفضلة</label><input id="colors" name="colors" placeholder="مثال: أسود وذهبي"></div>
+    <div class="field"><label for="whatsapp">رقم واتساب للتواصل</label><input id="whatsapp" name="whatsapp" type="tel" placeholder="اكتب الرقم مع كود الدولة"></div>
+    <div class="field"><label for="email">البريد الإلكتروني</label><input id="email" name="email" type="email" placeholder="name@example.com"></div>
+    <div class="field"><label for="payment">طريقة الدفع المفضلة</label><select id="payment" name="payment" required><option value="">اختار طريقة الدفع</option><option>كاش</option><option>إنستا باي</option></select></div>
+    <div class="field"><label for="budget">الميزانية (اختياري)</label><input id="budget" name="budget" placeholder="مثال: 100 جنيه"></div>
+    <div class="field full"><label for="details">تفاصيل المشروع</label><textarea id="details" name="details" required placeholder="اكتب النص المطلوب في التصميم وأي تفاصيل مهمة..."></textarea></div>
+   </div>
+   <div class="form-actions"><button class="submit-btn" type="submit">إرسال طلب التصميم</button><span class="hint">لا تكتب أي رقم سري أو بيانات بطاقة أو كود دفع هنا.</span></div>
+   <div id="orderStatus" class="notice" role="status">نموذج الطلب جاهز كواجهة، لكن الإرسال للبريد لم يتم تفعيله بعد. هنربطه ببريدك بعد ما تجهزه.</div>
+  </form>
+ </div>
+</section>
+<section id="contact"><div class="contact"><h2 class="section-title">جاهز تبدأ؟</h2><p>للطلب أو الاستفسار، ابعت تفاصيل التصميم عبر البريد الإلكتروني. هنضيف عنوان البريد الحقيقي ورابط ديسكورد قبل نشر الموقع.</p><b style="color:var(--gold)">البريد الإلكتروني: يُضاف قريباً</b><br><span style="display:inline-block;margin-top:12px;border:1px solid #6736a6;color:var(--gold);padding:9px 16px;border-radius:10px">ديسكورد: يُضاف اسم المستخدم لاحقاً</span></div></section>
+</main>
+<footer><div class="wrap">© 2026 PIXEL STUDIO — كل الحقوق محفوظة<br>تصميمات تجريبية من PIXEL STUDIO لعرض أسلوب العمل.</div></footer>
+
+<script>
+document.querySelectorAll('.customize-btn').forEach(button => {
+  button.addEventListener('click', () => {
+    const card = button.closest('.sample');
+    const project = card.dataset.project;
+    document.getElementById('projectType').value = project;
+    document.getElementById('designType').value = 'بوست سوشيال ميديا';
+    document.getElementById('details').value = 'أريد تخصيص نموذج: ' + card.querySelector('.sample-info b').textContent + '\nاكتب هنا النص والتفاصيل المطلوبة.';
+    document.getElementById('order').scrollIntoView({behavior:'smooth'});
+    document.getElementById('customerName').focus({preventScroll:true});
+  });
+});
+
+const loginBtn = document.getElementById('showLogin');
+const registerBtn = document.getElementById('showRegister');
+const accountMessage = document.getElementById('accountMessage');
+loginBtn.addEventListener('click', () => {
+  loginBtn.classList.remove('secondary'); registerBtn.classList.add('secondary');
+  accountMessage.textContent = 'واجهة تسجيل الدخول جاهزة للتصميم، وسيتم تفعيلها بعد ربط نظام حسابات آمن.';
+});
+registerBtn.addEventListener('click', () => {
+  registerBtn.classList.remove('secondary'); loginBtn.classList.add('secondary');
+  accountMessage.textContent = 'واجهة إنشاء الحساب جاهزة للتصميم، وسيتم تفعيلها بعد ربط نظام حسابات آمن.';
+});
+document.getElementById('orderForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  document.getElementById('orderStatus').textContent =
+    'تم التحقق من تعبئة النموذج على جهازك فقط. لم يتم إرسال الطلب أو حفظ بياناتك؛ نحتاج ربط خدمة آمنة وبريدك الإلكتروني أولاً.';
+});
+</script>
+
+</body></html>
