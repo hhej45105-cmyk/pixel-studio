@@ -3,216 +3,351 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Pixel Studio — تصميم بوستات وإعلانات للسوشيال ميديا والمتاجر والألعاب.">
-<title>Pixel Studio | تصميمات تلفت الانتباه</title>
+<meta name="description" content="𝐩𝐢𝐱𝐞𝐥-𝐬𝐭𝐮𝐝𝐢𝐨 — تصميم بوستات وإعلانات للسوشيال ميديا والمتاجر والألعاب.">
+<title>𝐩𝐢𝐱𝐞𝐥-𝐬𝐭𝐮𝐝𝐢𝐨 | تصميمات تلفت الانتباه</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#080914;--panel:#121326;--gold:#963cff;--muted:#aeb0c7;--white:#f7f6ff;--line:#29243f;--discord:#5865F2}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0%,#34205e 0,transparent 38%),var(--bg);color:var(--white);font-family:Tahoma,Arial,sans-serif;line-height:1.7;scroll-behavior:smooth}
+:root{--bg:#080914;--panel:#121326;--v:#963cff;--v2:#7434d8;--v3:#cda8ff;--muted:#aeb0c7;--white:#f7f6ff;--line:#29243f;--discord:#5865F2}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--white);font-family:Cairo,Tahoma,Arial,sans-serif;line-height:1.7;overflow-x:hidden}
 a{color:inherit;text-decoration:none}.wrap{width:min(1100px,92%);margin:auto}
-header{padding:22px 0;border-bottom:1px solid var(--line)}.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.logo{font-size:23px;font-weight:900;letter-spacing:.5px}.logo span{color:var(--gold)}.nav-links{display:flex;gap:18px;align-items:center;font-size:14px;color:var(--muted)}.nav-links a:hover{color:var(--white)}
-.hero{padding:76px 0 58px;display:grid;grid-template-columns:1.15fr .85fr;gap:35px;align-items:center}.tag{display:inline-block;border:1px solid #6736a6;color:var(--gold);border-radius:30px;padding:5px 13px;font-size:13px}
-h1{font-size:clamp(35px,6vw,62px);line-height:1.18;margin:17px 0}.hero p{color:var(--muted);font-size:18px;max-width:600px}
-.btn{display:inline-block;background:linear-gradient(110deg,#7434d8,#a33cff);color:#ffffff;padding:12px 22px;border-radius:12px;font-weight:bold;margin-top:12px;transition:opacity .2s}.btn:hover{opacity:.9}.hero-card{background:linear-gradient(145deg,#201b43,#111326 60%,#3b1d63);border:1px solid #563b82;border-radius:24px;padding:25px;min-height:290px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 22px 70px #0008}.hero-card b{font-size:30px}.hero-card strong{font-size:48px;color:var(--gold)}.hero-card small{color:#d2d6e3}
-section{padding:48px 0}.section-title{font-size:30px;margin:0 0 8px}.sub{color:var(--muted);margin:0 0 25px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.gallery-real .sample{transition:transform .2s ease,border-color .2s ease}.gallery-real .sample:hover{transform:translateY(-4px);border-color:var(--gold)}.sample,.price{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden}
-.poster{height:auto;aspect-ratio:1.5;position:relative;overflow:hidden;background:#090d18;display:block}
-.poster img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .35s ease}.sample:hover .poster img{transform:scale(1.035)}
+:focus-visible{outline:2px solid var(--v3);outline-offset:3px}
+
+/* الأشكال المتحركة في الخلفية */
+.bg-shapes{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:radial-gradient(circle at 85% 0,#34205e 0,transparent 40%),radial-gradient(circle at 5% 90%,#1f1245 0,transparent 40%)}
+.sh{position:absolute;opacity:.55;animation:float var(--d,14s) ease-in-out infinite;animation-delay:var(--l,0s)}
+.sh.ring{width:var(--s);height:var(--s);border:3px solid var(--v);border-radius:50%}
+.sh.sq{width:var(--s);height:var(--s);border:2px solid #6736a6;border-radius:12px;animation-name:spin}
+.sh.dot{width:var(--s);height:var(--s);background:var(--v);border-radius:50%;filter:blur(1px)}
+.sh.tri{width:0;height:0;border-left:calc(var(--s)/2) solid transparent;border-right:calc(var(--s)/2) solid transparent;border-bottom:var(--s) solid #6736a688;animation-name:spin}
+.sh.plus{width:var(--s);height:var(--s);background:linear-gradient(var(--v),var(--v)) center/100% 3px no-repeat,linear-gradient(var(--v),var(--v)) center/3px 100% no-repeat;animation-name:spin}
+.sh.blob{width:var(--s);height:var(--s);background:radial-gradient(circle,#963cff55,transparent 70%);border-radius:50%;opacity:1}
+@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(28px,-46px)}}
+@keyframes spin{from{transform:rotate(0) translateY(0)}50%{transform:rotate(180deg) translateY(-30px)}to{transform:rotate(360deg) translateY(0)}}
+header,main,footer{position:relative;z-index:1}
+
+header{position:sticky;top:0;z-index:20;padding:14px 0;background:#080914cc;backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.logo{font-size:23px;font-weight:900;display:flex;align-items:center;gap:9px}.logo i{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--v2),var(--v));animation:spin 9s linear infinite}.logo span{color:var(--v)}
+.nav-links{display:flex;gap:20px;align-items:center;font-size:14px;color:var(--muted)}.nav-links a:hover{color:var(--white)}
+.nav-links .cta{background:linear-gradient(110deg,var(--v2),var(--v));color:#fff;padding:7px 16px;border-radius:10px;font-weight:700}
+
+.hero{padding:70px 0 50px;display:grid;grid-template-columns:1.15fr .85fr;gap:35px;align-items:center}
+.tag{display:inline-flex;align-items:center;gap:8px;border:1px solid #6736a6;color:var(--v3);border-radius:30px;padding:5px 14px;font-size:13px}
+.tag:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--v);animation:pulse 1.6s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 #963cffaa}100%{box-shadow:0 0 0 10px #963cff00}}
+h1{font-size:clamp(36px,6vw,64px);line-height:1.2;margin:16px 0;font-weight:900}
+.grad{background:linear-gradient(100deg,#c79bff,#963cff,#7e8bff,#c79bff);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
+@keyframes shine{to{background-position:-250% 0}}
+.hero p{color:var(--muted);font-size:18px;max-width:560px}
+.btn{display:inline-block;background:linear-gradient(110deg,var(--v2),var(--v));color:#fff;padding:12px 24px;border-radius:12px;font-weight:700;margin-top:12px;border:0;font:inherit;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px #963cff55}.btn.alt{background:#25213d;margin-right:8px}
+.stats{display:flex;gap:26px;margin-top:30px;flex-wrap:wrap}.stats b{display:block;font-size:28px;color:var(--v3);line-height:1.2}.stats small{color:var(--muted)}
+
+.hero-card{position:relative;background:linear-gradient(145deg,#201b43,#111326 60%,#3b1d63);border:1px solid #563b82;border-radius:26px;padding:28px;min-height:320px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 22px 70px #0008;overflow:hidden;animation:bob 6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-12px)}}
+.hero-card:before{content:"";position:absolute;width:260px;height:260px;border:2px dashed #963cff77;border-radius:50%;left:-70px;bottom:-90px;animation:spin2 18s linear infinite}
+.hero-card:after{content:"";position:absolute;width:90px;height:90px;border-radius:24px;background:linear-gradient(135deg,var(--v),#5b6bff);opacity:.5;top:22px;left:24px;animation:spin2 12s linear infinite reverse}
+@keyframes spin2{to{transform:rotate(360deg)}}
+.hero-card>*{position:relative;z-index:1}.hero-card b{font-size:30px;line-height:1.4}.hero-card strong{font-size:48px;color:var(--v);letter-spacing:2px}.hero-card small{color:#d2d6e3}
+
+.marquee{position:relative;z-index:1;overflow:hidden;border-block:1px solid var(--line);background:#0d0e1f;padding:12px 0;direction:ltr}
+.track{display:flex;gap:48px;width:max-content;animation:run 28s linear infinite;color:var(--v3);font-weight:700;white-space:nowrap}
+@keyframes run{to{transform:translateX(-50%)}}
+
+section{padding:50px 0}.section-title{font-size:32px;margin:0 0 8px;font-weight:900}.sub{color:var(--muted);margin:0 0 26px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.sample,.price{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:transform .25s,border-color .25s,box-shadow .25s}
+.sample:hover,.price:hover{transform:translateY(-6px);border-color:var(--v);box-shadow:0 16px 40px #963cff33}
+.poster{aspect-ratio:1.5;position:relative;overflow:hidden;background:#090d18;display:block}
+.poster img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .4s}.sample:hover .poster img{transform:scale(1.06)}
 .sample-info{padding:14px 16px}.sample-info b{display:block}.sample-info small{color:var(--muted)}
-.card-actions{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.view-btn,.customize-btn{display:inline-block;margin-top:12px;border:1px solid var(--gold);background:transparent;color:#cda8ff;padding:8px 14px;border-radius:9px;font:inherit;font-weight:bold;cursor:pointer}.customize-btn{background:linear-gradient(110deg,#7434d8,#a33cff);border-color:transparent;color:white}
-.prices{grid-template-columns:repeat(4,1fr)}.price{padding:20px}.price .count{color:var(--muted);font-size:14px}.price strong{display:block;font-size:31px;color:var(--gold);margin:8px 0}.price p{color:var(--muted);font-size:13px;min-height:44px}.price.featured{border-color:#963cff;box-shadow:0 0 0 1px #963cff44}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.step{background:#101522;border:1px solid var(--line);border-radius:15px;padding:18px}.step em{font-style:normal;color:var(--gold);font-size:22px;font-weight:bold}
-.contact{background:linear-gradient(120deg,#1a1d2b,#29203a);border:1px solid #3b344b;border-radius:22px;padding:30px;text-align:center}.contact p{color:var(--muted)}
-.discord-btn{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:var(--discord);color:#ffffff;padding:11px 22px;border-radius:11px;font-weight:bold;transition:transform .2s,background .2s}.discord-btn:hover{background:#4752C4;transform:translateY(-2px)}
+.card-actions{display:flex;gap:9px;flex-wrap:wrap}
+.view-btn,.customize-btn{display:inline-block;margin-top:12px;border:1px solid var(--v);background:transparent;color:var(--v3);padding:8px 14px;border-radius:9px;font:inherit;font-weight:700;cursor:pointer}
+.customize-btn{background:linear-gradient(110deg,var(--v2),var(--v));border-color:transparent;color:#fff}
+.prices{grid-template-columns:repeat(4,1fr)}.price{padding:20px;position:relative}.price .count{color:var(--muted);font-size:14px}.price strong{display:block;font-size:32px;color:var(--v);margin:8px 0}.price p{color:var(--muted);font-size:13px;min-height:44px}
+.price.featured{border-color:var(--v);box-shadow:0 0 0 1px #963cff44,0 0 40px #963cff22}.price.featured:before{content:"الأكثر طلباً";position:absolute;top:12px;left:12px;background:var(--v);color:#fff;font-size:11px;padding:2px 10px;border-radius:20px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.step{background:#101522;border:1px solid var(--line);border-radius:15px;padding:18px}.step em{font-style:normal;color:var(--v);font-size:22px;font-weight:800}
+
+/* نموذج الاختيارات */
+.order-panel{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px;margin-top:10px}
+.q{margin-bottom:24px}.q>h3{margin:0 0 4px;font-size:17px}.q>small{display:block;color:var(--muted);margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{position:relative}.chip input{position:absolute;opacity:0;inset:0;cursor:pointer;margin:0}
+.chip span{display:flex;align-items:center;gap:8px;padding:9px 16px;border:1px solid #30394f;background:#0b0e1c;border-radius:12px;font-size:14px;transition:all .2s;cursor:pointer}
+.chip:hover span{border-color:var(--v)}
+.chip input:checked+span{background:linear-gradient(110deg,var(--v2),var(--v));border-color:transparent;color:#fff;font-weight:700;transform:scale(1.04);box-shadow:0 6px 20px #963cff55}
+.chip input:focus-visible+span{outline:2px solid var(--v3);outline-offset:2px}
+.sw{width:18px;height:18px;border-radius:50%;border:2px solid #ffffff55;display:inline-block}
+.contact-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field input,.field textarea{width:100%;background:#090d18;color:var(--white);border:1px solid #30394f;border-radius:10px;padding:11px;font:inherit}
+.field textarea{min-height:80px;resize:vertical}.field label{display:block;font-size:14px;margin-bottom:5px;color:#d9deea}
+.summary{background:#0b0e1c;border:1px dashed #563b82;border-radius:14px;padding:14px 16px;margin:6px 0 16px;font-size:14px;color:var(--v3)}
+.err{display:none;color:#ffb4b4;font-size:13px;margin-top:8px}.q.bad .err{display:block}.q.bad .chip span{border-color:#ff7b7b}
+.notice{display:none;border:1px solid #66512c;background:#211333;color:#e5d5ff;border-radius:10px;padding:12px;margin-top:14px;font-size:14px}
+
+.contact{background:linear-gradient(120deg,#1a1d2b,#29203a);border:1px solid #3b344b;border-radius:22px;padding:32px;text-align:center}.contact p{color:var(--muted)}
+.discord-btn{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:var(--discord);color:#fff;padding:11px 22px;border-radius:11px;font-weight:700;transition:transform .2s,background .2s}.discord-btn:hover{background:#4752C4;transform:translateY(-2px)}
 footer{padding:28px 0;color:var(--muted);border-top:1px solid var(--line);font-size:13px;text-align:center}
-@media(max-width:800px){.hero{grid-template-columns:1fr;padding:48px 0}.grid{grid-template-columns:1fr 1fr}.prices{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr}}
-@media(max-width:480px){.grid{grid-template-columns:1fr}.prices{grid-template-columns:1fr 1fr}.price{padding:15px}.price strong{font-size:25px}}
-.order-area{padding:42px 0}.order-panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px;margin-top:18px}
-.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}
-.field label{font-size:14px;color:#d9deea}.field input,.field select,.field textarea{width:100%;background:#090d18;color:var(--white);border:1px solid #30394f;border-radius:10px;padding:12px;font:inherit}
-.field textarea{min-height:105px;resize:vertical}
-.form-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:18px}
-.submit-btn{border:0;border-radius:10px;padding:11px 18px;background:linear-gradient(110deg,#7434d8,#a33cff);color:#ffffff;font-weight:800;cursor:pointer;font:inherit}
-.notice{display:none;border:1px solid #66512c;background:#211333;color:#e5d5ff;border-radius:10px;padding:12px;margin-top:14px;font-size:13px}
-@media(max-width:650px){.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.order-panel{padding:16px}}
+
+
+/* نماذج الأعمال المتحركة */
+@keyframes floaty{0%,100%{translate:0 0}50%{translate:0 -12px}}
+@keyframes kb{0%{transform:scale(1) translate(0,0)}100%{transform:scale(1.14) translate(-3%,-3%)}}
+@keyframes sweep{0%{transform:translateX(-130%) skewX(-20deg)}60%,100%{transform:translateX(230%) skewX(-20deg)}}
+.sample.in{animation:floaty 5s ease-in-out infinite;animation-delay:var(--dl,0s)}
+.sample:hover{animation-play-state:paused}
+.poster img{animation:kb 8s ease-in-out infinite alternate;animation-delay:var(--dl,0s)}
+.poster:after{content:"";position:absolute;top:0;bottom:0;left:0;width:40%;background:linear-gradient(100deg,transparent,#ffffff38,transparent);animation:sweep 4.5s ease-in-out infinite;animation-delay:var(--dl,0s);pointer-events:none}
+.sample:hover .poster img{transform:none}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}.rv.in{opacity:1;transform:none}
+
+@media(max-width:800px){.hero{grid-template-columns:1fr;padding:44px 0}.grid{grid-template-columns:1fr 1fr}.prices{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr}.nav-links a:not(.cta){display:none}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.contact-row{grid-template-columns:1fr}.order-panel{padding:16px}.price strong{font-size:26px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+
+/* شات المساعد الذكي */
+.ai-fab{position:fixed;left:20px;bottom:20px;z-index:50;width:60px;height:60px;border-radius:50%;border:0;cursor:pointer;color:#fff;background:linear-gradient(135deg,var(--v2),var(--v));box-shadow:0 10px 30px #963cff66;display:grid;place-items:center;animation:bob 3.5s ease-in-out infinite}
+.ai-fab:hover{transform:scale(1.08)}.ai-fab svg{width:28px;height:28px}
+.ai-fab:after{content:"";position:absolute;top:4px;right:4px;width:12px;height:12px;border-radius:50%;background:#2ecb7a;border:2px solid var(--bg)}
+.ai-box{position:fixed;left:20px;bottom:92px;z-index:50;width:min(380px,calc(100vw - 32px));height:min(540px,calc(100vh - 120px));background:var(--panel);border:1px solid #563b82;border-radius:20px;box-shadow:0 24px 70px #000a;display:none;flex-direction:column;overflow:hidden}
+.ai-box.open{display:flex;animation:pop .25s ease}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.97)}}
+.ai-head{display:flex;align-items:center;gap:10px;padding:14px 16px;background:linear-gradient(110deg,var(--v2),var(--v));color:#fff}
+.ai-head b{display:block;line-height:1.3}.ai-head small{opacity:.85;font-size:12px}
+.ai-head button{margin-right:auto;background:#ffffff26;border:0;color:#fff;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:16px}
+.ai-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
+.ai-m{max-width:85%;padding:9px 13px;border-radius:14px;font-size:14px;line-height:1.7;white-space:pre-wrap;word-wrap:break-word}
+.ai-m.bot{background:#1b1d36;border:1px solid var(--line);align-self:flex-start;border-bottom-right-radius:4px}
+.ai-m.me{background:linear-gradient(110deg,var(--v2),var(--v));color:#fff;align-self:flex-end;border-bottom-left-radius:4px}
+.ai-typing{display:flex;gap:4px;padding:12px 14px}.ai-typing i{width:7px;height:7px;border-radius:50%;background:var(--v3);animation:blink 1.2s infinite}.ai-typing i:nth-child(2){animation-delay:.2s}.ai-typing i:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,80%,100%{opacity:.25}40%{opacity:1}}
+.ai-quick{display:flex;flex-wrap:wrap;gap:7px;padding:0 14px 10px}
+.ai-quick button{background:#0b0e1c;border:1px solid #30394f;color:var(--v3);border-radius:20px;padding:5px 12px;font:inherit;font-size:12.5px;cursor:pointer}.ai-quick button:hover{border-color:var(--v)}
+.ai-form{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
+.ai-form input{flex:1;min-width:0;background:#090d18;color:var(--white);border:1px solid #30394f;border-radius:12px;padding:10px 12px;font:inherit;font-size:14px}
+.ai-form button{background:linear-gradient(110deg,var(--v2),var(--v));color:#fff;border:0;border-radius:12px;padding:0 16px;font:inherit;font-weight:700;cursor:pointer}
+.ai-form button:disabled{opacity:.5;cursor:wait}
 </style>
 </head>
 <body>
+<div class="bg-shapes" aria-hidden="true">
+ <i class="sh blob" style="--s:420px;top:-120px;right:-100px;--d:18s"></i>
+ <i class="sh ring" style="--s:70px;top:16%;left:7%;--d:12s"></i>
+ <i class="sh sq" style="--s:46px;top:30%;right:9%;--d:16s"></i>
+ <i class="sh dot" style="--s:16px;top:48%;left:14%;--d:9s"></i>
+ <i class="sh tri" style="--s:44px;top:62%;right:6%;--d:20s"></i>
+ <i class="sh plus" style="--s:34px;top:75%;left:8%;--d:15s"></i>
+ <i class="sh ring" style="--s:40px;top:88%;right:18%;--d:11s;--l:-4s"></i>
+ <i class="sh dot" style="--s:12px;top:8%;right:30%;--d:10s;--l:-2s"></i>
+ <i class="sh sq" style="--s:30px;top:55%;left:48%;--d:18s;--l:-6s"></i>
+</div>
 <header>
-  <div class="wrap nav">
-    <div class="logo">PIXEL <span>STUDIO</span></div>
-    <nav class="nav-links">
-      <a href="#work">أعمالنا</a>
-      <a href="#prices">الباقات</a>
-      <a href="#order">اطلب الآن</a>
-      <a href="https://discord.gg/CjQS82TEwE" target="_blank" rel="noopener" style="color:#8ea1e1;font-weight:bold">سيرفر الديسكورد</a>
-    </nav>
-  </div>
+ <div class="wrap nav">
+  <div class="logo"><i></i><span>𝐩𝐢𝐱𝐞𝐥-𝐬𝐭𝐮𝐝𝐢𝐨</span></div>
+  <nav class="nav-links">
+   <a href="#work">أعمالنا</a><a href="#prices">الباقات</a><a href="#order">اطلب الآن</a>
+   <a href="https://discord.gg/CjQS82TEwE" target="_blank" rel="noopener" class="cta">الديسكورد</a>
+  </nav>
+ </div>
 </header>
-<main class="wrap">
-<div class="hero">
+
+<main>
+<div class="wrap hero">
  <div>
-   <span class="tag">تصميم سوشيال ميديا وإعلانات</span>
-   <h1>خلّي إعلانك<br><span style="color:var(--gold)">يلفت النظر</span></h1>
-   <p>بوستات وإعلانات مرتبة للمحلات والمتاجر وصفحات الألعاب. اختار الباقة المناسبة، وابعت تفاصيل فكرتك ونجهز لك تصميم يناسب نشاطك.</p>
-   <a class="btn" href="#work">شوف أعمالنا</a>
-   <a class="btn" href="#prices" style="margin-right:8px;background:#25213d">الباقات والأسعار</a>
+  <span class="tag">تصميم سوشيال ميديا وإعلانات</span>
+  <h1>خلّي إعلانك<br><span class="grad">يلفت النظر</span></h1>
+  <p>بوستات وإعلانات مرتبة للمحلات والمتاجر وصفحات الألعاب. اختار الباقة والستايل بضغطة، ونجهز لك تصميم يناسب نشاطك.</p>
+  <a class="btn" href="#order">اطلب تصميمك</a><a class="btn alt" href="#work">شوف أعمالنا</a>
+  <div class="stats"><div><b data-n="6">0</b><small>مجالات في أعمالنا</small></div><div><b data-n="4">0</b><small>باقات للاختيار</small></div><div><b data-n="40">0</b><small>ج.م تبدأ من</small></div></div>
  </div>
  <div class="hero-card">
-   <small>PIXEL STUDIO / CREATIVE DESIGN</small>
-   <b>فكرتك تستاهل<br>تصميم مميز</b>
-   <strong>DESIGN</strong>
-   <small>بوستات • إعلانات • عروض</small>
+  <small>𝐩𝐢𝐱𝐞𝐥-𝐬𝐭𝐮𝐝𝐢𝐨 / CREATIVE DESIGN</small>
+  <b>فكرتك تستاهل<br>تصميم مميز</b>
+  <strong>DESIGN</strong>
+  <small>بوستات • إعلانات • عروض</small>
  </div>
 </div>
+
+<div class="marquee" aria-hidden="true"><div class="track" id="track"></div></div>
+
+<div class="wrap">
 <section id="work">
-  <h2 class="section-title">أعمالنا</h2>
-  <p class="sub">نماذج من تصميماتنا الإعلانية لمختلف المجالات: ألعاب، جيم، مطاعم، ملابس، إلكترونيات وعروض. اضغط على أي تصميم لفتحه بالحجم الكامل أو لتخصيصه لمشروعك.</p>
-  <div class="grid gallery-real">
-   <article class="sample real-sample" data-project="متجر ألعاب">
-    <a class="poster" href="./images/ad-1.jpg" target="_blank" rel="noopener" aria-label="عرض متجر ألعاب"><img src="./images/ad-1.jpg" alt="متجر ألعاب - تصميم من PIXEL STUDIO" loading="lazy"></a>
-    <div class="sample-info"><b>متجر ألعاب</b><small>إعلان جيمينج احترافي وعروض الألعاب</small>
-     <div class="card-actions"><a class="view-btn" href="./images/ad-1.jpg" target="_blank" rel="noopener">عرض التصميم</a><button class="customize-btn" type="button">تخصيص</button></div>
-    </div>
-   </article>
-   <article class="sample real-sample" data-project="جيم">
-    <a class="poster" href="./images/ad-2.jpg" target="_blank" rel="noopener" aria-label="عرض إعلان جيم"><img src="./images/ad-2.jpg" alt="إعلان جيم - تصميم من PIXEL STUDIO" loading="lazy"></a>
-    <div class="sample-info"><b>إعلان جيم</b><small>حملة رياضية واشتراكات الجيم</small>
-     <div class="card-actions"><a class="view-btn" href="./images/ad-2.jpg" target="_blank" rel="noopener">عرض التصميم</a><button class="customize-btn" type="button">تخصيص</button></div>
-    </div>
-   </article>
-   <article class="sample real-sample" data-project="مطعم أو كافيه">
-    <a class="poster" href="./images/ad-3.jpg" target="_blank" rel="noopener" aria-label="عرض إعلان مطعم"><img src="./images/ad-3.jpg" alt="إعلان مطعم - تصميم من PIXEL STUDIO" loading="lazy"></a>
-    <div class="sample-info"><b>إعلان مطعم</b><small>إعلان وجبة وبراند مطعم</small>
-     <div class="card-actions"><a class="view-btn" href="./images/ad-3.jpg" target="_blank" rel="noopener">عرض التصميم</a><button class="customize-btn" type="button">تخصيص</button></div>
-    </div>
-   </article>
-   <article class="sample real-sample" data-project="ملابس">
-    <a class="poster" href="./images/ad-4.jpg" target="_blank" rel="noopener" aria-label="عرض متجر ملابس"><img src="./images/ad-4.jpg" alt="متجر ملابس - تصميم من PIXEL STUDIO" loading="lazy"></a>
-    <div class="sample-info"><b>متجر ملابس</b><small>عرض منتجات وتشكيلة ملابس</small>
-     <div class="card-actions"><a class="view-btn" href="./images/ad-4.jpg" target="_blank" rel="noopener">عرض التصميم</a><button class="customize-btn" type="button">تخصيص</button></div>
-    </div>
-   </article>
-   <article class="sample real-sample" data-project="إلكترونيات">
-    <a class="poster" href="./images/ad-5.jpg" target="_blank" rel="noopener" aria-label="عرض محل إلكترونيات"><img src="./images/ad-5.jpg" alt="محل إلكترونيات - تصميم من PIXEL STUDIO" loading="lazy"></a>
-    <div class="sample-info"><b>محل إلكترونيات</b><small>إعلان أجهزة وإكسسوارات</small>
-     <div class="card-actions"><a class="view-btn" href="./images/ad-5.jpg" target="_blank" rel="noopener">عرض التصميم</a><button class="customize-btn" type="button">تخصيص</button></div>
-    </div>
-   </article>
-   <article class="sample real-sample" data-project="نوع آخر">
-    <a class="poster" href="./images/ad-6.jpg" target="_blank" rel="noopener" aria-label="عرض عروض وخصومات"><img src="./images/ad-6.jpg" alt="عروض وخصومات - تصميم من PIXEL STUDIO" loading="lazy"></a>
-    <div class="sample-info"><b>عروض وخصومات</b><small>تصميم ترويجي لخصومات المتاجر</small>
-     <div class="card-actions"><a class="view-btn" href="./images/ad-6.jpg" target="_blank" rel="noopener">عرض التصميم</a><button class="customize-btn" type="button">تخصيص</button></div>
-    </div>
-   </article>
-  </div>
+ <h2 class="section-title rv">أعمالنا</h2>
+ <p class="sub rv">نماذج من تصميماتنا لمختلف المجالات. اضغط على أي تصميم لفتحه بالحجم الكامل أو لتخصيصه لمشروعك.</p>
+ <div class="grid" id="gallery"></div>
 </section>
+
 <section id="prices">
-  <h2 class="section-title">باقات التصميم</h2>
-  <p class="sub">أسعار بداية مقترحة — السعر النهائي يتأكد بعد معرفة تفاصيل الطلب.</p>
-  <div class="grid prices">
-   <article class="price"><span class="count">باقة البداية</span><strong>40 ج.م</strong><p>تصميم بوست واحد بمقاس مناسب للسوشيال ميديا.</p></article>
-   <article class="price"><span class="count">باقة صغيرة</span><strong>100 ج.م</strong><p>3 بوستات متناسقة لنفس النشاط أو الحملة.</p></article>
-   <article class="price featured"><span class="count">الأكثر توفيراً</span><strong>150 ج.م</strong><p>5 بوستات متنوعة لصفحتك أو متجرك.</p></article>
-   <article class="price"><span class="count">باقة متكاملة</span><strong>270 ج.م</strong><p>10 بوستات لمحتوى صفحتك وعروضك.</p></article>
-  </div>
-  <p class="sub" style="font-size:12px;margin-top:12px">الأسعار لا تشمل كتابة محتوى طويل أو تعديلات كبيرة غير متفق عليها. يتم الاتفاق على التفاصيل قبل بدء التصميم.</p>
+ <h2 class="section-title rv">باقات التصميم</h2>
+ <p class="sub rv">أسعار بداية مقترحة — السعر النهائي يتأكد بعد معرفة تفاصيل الطلب.</p>
+ <div class="grid prices">
+  <article class="price rv"><span class="count">باقة البداية</span><strong>40 ج.م</strong><p>تصميم بوست واحد للسوشيال ميديا.</p></article>
+  <article class="price rv"><span class="count">باقة صغيرة</span><strong>100 ج.م</strong><p>3 بوستات متناسقة لنفس النشاط أو الحملة.</p></article>
+  <article class="price featured rv"><span class="count">الأكثر توفيراً</span><strong>150 ج.م</strong><p>5 بوستات متنوعة لصفحتك أو متجرك.</p></article>
+  <article class="price rv"><span class="count">باقة متكاملة</span><strong>270 ج.م</strong><p>10 بوستات لمحتوى صفحتك وعروضك.</p></article>
+ </div>
+ <p class="sub" style="font-size:12px;margin-top:12px">الأسعار لا تشمل كتابة محتوى طويل أو تعديلات كبيرة غير متفق عليها. يتم الاتفاق على التفاصيل قبل بدء التصميم.</p>
 </section>
+
 <section>
-  <h2 class="section-title">طريقة الطلب</h2>
-  <p class="sub">3 خطوات بسيطة من أول الفكرة لحد استلام التصميم.</p>
-  <div class="steps">
-   <div class="step"><em>01</em><h3>ابعت فكرتك</h3><p class="sub">نوع النشاط، النص، الألوان، والمقاس المطلوب.</p></div>
-   <div class="step"><em>02</em><h3>نأكد التفاصيل</h3><p class="sub">نحدد الباقة والسعر وموعد التسليم قبل التنفيذ.</p></div>
-   <div class="step"><em>03</em><h3>استلم تصميمك</h3><p class="sub">تراجع التصميم وتطلب التعديلات المتفق عليها.</p></div>
-  </div>
+ <h2 class="section-title rv">طريقة الطلب</h2>
+ <p class="sub rv">3 خطوات بسيطة من أول الفكرة لحد استلام التصميم.</p>
+ <div class="steps">
+  <div class="step rv"><em>01</em><h3>اختار طلبك</h3><p class="sub">النشاط، الباقة، الستايل والألوان بضغطة.</p></div>
+  <div class="step rv"><em>02</em><h3>نأكد التفاصيل</h3><p class="sub">نحدد السعر وموعد التسليم قبل التنفيذ.</p></div>
+  <div class="step rv"><em>03</em><h3>استلم تصميمك</h3><p class="sub">تراجع التصميم وتطلب التعديلات المتفق عليها.</p></div>
+ </div>
 </section>
-<section id="order" class="order-area">
- <h2 class="section-title">اطلب تصميمك</h2>
- <p class="sub">اكتب تفاصيل مشروعك، وسيلة التواصل، وطريقة الدفع المفضلة.</p>
- <div class="order-panel">
-  <form id="orderForm" action="https://api.web3forms.com/submit" method="POST">
-   <!-- Access Key المدمج الخاص بك -->
+
+<section id="order">
+ <h2 class="section-title rv">اطلب تصميمك</h2>
+ <p class="sub rv">اختار من القوائم بس — مفيش كتابة غير وسيلة التواصل.</p>
+ <div class="order-panel rv">
+  <form id="orderForm" novalidate>
    <input type="hidden" name="access_key" value="c4d29481-d64a-47fa-b933-d2d5a9d9cc34">
-   <input type="hidden" name="subject" value="طلب تصميم جديد - PIXEL STUDIO">
-   <input type="checkbox" name="botcheck" style="display: none;">
-   
-   <div class="form-grid">
-    <div class="field"><label for="customerName">اسمك</label><input id="customerName" name="customerName" required placeholder="الاسم"></div>
-    <div class="field"><label for="projectType">نوع المشروع</label><select id="projectType" name="projectType" required><option value="">اختار نوع المشروع</option><option>متجر ألعاب</option><option>جيم</option><option>مطعم أو كافيه</option><option>ملابس</option><option>إلكترونيات</option><option>نوع آخر</option></select></div>
-    <div class="field"><label for="designType">مطلوب تصميم إيه؟</label><select id="designType" name="designType" required><option value="">اختار الخدمة</option><option>بوست سوشيال ميديا</option><option>إعلان عرض أو خصم</option><option>لوجو</option><option>تصميمات متعددة</option><option>أخرى</option></select></div>
-    <div class="field"><label for="colors">الألوان المفضلة</label><input id="colors" name="colors" placeholder="مثال: أسود وذهبي"></div>
-    <div class="field"><label for="whatsapp">رقم واتساب للتواصل</label><input id="whatsapp" name="whatsapp" type="tel" placeholder="اكتب الرقم مع كود الدولة"></div>
-    <div class="field"><label for="email">البريد الإلكتروني</label><input id="email" name="email" type="email" placeholder="name@example.com"></div>
-    <div class="field"><label for="payment">طريقة الدفع المفضلة</label><select id="payment" name="payment" required><option value="">اختار طريقة الدفع</option><option>كاش</option><option>إنستا باي</option></select></div>
-    <div class="field"><label for="budget">الميزانية (اختياري)</label><input id="budget" name="budget" placeholder="مثال: 100 جنيه"></div>
-    <div class="field full"><label for="details">تفاصيل المشروع</label><textarea id="details" name="details" required placeholder="اكتب النص المطلوب في التصميم وأي تفاصيل مهمة..."></textarea></div>
+   <input type="hidden" name="subject" value="طلب تصميم جديد - 𝐩𝐢𝐱𝐞𝐥-𝐬𝐭𝐮𝐝𝐢𝐨">
+   <input type="checkbox" name="botcheck" style="display:none">
+   <div id="questions"></div>
+   <div class="q"><h3>وسيلة التواصل</h3><small>اكتب واحدة على الأقل ليوصلك الرد.</small>
+    <div class="contact-row">
+     <div class="field"><label for="whatsapp">رقم واتساب (مع كود الدولة)</label><input id="whatsapp" name="whatsapp" type="tel" placeholder="+20..."></div>
+     <div class="field"><label for="email">البريد الإلكتروني</label><input id="email" name="email" type="email" placeholder="name@example.com"></div>
+    </div>
+    <div class="err" id="contactErr">اكتب رقم واتساب أو بريد إلكتروني.</div>
    </div>
-   <div class="form-actions"><button class="submit-btn" type="submit">إرسال طلب التصميم</button></div>
+   <div class="q"><h3>ملاحظات إضافية (اختياري)</h3><div class="field"><textarea name="details" placeholder="أي تفاصيل تحب تضيفها..."></textarea></div></div>
+   <div class="summary" id="summary">اختياراتك هتظهر هنا.</div>
+   <button class="btn" type="submit">إرسال طلب التصميم</button>
    <div id="orderStatus" class="notice" role="status"></div>
   </form>
  </div>
 </section>
+
 <section id="contact">
-  <div class="contact">
-    <h2 class="section-title">جاهز تبدأ؟</h2>
-    <p>للطلب السريع، التواصل المباشر، أو متابعة أحدث العروض، انضم إلى سيرفر الديسكورد الخاص بنا أو راسلنا عبر البريد الإلكتروني.</p>
-    <b style="color:var(--gold)">البريد الإلكتروني: ahmedkhaleduu3@gmail.com</b><br>
-    <a class="discord-btn" href="https://discord.gg/CjQS82TEwE" target="_blank" rel="noopener">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 0-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
-      انضم لسيرفر الديسكورد
-    </a>
-  </div>
+ <div class="contact rv">
+  <h2 class="section-title">جاهز تبدأ؟</h2>
+  <p>للطلب السريع أو متابعة أحدث العروض، انضم إلى سيرفر الديسكورد أو راسلنا عبر البريد الإلكتروني.</p>
+  <b style="color:var(--v)">ahmedkhaleduu3@gmail.com</b><br>
+  <a class="discord-btn" href="https://discord.gg/CjQS82TEwE" target="_blank" rel="noopener">
+   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+   انضم لسيرفر الديسكورد</a>
+ </div>
 </section>
+</div>
 </main>
-<footer><div class="wrap">© 2026 PIXEL STUDIO — كل الحقوق محفوظة<br>تصميمات إبداعية للسوشيال ميديا والمتاجر.</div></footer>
+<footer><div class="wrap">© 2026 𝐩𝐢𝐱𝐞𝐥-𝐬𝐭𝐮𝐝𝐢𝐨 — كل الحقوق محفوظة<br>تصميمات إبداعية للسوشيال ميديا والمتاجر.</div></footer>
+
 <script>
-document.querySelectorAll('.customize-btn').forEach(button => {
-  button.addEventListener('click', () => {
-    const card = button.closest('.sample');
-    const project = card.dataset.project;
-    document.getElementById('projectType').value = project;
-    document.getElementById('designType').value = 'بوست سوشيال ميديا';
-    document.getElementById('details').value = 'أريد تخصيص نموذج: ' + card.querySelector('.sample-info b').textContent + '\nاكتب هنا النص والتفاصيل المطلوبة.';
-    document.getElementById('order').scrollIntoView({behavior:'smooth'});
-    document.getElementById('customerName').focus({preventScroll:true});
-  });
+const works=[["متجر ألعاب","إعلان جيمينج احترافي وعروض الألعاب"],["جيم","حملة رياضية واشتراكات الجيم"],["مطعم أو كافيه","إعلان وجبة وبراند مطعم"],["ملابس","عرض منتجات وتشكيلة ملابس"],["إلكترونيات","إعلان أجهزة وإكسسوارات"],["نوع آخر","تصميم ترويجي لخصومات المتاجر"]];
+const titles=["متجر ألعاب","إعلان جيم","إعلان مطعم","متجر ملابس","محل إلكترونيات","عروض وخصومات"];
+document.getElementById('gallery').innerHTML=works.map((w,i)=>`<article class="sample rv" style="--dl:-${i*1.1}s" data-project="${w[0]}"><a class="poster" href="./images/ad-${i+1}.jpg" target="_blank" rel="noopener"><img src="./images/ad-${i+1}.jpg" alt="${titles[i]} - تصميم من 𝐩𝐢𝐱𝐞𝐥-𝐬𝐭𝐮𝐝𝐢𝐨" loading="lazy"></a><div class="sample-info"><b>${titles[i]}</b><small>${w[1]}</small><div class="card-actions"><a class="view-btn" href="./images/ad-${i+1}.jpg" target="_blank" rel="noopener">عرض التصميم</a><button class="customize-btn" type="button">تخصيص</button></div></div></article>`).join('');
+const words=["بوستات سوشيال ميديا","إعلانات عروض","لوجو","تصميم متاجر","ألعاب","مطاعم","جيم","ملابس","إلكترونيات"];
+document.getElementById('track').innerHTML=[...words,...words].map(w=>`<span>✦ ${w}</span>`).join('');
+
+/* أسئلة النموذج: كلها اختيارات */
+const Q=[
+ {n:"projectType",t:"نوع المشروع",o:["متجر ألعاب","جيم","مطعم أو كافيه","ملابس","إلكترونيات","نوع آخر"]},
+ {n:"designType",t:"مطلوب تصميم إيه؟",o:["بوست سوشيال ميديا","إعلان عرض أو خصم","لوجو","تصميمات متعددة","أخرى"]},
+ {n:"package",t:"الباقة",o:["بوست واحد — 40 ج.م","3 بوستات — 100 ج.م","5 بوستات — 150 ج.م","10 بوستات — 270 ج.م"]},
+ {n:"style",t:"ستايل التصميم",o:["عصري وبسيط","جريء وصاخب","فخم وهادي","ألعاب ونيون"]},
+ {n:"colors",t:"الألوان المفضلة",s:"تقدر تختار أكتر من لون.",m:1,o:[["بنفسجي","#963cff"],["أسود","#111"],["ذهبي","#d4a73a"],["أحمر","#e33b4a"],["أزرق","#2f7bff"],["أخضر","#2ecb7a"],["برتقالي","#ff8a2b"],["أبيض","#f4f4f4"]]},
+ {n:"delivery",t:"موعد التسليم",o:["خلال 24 ساعة","2-3 أيام","خلال أسبوع","مش مستعجل"]},
+ {n:"payment",t:"طريقة الدفع",o:["كاش","إنستا باي"]}
+];
+const qs=document.getElementById('questions');
+qs.innerHTML=Q.map(q=>`<div class="q" data-q="${q.n}"><h3>${q.t}</h3>${q.s?`<small>${q.s}</small>`:''}<div class="chips">${q.o.map(o=>{const l=q.m?o[0]:o;return `<label class="chip"><input type="${q.m?'checkbox':'radio'}" name="${q.n}" value="${l}"><span>${q.m?`<i class="sw" style="background:${o[1]}"></i>`:''}${l}</span></label>`}).join('')}</div><div class="err">اختار ${q.m?'لون واحد على الأقل':'إجابة'} من فضلك.</div></div>`).join('');
+
+const form=document.getElementById('orderForm'),status=document.getElementById('orderStatus'),sum=document.getElementById('summary');
+const val=n=>[...form.querySelectorAll(`[name="${n}"]:checked`)].map(i=>i.value);
+function upd(){const p=Q.map(q=>{const v=val(q.n);return v.length?`${q.t}: ${v.join('، ')}`:null}).filter(Boolean);sum.textContent=p.length?p.join(' • '):'اختياراتك هتظهر هنا.'}
+form.addEventListener('change',upd);
+
+document.querySelectorAll('.customize-btn').forEach(b=>b.addEventListener('click',()=>{
+ const card=b.closest('.sample');
+ const r=form.querySelector(`[name="projectType"][value="${card.dataset.project}"]`);if(r)r.checked=true;
+ const d=form.querySelector('[name="designType"][value="بوست سوشيال ميديا"]');if(d)d.checked=true;
+ upd();document.getElementById('order').scrollIntoView({behavior:'smooth'});
+}));
+
+form.addEventListener('submit',e=>{
+ e.preventDefault();let ok=true,first=null;
+ Q.forEach(q=>{const box=form.querySelector(`[data-q="${q.n}"]`),bad=!val(q.n).length;box.classList.toggle('bad',bad);if(bad){ok=false;first=first||box}});
+ const hasC=form.whatsapp.value.trim()||form.email.value.trim();
+ document.getElementById('contactErr').style.display=hasC?'none':'block';
+ if(!hasC){ok=false;first=first||form.whatsapp}
+ if(!ok){first.scrollIntoView({behavior:'smooth',block:'center'});return}
+ status.style.display='block';status.textContent='جاري إرسال الطلب...';
+ const data={access_key:form.access_key.value,subject:form.subject.value,botcheck:form.botcheck.checked,whatsapp:form.whatsapp.value,email:form.email.value,details:form.details.value};
+ Q.forEach(q=>data[q.n]=val(q.n).join('، '));
+ fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(data)})
+ .then(async r=>{const j=await r.json();if(r.status==200){status.textContent='تم إرسال طلبك بنجاح! سنتواصل معك قريباً.';form.reset();upd()}else status.textContent=j.message||'حدث خطأ، يرجى المحاولة مرة أخرى.'})
+ .catch(()=>status.textContent='عذراً، حدث خطأ في الاتصال بالإنترنت.');
 });
 
-// سكربت إرسال النموذج عبر Web3Forms بشكل ديناميكي ونظيف
-const form = document.getElementById('orderForm');
-const status = document.getElementById('orderStatus');
+/* ظهور تدريجي + عدّاد الأرقام */
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+document.querySelectorAll('[data-n]').forEach(el=>{const t=+el.dataset.n;let c=0;const s=setInterval(()=>{c+=Math.max(1,Math.ceil(t/30));if(c>=t){c=t;clearInterval(s)}el.textContent=c},40)});
+</script>
 
-form.addEventListener('submit', function(e) {
-  e.preventDefault();
-  status.style.display = 'block';
-  status.textContent = 'جاري إرسال الطلب...';
-  
-  const formData = new FormData(form);
-  const object = Object.fromEntries(formData);
-  const json = JSON.stringify(object);
+<button class="ai-fab" id="aiFab" type="button" aria-label="تحدث مع المساعد الذكي"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm4 6a1.3 1.3 0 1 0 0 2.6A1.3 1.3 0 0 0 8 10zm4 0a1.3 1.3 0 1 0 0 2.6A1.3 1.3 0 0 0 12 10zm4 0a1.3 1.3 0 1 0 0 2.6A1.3 1.3 0 0 0 16 10z"/></svg></button>
+<div class="ai-box" id="aiBox" role="dialog" aria-label="المساعد الذكي">
+ <div class="ai-head"><div><b>مساعد 𝐩𝐢𝐱𝐞𝐥-𝐬𝐭𝐮𝐝𝐢𝐨</b><small>اسألني عن التصميم والأسعار والطلب</small></div><button type="button" id="aiClose" aria-label="إغلاق">✕</button></div>
+ <div class="ai-msgs" id="aiMsgs" aria-live="polite"></div>
+ <div class="ai-quick" id="aiQuick"></div>
+ <form class="ai-form" id="aiForm"><input id="aiInput" autocomplete="off" placeholder="اكتب سؤالك هنا..." maxlength="500"><button type="submit" id="aiSend">إرسال</button></form>
+</div>
 
-  fetch('https://api.web3forms.com/submit', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-    },
-    body: json
-  })
-  .then(async (response) => {
-    let jsonResponse = await response.json();
-    if (response.status == 200) {
-        status.textContent = 'تم إرسال طلبك بنجاح! سنتواصل معك قريباً.';
-        form.reset();
-    } else {
-        status.textContent = jsonResponse.message || 'حدث خطأ، يرجى المحاولة مرة أخرى.';
-    }
-  })
-  .catch(error => {
-    status.textContent = 'عذراً، حدث خطأ في الاتصال بالإنترنت.';
-  });
-});
+<script>
+/* ===== المساعد الذكي =====
+   لتفعيل الذكاء الاصطناعي الحقيقي: ارفع ملف worker.js على Cloudflare Workers
+   وضع رابطه هنا. لو تُرك فاضي، المساعد يرد بإجابات جاهزة عن الموقع. */
+const AI_ENDPOINT="";
+
+const KB=[
+ [/سعر|اسعار|أسعار|بكام|كام|تكلف|باقه|باقة|باقات|عرض سعر/,"الباقات عندنا:\n• بوست واحد — 40 ج.م\n• 3 بوستات — 100 ج.م\n• 5 بوستات — 150 ج.م (الأكثر توفيراً)\n• 10 بوستات — 270 ج.م\nالسعر النهائي بيتأكد بعد معرفة تفاصيل طلبك."],
+ [/تسليم|امتى|إمتى|وقت|مدة|مده|سريع|كام يوم|يوم/,"مواعيد التسليم المتاحة: خلال 24 ساعة، أو 2-3 أيام، أو خلال أسبوع، أو مش مستعجل. بتختار الموعد في نموذج الطلب ونأكده معاك قبل التنفيذ."],
+ [/دفع|ادفع|إنستا|انستا|كاش|فلوس/,"طرق الدفع: كاش أو إنستا باي. بنتفق على التفاصيل والسعر قبل ما نبدأ التصميم."],
+ [/ستايل|شكل|نمط|تصميم ايه|أنواع|انواع/,"الستايلات المتاحة: عصري وبسيط، جريء وصاخب، فخم وهادي، وألعاب ونيون. وتقدر تختار أكتر من لون مفضّل في نموذج الطلب."],
+ [/لون|الوان|ألوان/,"تقدر تختار أكتر من لون: بنفسجي، أسود، ذهبي، أحمر، أزرق، أخضر، برتقالي، أبيض. ولو مش متأكد اختار اللي بيمثل براندك وهنقترح عليك الأنسب."],
+ [/تعديل|عدل|تغيير|غير/,"بعد استلام التصميم تقدر تطلب التعديلات المتفق عليها. الأسعار لا تشمل تعديلات كبيرة غير متفق عليها، فالأفضل تكتب تفاصيلك كاملة من البداية."],
+ [/لوجو|شعار|logo/,"أيوه بنصمم لوجو. اختار «لوجو» في سؤال «مطلوب تصميم إيه؟» داخل نموذج الطلب وسيب لنا تفاصيل نشاطك."],
+ [/مقاس|حجم|ستوري|انستجرام|إنستجرام|فيسبوك|يوتيوب/,"مش لازم تحدد المقاس، بنختار المقاس المناسب للمنصة اللي هتنشر عليها. لو عايز مقاس معين اكتبه في ملاحظات الطلب."],
+ [/مجال|نشاط|مطعم|جيم|ملابس|العاب|ألعاب|الكترونيات|إلكترونيات|متجر/,"بنشتغل في مجالات زي: متاجر الألعاب، الجيم، المطاعم والكافيهات، الملابس، الإلكترونيات، وعروض الخصومات. شوف نماذج من شغلنا في قسم «أعمالنا» وتقدر تضغط «تخصيص» على أي نموذج."],
+ [/تواصل|ايميل|إيميل|بريد|ديسكورد|واتس|رقم/,"تقدر تتواصل معانا على ahmedkhaleduu3@gmail.com أو تنضم لسيرفر الديسكورد: https://discord.gg/CjQS82TEwE"],
+ [/اطلب|طلب|ازاي|إزاي|اعمل|ابدأ|ابدا|خطوات/,"الطلب بسيط: ١) اختار النشاط والباقة والستايل والألوان من النموذج ٢) نأكد معاك التفاصيل والسعر وموعد التسليم ٣) تستلم تصميمك وتطلب التعديلات المتفق عليها. انزل لقسم «اطلب تصميمك» وابدأ."],
+ [/مرحبا|اهلا|أهلا|هاي|سلام|صباح|مساء|hi|hello/,"أهلاً بيك! 👋 أنا مساعد 𝐩𝐢𝐱𝐞𝐥-𝐬𝐭𝐮𝐝𝐢𝐨. اسألني عن الأسعار أو الستايلات أو مواعيد التسليم أو إزاي تطلب تصميمك."]
+];
+const QUICK=["الأسعار","مواعيد التسليم","إزاي أطلب؟","الستايلات المتاحة","طرق الدفع"];
+const box=document.getElementById('aiBox'),msgs=document.getElementById('aiMsgs'),inp=document.getElementById('aiInput'),sendB=document.getElementById('aiSend');
+const hist=[];let busy=false;
+function add(t,who){const d=document.createElement('div');d.className='ai-m '+who;d.textContent=t;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d}
+function typing(){const d=document.createElement('div');d.className='ai-m bot ai-typing';d.innerHTML='<i></i><i></i><i></i>';msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d}
+function local(q){for(const[r,a]of KB)if(r.test(q))return a;return "سؤال حلو! للتفاصيل اللي مش عندي دلوقتي، اكتب لنا في نموذج الطلب أو كلمنا على الديسكورد أو ahmedkhaleduu3@gmail.com وهنرد عليك بسرعة."}
+async function ask(q){
+ hist.push({role:'user',content:q});
+ if(AI_ENDPOINT){
+  const r=await fetch(AI_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:hist.slice(-12)})});
+  if(!r.ok)throw new Error('bad');const j=await r.json();if(!j.reply)throw new Error('empty');return j.reply;
+ }
+ await new Promise(r=>setTimeout(r,600));return local(q);
+}
+async function send(q){
+ q=q.trim();if(!q||busy)return;busy=true;sendB.disabled=true;
+ add(q,'me');inp.value='';document.getElementById('aiQuick').style.display='none';
+ const t=typing();let a;
+ try{a=await ask(q)}catch(e){a=local(q)}
+ t.remove();add(a,'bot');hist.push({role:'assistant',content:a});busy=false;sendB.disabled=false;inp.focus();
+}
+document.getElementById('aiQuick').innerHTML=QUICK.map(q=>`<button type="button">${q}</button>`).join('');
+document.getElementById('aiQuick').addEventListener('click',e=>{if(e.target.tagName==='BUTTON')send(e.target.textContent)});
+document.getElementById('aiForm').addEventListener('submit',e=>{e.preventDefault();send(inp.value)});
+function toggle(o){box.classList.toggle('open',o);if(o){if(!msgs.children.length)add("أهلاً بيك في 𝐩𝐢𝐱𝐞𝐥-𝐬𝐭𝐮𝐝𝐢𝐨! 👋\nأقدر أساعدك في اختيار التصميم المناسب والأسعار ومواعيد التسليم وإزاي تطلب. اسألني أي حاجة.",'bot');inp.focus()}}
+document.getElementById('aiFab').addEventListener('click',()=>toggle(!box.classList.contains('open')));
+document.getElementById('aiClose').addEventListener('click',()=>toggle(false));
 </script>
 </body>
 </html>
