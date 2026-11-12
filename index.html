@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
@@ -131,12 +132,11 @@ footer{padding:28px 0;color:var(--muted);border-top:1px solid var(--line);font-s
  <h2 class="section-title">اطلب تصميمك</h2>
  <p class="sub">اكتب تفاصيل مشروعك، وسيلة التواصل، وطريقة الدفع المفضلة.</p>
  <div class="order-panel">
-  <form id="orderForm" action="https://api.web3forms.com/submit" method="POST">
-   <!-- Access Key المدمج الخاص بك -->
-   <input type="hidden" name="access_key" value="c4d29481-d64a-47fa-b933-d2d5a9d9cc34">
-   <input type="hidden" name="subject" value="طلب تصميم جديد - PIXEL STUDIO">
-   <input type="checkbox" name="botcheck" style="display: none;">
-   
+  <form id="orderForm" action="https://formsubmit.co/ahmedkhaleduu3@gmail.com" method="POST">
+   <input type="hidden" name="_subject" value="طلب تصميم جديد - PIXEL STUDIO">
+   <input type="hidden" name="_template" value="table">
+   <input type="hidden" name="_captcha" value="true">
+   <input type="hidden" name="_honey" style="display:none">
    <div class="form-grid">
     <div class="field"><label for="customerName">اسمك</label><input id="customerName" name="customerName" required placeholder="الاسم"></div>
     <div class="field"><label for="projectType">نوع المشروع</label><select id="projectType" name="projectType" required><option value="">اختار نوع المشروع</option><option>متجر ألعاب</option><option>جيم</option><option>مطعم أو كافيه</option><option>ملابس</option><option>إلكترونيات</option><option>نوع آخر</option></select></div>
@@ -178,40 +178,11 @@ document.querySelectorAll('.customize-btn').forEach(button => {
     document.getElementById('customerName').focus({preventScroll:true});
   });
 });
-
-// سكربت إرسال النموذج عبر Web3Forms بشكل ديناميكي ونظيف
-const form = document.getElementById('orderForm');
-const status = document.getElementById('orderStatus');
-
-form.addEventListener('submit', function(e) {
-  e.preventDefault();
+document.getElementById('orderForm').addEventListener('submit', function(event) {
+  const status = document.getElementById('orderStatus');
+  if (!this.checkValidity()) return;
   status.style.display = 'block';
-  status.textContent = 'جاري إرسال الطلب...';
-  
-  const formData = new FormData(form);
-  const object = Object.fromEntries(formData);
-  const json = JSON.stringify(object);
-
-  fetch('https://api.web3forms.com/submit', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-    },
-    body: json
-  })
-  .then(async (response) => {
-    let jsonResponse = await response.json();
-    if (response.status == 200) {
-        status.textContent = 'تم إرسال طلبك بنجاح! سنتواصل معك قريباً.';
-        form.reset();
-    } else {
-        status.textContent = jsonResponse.message || 'حدث خطأ، يرجى المحاولة مرة أخرى.';
-    }
-  })
-  .catch(error => {
-    status.textContent = 'عذراً، حدث خطأ في الاتصال بالإنترنت.';
-  });
+  status.textContent = 'جاري إرسال طلبك... سيتم فتح صفحة تأكيد الإرسال.';
 });
 </script>
 </body>
