@@ -1493,7 +1493,22 @@
         setTimeout(() => { show('my-orders-modal', false); $('reviews').scrollIntoView({ behavior: 'smooth' }); }, 900);
     }
     const _upd = updateOrderStatus;
-    updateOrderStatus = function (id, st) { if (fbdb) { db.collection('orders').doc(String(id)).update({ status: st }); } else _upd(id, st); toast(st === 'مقبول' ? 'تم قبول الطلب، وفُتحت المحادثة مع العميل' : 'تم التسليم، يمكن للعميل تقييم الطلب الآن'); };
+    updateOrderStatus = function (id, st) {
+        const order = appState.orders.find(o => String(o.id) === String(id));
+        if (fbdb) {
+            db.collection('orders').doc(String(id)).update({ status: st }).then(() => {
+                if (st === 'مقبول') {
+                    const fresh = appState.orders.find(o => String(o.id) === String(id)) || order;
+                    if (fresh) openOrderChat(id);
+                    notifyOwner('تم قبول طلب في PIXEL STUDIO', { العميل: order?.name || '', الطلب: order?.title || id, الحالة: st });
+                }
+            }).catch(() => toast('تعذر تحديث الطلب. راجع اتصال Firebase والصلاحيات.'));
+        } else {
+            _upd(id, st);
+            if (st === 'مقبول') openOrderChat(id);
+        }
+        toast(st === 'مقبول' ? 'تم قبول الطلب وفتح محادثته' : 'تم التسليم، يمكن للعميل تقييم الطلب الآن');
+    };
 
     // ================= المساعد الذكي =================
     const quick = ['كم الأسعار؟', 'مدة التسليم؟', 'حالة طلبي', 'أريد متجراً إلكترونياً', 'كيف أتواصل معكم؟'];
@@ -1567,7 +1582,13 @@
         const oq = owner ? db.collection('orders') : db.collection('orders').where('uid', '==', user.uid);
         unsubs.push(oq.onSnapshot(sn => {
             appState.orders = sn.docs.map(d => ({ ...d.data(), id: d.id })).sort((a, b) => (b.ts || 0) - (a.ts || 0));
-            if (!owner) appState.orders.forEach(o => { if (prevSt[o.id] && prevSt[o.id] !== o.status && o.status === 'مقبول') toast('تم قبول طلبك «' + o.title + '»! تحدث مع الإدارة من «طلباتي»'); prevSt[o.id] = o.status; });
+            if (!owner) appState.orders.forEach(o => {
+                if (prevSt[o.id] && prevSt[o.id] !== o.status && o.status === 'مقبول') {
+                    toast('تم قبول طلبك «' + o.title + '»! تم فتح المحادثة مع الإدارة تلقائياً.');
+                    openOrderChat(o.id);
+                }
+                prevSt[o.id] = o.status;
+            });
             updateAdminStats(); loadAdminOrders(); if (!$('my-orders-modal').classList.contains('hidden')) renderMyOrders();
         }));
         unsubs.push(db.collection('reviews').orderBy('ts', 'desc').limit(40).onSnapshot(sn => { reviews = [...sn.docs.map(d => d.data()), ...seedRev]; renderReviews(); }));
