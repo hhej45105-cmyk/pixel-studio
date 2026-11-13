@@ -147,6 +147,10 @@
         @keyframes authPop{from{opacity:0;transform:scale(.9) translateY(20px)}}
         @media (prefers-reduced-motion:reduce){.marq-track,.ftok,#code-rain{animation:none!important}.rv{opacity:1;translate:none}}
     </style>
+
+<style id="no-chat-ui">
+#chat-box,#chat-widget,#chat-toggle-btn,#admin-tab-chats,#tab-btn-chats,#order-chat-modal,#chat-modal,#chat-badge,button[onclick^="openOrderChat"]{display:none!important}
+</style>
 </head>
 <body class="bg-darkBg text-slate-100 antialiased selection:bg-neonBlue selection:text-black">
     <canvas id="code-rain"></canvas>
@@ -709,7 +713,7 @@
                     </div>
                     <div>
                         <h3 class="text-2xl font-black text-white">لوحة تحكم الإدارة (Admin Dashboard)</h3>
-                        <p class="text-xs text-slate-400">إدارة الطلبات، العملاء، المحادثات، والخدمات.</p>
+                        <p class="text-xs text-slate-400">إدارة الطلبات والخدمات والمعرض.</p>
                     </div>
                 </div>
                 <button onclick="closeAdminDashboard()" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-slate-400 hover:text-white transition-colors">
@@ -1734,5 +1738,96 @@
         if (c) { const r = c.getBoundingClientRect(), px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5; c.dataset.tilt = 1; c.style.transform = `perspective(800px) rotateX(${-py * 8}deg) rotateY(${px * 8}deg) translateY(-6px)`; }
     });
     </script>
+
+<script>
+/* PIXEL STUDIO — Cloudflare D1 shared data layer (Firebase-free)
+   Set CF_API_BASE to your deployed Cloudflare Worker URL before publishing. */
+const CF_API_BASE = 'https://YOUR-WORKER-NAME.YOUR-SUBDOMAIN.workers.dev';
+let cfAdminToken = sessionStorage.getItem('pixel_cf_admin_token') || '';
+let cfOrders = [];
+async function cfRequest(path, options={}) {
+  if (!CF_API_BASE || CF_API_BASE.includes('YOUR-WORKER-NAME')) throw new Error('لم يتم ضبط رابط Cloudflare Worker داخل الملف.');
+  const headers = {'Content-Type':'application/json', ...(options.headers||{})};
+  if (options.admin) {
+    if (!cfAdminToken) {
+      cfAdminToken = prompt('أدخل رمز إدارة الموقع الذي أعددته في Cloudflare:') || '';
+      if (!cfAdminToken) throw new Error('تم إلغاء تسجيل الإدارة.');
+      sessionStorage.setItem('pixel_cf_admin_token', cfAdminToken);
+    }
+    headers.Authorization = 'Bearer ' + cfAdminToken;
+  }
+  const res = await fetch(CF_API_BASE.replace(/\/$/,'') + path, {...options, headers});
+  const data = await res.json().catch(()=>({}));
+  if (!res.ok) {
+    if (res.status === 401 || res.status === 403) { cfAdminToken=''; sessionStorage.removeItem('pixel_cf_admin_token'); }
+    throw new Error(data.error || ('فشل الاتصال بالخادم ('+res.status+')'));
+  }
+  return data;
+}
+async function cfLoadServices() {
+  try {
+    const data = await cfRequest('/api/services');
+    if (Array.isArray(data.services)) { appState.services = data.services; renderServices(); }
+  } catch(e) { console.warn('Cloudflare services:', e.message); }
+}
+async function cfLoadOrders() {
+  const data = await cfRequest('/api/orders', {admin:true});
+  cfOrders = Array.isArray(data.orders) ? data.orders : [];
+  appState.orders = cfOrders;
+  const tbody = $('admin-orders-tbody');
+  if (tbody) tbody.innerHTML = cfOrders.map(o => `<tr class="hover:bg-white/5"><td class="p-3">${esc(o.name||'')}</td><td class="p-3">${esc(o.phone||'')}</td><td class="p-3">${esc(o.title||'')}</td><td class="p-3">${esc(o.category||'')}</td><td class="p-3 max-w-xs">${esc(o.details||'')}</td><td class="p-3">${esc(o.status||'قيد المراجعة')}</td><td class="p-3">${cfOrderButtons(o)}</td></tr>`).join('') || '<tr><td colspan="7" class="p-6 text-center text-slate-400">لا توجد طلبات حتى الآن.</td></tr>';
+  const count=$('admin-orders-count'); if(count) count.textContent=cfOrders.length;
+  const stat=$('stat-orders-count'); if(stat) stat.textContent=cfOrders.filter(o=>o.status==='قيد المراجعة').length;
+}
+function cfOrderButtons(o) {
+  const id=encodeURIComponent(o.id);
+  const btn=(status,label,cls)=>`<button onclick="cfSetOrderStatus('${id}','${status}')" class="px-2 py-1 rounded ${cls} ml-1 mb-1">${label}</button>`;
+  if(o.status==='مكتمل') return '<span class="text-emerald-400">مكتمل</span>';
+  if(o.status==='مرفوض') return '<span class="text-rose-400">مرفوض</span>';
+  if(o.status==='مقبول') return btn('مكتمل','تم التسليم','bg-emerald-500/20 text-emerald-300');
+  return btn('مقبول','قبول','bg-emerald-500/20 text-emerald-300')+btn('مرفوض','رفض','bg-rose-500/20 text-rose-300');
+}
+async function cfSetOrderStatus(id,status) {
+  try { await cfRequest('/api/orders/'+id,{method:'PATCH',admin:true,body:JSON.stringify({status})}); toast('تم تحديث حالة الطلب.'); await cfLoadOrders(); }
+  catch(e) { toast(e.message); }
+}
+// Replace local-only service operations with shared Cloudflare D1 operations.
+addNewServicePrompt = async function() {
+  const title=prompt('أدخل عنوان الخدمة الجديدة:'); if(!title) return;
+  const desc=prompt('أدخل وصف الخدمة:')||'خدمة تصميم احترافية من بكسل ستوديو.';
+  const price=prompt('أدخل السعر:')||'يحدد حسب الطلب';
+  try {
+    await cfRequest('/api/services',{method:'POST',admin:true,body:JSON.stringify({title,desc,price,category:'corporate',icon:'fa-code'})});
+    await cfLoadServices(); toast('تمت إضافة الخدمة وستظهر لجميع العملاء.');
+  } catch(e) { toast(e.message); }
+};
+deleteService = async function(id) {
+  if(!confirm('هل تريد حذف هذه الخدمة من الموقع لدى جميع العملاء؟')) return;
+  try { await cfRequest('/api/services/'+encodeURIComponent(id),{method:'DELETE',admin:true}); await cfLoadServices(); toast('تم حذف الخدمة.'); }
+  catch(e) { toast(e.message); }
+};
+// Orders are stored centrally and appear in the admin dashboard on any device.
+submitOrder = async function(event) {
+  event.preventDefault();
+  const o={name:$('client-name').value.trim(),phone:$('client-phone').value.trim(),email:(user&&user.email)||'',title:$('project-title').value.trim(),category:$('project-category').value,details:$('project-details').value.trim()};
+  if(!o.name||!o.phone||!o.title){toast('من فضلك أكمل الاسم والهاتف واسم المشروع.');return;}
+  const submit=$('order-form').querySelector('[type="submit"]'); if(submit) submit.disabled=true;
+  try {
+    await cfRequest('/api/orders',{method:'POST',body:JSON.stringify(o)});
+    closeOrderModal(); $('order-form').reset(); $('file-label-text').innerText='اضغط لاختيار ملف أو اسحبه هنا';
+    toast('تم إرسال طلبك بنجاح.');
+    if(user) renderMyOrders();
+  } catch(e) { toast('لم يتم إرسال الطلب: '+e.message); }
+  finally { if(submit) submit.disabled=false; }
+};
+loadAdminOrders = async function() {
+  const tbody=$('admin-orders-tbody'); if(tbody) tbody.innerHTML='<tr><td colspan="7" class="p-5 text-center">جارٍ تحميل الطلبات...</td></tr>';
+  try { await cfLoadOrders(); } catch(e) { if(tbody) tbody.innerHTML=`<tr><td colspan="7" class="p-5 text-center text-rose-300">${esc(e.message)}</td></tr>`; }
+};
+updateOrderStatus = async function(id,status) { await cfSetOrderStatus(String(id),status); };
+// Shared services are public; refresh on page load and periodically for visitors already browsing.
+addEventListener('DOMContentLoaded',()=>{ cfLoadServices(); setInterval(cfLoadServices,30000); });
+</script>
+
 </body>
 </html>
