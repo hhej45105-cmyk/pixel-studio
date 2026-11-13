@@ -1,359 +1,1586 @@
-<!doctype html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="𝐩𝐢𝐱𝐞𝐥-𝐬𝐭𝐮𝐝𝐢𝐨 — تصميم بوستات وإعلانات للسوشيال ميديا والمتاجر والألعاب.">
-<title>𝐩𝐢𝐱𝐞𝐥-𝐬𝐭𝐮𝐝𝐢𝐨 | تصميمات تلفت الانتباه</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#080914;--panel:#121326;--v:#963cff;--v2:#7434d8;--v3:#cda8ff;--muted:#aeb0c7;--white:#f7f6ff;--line:#29243f;--discord:#5865F2}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--white);font-family:Cairo,Tahoma,Arial,sans-serif;line-height:1.7;overflow-x:hidden}
-a{color:inherit;text-decoration:none}.wrap{width:min(1100px,92%);margin:auto}
-:focus-visible{outline:2px solid var(--v3);outline-offset:3px}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIXEL STUDIO | بكسل ستوديو - ابني عالمك الرقمي</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#07070a',
+                        cardBg: '#12121a',
+                        neonBlue: '#00f2fe',
+                        neonPurple: '#9333ea',
+                        neonPink: '#ec4899',
+                        electricCyan: '#38bdf8'
+                    },
+                    boxShadow: {
+                        'neon': '0 0 25px rgba(0, 242, 254, 0.4)',
+                        'neon-purple': '0 0 25px rgba(147, 51, 234, 0.4)',
+                        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Cairo & Tajawal -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+            background-color: #07070a;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #07070a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #9333ea;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f2fe;
+        }
+        /* Glassmorphism */
+        .glass-panel {
+            background: rgba(18, 18, 26, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: rgba(20, 20, 30, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            border-color: rgba(0, 242, 254, 0.4);
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.2);
+            transform: translateY(-6px);
+        }
+        /* Glowing Text */
+        .glow-text {
+            text-shadow: 0 0 20px rgba(0, 242, 254, 0.6), 0 0 40px rgba(147, 51, 234, 0.4);
+        }
+        .glow-purple {
+            text-shadow: 0 0 20px rgba(147, 51, 234, 0.7);
+        }
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(1deg); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.6; filter: drop-shadow(0 0 15px rgba(0,242,254,0.5)); }
+            50% { opacity: 1; filter: drop-shadow(0 0 30px rgba(0,242,254,0.9)); }
+        }
+        .animate-pulse-glow {
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+        /* Intro Background Zoom & Parallax */
+        #intro-screen {
+            background: radial-gradient(ellipse at 25% 15%, #1d0f3f 0%, #0a0714 55%, #07070a 100%);
+            transition: transform 0.2s ease-out, opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center;
+        }
+        .cinematic-zoom {
+            animation: cinematicZoom 20s infinite alternate linear;
+        }
+        @keyframes cinematicZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.08); }
+        }
+        /* Particle Canvas */
+        #particle-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
 
-/* الأشكال المتحركة في الخلفية */
-.bg-shapes{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:radial-gradient(circle at 85% 0,#34205e 0,transparent 40%),radial-gradient(circle at 5% 90%,#1f1245 0,transparent 40%)}
-.sh{position:absolute;opacity:.55;animation:float var(--d,14s) ease-in-out infinite;animation-delay:var(--l,0s)}
-.sh.ring{width:var(--s);height:var(--s);border:3px solid var(--v);border-radius:50%}
-.sh.sq{width:var(--s);height:var(--s);border:2px solid #6736a6;border-radius:12px;animation-name:spin}
-.sh.dot{width:var(--s);height:var(--s);background:var(--v);border-radius:50%;filter:blur(1px)}
-.sh.tri{width:0;height:0;border-left:calc(var(--s)/2) solid transparent;border-right:calc(var(--s)/2) solid transparent;border-bottom:var(--s) solid #6736a688;animation-name:spin}
-.sh.plus{width:var(--s);height:var(--s);background:linear-gradient(var(--v),var(--v)) center/100% 3px no-repeat,linear-gradient(var(--v),var(--v)) center/3px 100% no-repeat;animation-name:spin}
-.sh.blob{width:var(--s);height:var(--s);background:radial-gradient(circle,#963cff55,transparent 70%);border-radius:50%;opacity:1}
-@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(28px,-46px)}}
-@keyframes spin{from{transform:rotate(0) translateY(0)}50%{transform:rotate(180deg) translateY(-30px)}to{transform:rotate(360deg) translateY(0)}}
-header,main,footer{position:relative;z-index:1}
-
-header{position:sticky;top:0;z-index:20;padding:14px 0;background:#080914cc;backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.logo{font-size:23px;font-weight:900;display:flex;align-items:center;gap:9px}.logo i{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--v2),var(--v));animation:spin 9s linear infinite}.logo span{color:var(--v)}
-.nav-links{display:flex;gap:20px;align-items:center;font-size:14px;color:var(--muted)}.nav-links a:hover{color:var(--white)}
-.nav-links .cta{background:linear-gradient(110deg,var(--v2),var(--v));color:#fff;padding:7px 16px;border-radius:10px;font-weight:700}
-
-.hero{padding:70px 0 50px;display:grid;grid-template-columns:1.15fr .85fr;gap:35px;align-items:center}
-.tag{display:inline-flex;align-items:center;gap:8px;border:1px solid #6736a6;color:var(--v3);border-radius:30px;padding:5px 14px;font-size:13px}
-.tag:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--v);animation:pulse 1.6s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 #963cffaa}100%{box-shadow:0 0 0 10px #963cff00}}
-h1{font-size:clamp(36px,6vw,64px);line-height:1.2;margin:16px 0;font-weight:900}
-.grad{background:linear-gradient(100deg,#c79bff,#963cff,#7e8bff,#c79bff);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
-@keyframes shine{to{background-position:-250% 0}}
-.hero p{color:var(--muted);font-size:18px;max-width:560px}
-.btn{display:inline-block;background:linear-gradient(110deg,var(--v2),var(--v));color:#fff;padding:12px 24px;border-radius:12px;font-weight:700;margin-top:12px;border:0;font:inherit;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s}
-.btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px #963cff55}.btn.alt{background:#25213d;margin-right:8px}
-.stats{display:flex;gap:26px;margin-top:30px;flex-wrap:wrap}.stats b{display:block;font-size:28px;color:var(--v3);line-height:1.2}.stats small{color:var(--muted)}
-
-.hero-card{position:relative;background:linear-gradient(145deg,#201b43,#111326 60%,#3b1d63);border:1px solid #563b82;border-radius:26px;padding:28px;min-height:320px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 22px 70px #0008;overflow:hidden;animation:bob 6s ease-in-out infinite}
-@keyframes bob{50%{transform:translateY(-12px)}}
-.hero-card:before{content:"";position:absolute;width:260px;height:260px;border:2px dashed #963cff77;border-radius:50%;left:-70px;bottom:-90px;animation:spin2 18s linear infinite}
-.hero-card:after{content:"";position:absolute;width:90px;height:90px;border-radius:24px;background:linear-gradient(135deg,var(--v),#5b6bff);opacity:.5;top:22px;left:24px;animation:spin2 12s linear infinite reverse}
-@keyframes spin2{to{transform:rotate(360deg)}}
-.hero-card>*{position:relative;z-index:1}.hero-card b{font-size:30px;line-height:1.4}.hero-card strong{font-size:48px;color:var(--v);letter-spacing:2px}.hero-card small{color:#d2d6e3}
-
-.marquee{position:relative;z-index:1;overflow:hidden;border-block:1px solid var(--line);background:#0d0e1f;padding:12px 0;direction:ltr}
-.track{display:flex;gap:48px;width:max-content;animation:run 28s linear infinite;color:var(--v3);font-weight:700;white-space:nowrap}
-@keyframes run{to{transform:translateX(-50%)}}
-
-section{padding:50px 0}.section-title{font-size:32px;margin:0 0 8px;font-weight:900}.sub{color:var(--muted);margin:0 0 26px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.sample,.price{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:transform .25s,border-color .25s,box-shadow .25s}
-.sample:hover,.price:hover{transform:translateY(-6px);border-color:var(--v);box-shadow:0 16px 40px #963cff33}
-.poster{aspect-ratio:1.5;position:relative;overflow:hidden;background:#090d18;display:block}
-.poster img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .4s}.sample:hover .poster img{transform:scale(1.06)}
-.sample-info{padding:14px 16px}.sample-info b{display:block}.sample-info small{color:var(--muted)}
-.card-actions{display:flex;gap:9px;flex-wrap:wrap}
-.view-btn,.customize-btn{display:inline-block;margin-top:12px;border:1px solid var(--v);background:transparent;color:var(--v3);padding:8px 14px;border-radius:9px;font:inherit;font-weight:700;cursor:pointer}
-.customize-btn{background:linear-gradient(110deg,var(--v2),var(--v));border-color:transparent;color:#fff}
-.prices{grid-template-columns:repeat(4,1fr)}.price{padding:20px;position:relative}.price .count{color:var(--muted);font-size:14px}.price strong{display:block;font-size:32px;color:var(--v);margin:8px 0}.price p{color:var(--muted);font-size:13px;min-height:44px}
-.price.featured{border-color:var(--v);box-shadow:0 0 0 1px #963cff44,0 0 40px #963cff22}.price.featured:before{content:"الأكثر طلباً";position:absolute;top:12px;left:12px;background:var(--v);color:#fff;font-size:11px;padding:2px 10px;border-radius:20px}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.step{background:#101522;border:1px solid var(--line);border-radius:15px;padding:18px}.step em{font-style:normal;color:var(--v);font-size:22px;font-weight:800}
-
-/* نموذج الاختيارات */
-.order-panel{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px;margin-top:10px}
-.q{margin-bottom:24px}.q>h3{margin:0 0 4px;font-size:17px}.q>small{display:block;color:var(--muted);margin-bottom:10px}
-.chips{display:flex;flex-wrap:wrap;gap:10px}
-.chip{position:relative}.chip input{position:absolute;opacity:0;inset:0;cursor:pointer;margin:0}
-.chip span{display:flex;align-items:center;gap:8px;padding:9px 16px;border:1px solid #30394f;background:#0b0e1c;border-radius:12px;font-size:14px;transition:all .2s;cursor:pointer}
-.chip:hover span{border-color:var(--v)}
-.chip input:checked+span{background:linear-gradient(110deg,var(--v2),var(--v));border-color:transparent;color:#fff;font-weight:700;transform:scale(1.04);box-shadow:0 6px 20px #963cff55}
-.chip input:focus-visible+span{outline:2px solid var(--v3);outline-offset:2px}
-.sw{width:18px;height:18px;border-radius:50%;border:2px solid #ffffff55;display:inline-block}
-.contact-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.field input,.field textarea{width:100%;background:#090d18;color:var(--white);border:1px solid #30394f;border-radius:10px;padding:11px;font:inherit}
-.field textarea{min-height:80px;resize:vertical}.field label{display:block;font-size:14px;margin-bottom:5px;color:#d9deea}
-.summary{background:#0b0e1c;border:1px dashed #563b82;border-radius:14px;padding:14px 16px;margin:6px 0 16px;font-size:14px;color:var(--v3)}
-.err{display:none;color:#ffb4b4;font-size:13px;margin-top:8px}.q.bad .err{display:block}.q.bad .chip span{border-color:#ff7b7b}
-.notice{display:none;border:1px solid #66512c;background:#211333;color:#e5d5ff;border-radius:10px;padding:12px;margin-top:14px;font-size:14px}
-
-.contact{background:linear-gradient(120deg,#1a1d2b,#29203a);border:1px solid #3b344b;border-radius:22px;padding:32px;text-align:center}.contact p{color:var(--muted)}
-.discord-btn{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:var(--discord);color:#fff;padding:11px 22px;border-radius:11px;font-weight:700;transition:transform .2s,background .2s}.discord-btn:hover{background:#4752C4;transform:translateY(-2px)}
-footer{padding:28px 0;color:var(--muted);border-top:1px solid var(--line);font-size:13px;text-align:center}
-
-
-/* نماذج الأعمال المتحركة */
-@keyframes floaty{0%,100%{translate:0 0}50%{translate:0 -12px}}
-@keyframes kb{0%{transform:scale(1) translate(0,0)}100%{transform:scale(1.14) translate(-3%,-3%)}}
-@keyframes sweep{0%{transform:translateX(-130%) skewX(-20deg)}60%,100%{transform:translateX(230%) skewX(-20deg)}}
-.sample.in{animation:floaty 5s ease-in-out infinite;animation-delay:var(--dl,0s)}
-.sample:hover{animation-play-state:paused}
-.poster img{animation:kb 8s ease-in-out infinite alternate;animation-delay:var(--dl,0s)}
-.poster:after{content:"";position:absolute;top:0;bottom:0;left:0;width:40%;background:linear-gradient(100deg,transparent,#ffffff38,transparent);animation:sweep 4.5s ease-in-out infinite;animation-delay:var(--dl,0s);pointer-events:none}
-.sample:hover .poster img{transform:none}
-.rv{opacity:1;transform:none;transition:opacity .7s,transform .7s}.js .rv{opacity:0;transform:translateY(24px)}.js .rv.in{opacity:1;transform:none}
-
-@media(max-width:800px){.hero{grid-template-columns:1fr;padding:44px 0}.grid{grid-template-columns:1fr 1fr}.prices{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr}.nav-links a:not(.cta){display:none}}
-@media(max-width:560px){.grid{grid-template-columns:1fr}.contact-row{grid-template-columns:1fr}.order-panel{padding:16px}.price strong{font-size:26px}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
-
-/* شات المساعد الذكي */
-.ai-fab{position:fixed;left:20px;bottom:20px;z-index:50;width:60px;height:60px;border-radius:50%;border:0;cursor:pointer;color:#fff;background:linear-gradient(135deg,var(--v2),var(--v));box-shadow:0 10px 30px #963cff66;display:grid;place-items:center;animation:bob 3.5s ease-in-out infinite}
-.ai-fab:hover{transform:scale(1.08)}.ai-fab svg{width:28px;height:28px}
-.ai-fab:after{content:"";position:absolute;top:4px;right:4px;width:12px;height:12px;border-radius:50%;background:#2ecb7a;border:2px solid var(--bg)}
-.ai-box{position:fixed;left:20px;bottom:92px;z-index:50;width:min(380px,calc(100vw - 32px));height:min(540px,calc(100vh - 120px));background:var(--panel);border:1px solid #563b82;border-radius:20px;box-shadow:0 24px 70px #000a;display:none;flex-direction:column;overflow:hidden}
-.ai-box.open{display:flex;animation:pop .25s ease}
-@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.97)}}
-.ai-head{display:flex;align-items:center;gap:10px;padding:14px 16px;background:linear-gradient(110deg,var(--v2),var(--v));color:#fff}
-.ai-head b{display:block;line-height:1.3}.ai-head small{opacity:.85;font-size:12px}
-.ai-head button{margin-right:auto;background:#ffffff26;border:0;color:#fff;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:16px}
-.ai-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
-.ai-m{max-width:85%;padding:9px 13px;border-radius:14px;font-size:14px;line-height:1.7;white-space:pre-wrap;word-wrap:break-word}
-.ai-m.bot{background:#1b1d36;border:1px solid var(--line);align-self:flex-start;border-bottom-right-radius:4px}
-.ai-m.me{background:linear-gradient(110deg,var(--v2),var(--v));color:#fff;align-self:flex-end;border-bottom-left-radius:4px}
-.ai-typing{display:flex;gap:4px;padding:12px 14px}.ai-typing i{width:7px;height:7px;border-radius:50%;background:var(--v3);animation:blink 1.2s infinite}.ai-typing i:nth-child(2){animation-delay:.2s}.ai-typing i:nth-child(3){animation-delay:.4s}
-@keyframes blink{0%,80%,100%{opacity:.25}40%{opacity:1}}
-.ai-quick{display:flex;flex-wrap:wrap;gap:7px;padding:0 14px 10px}
-.ai-quick button{background:#0b0e1c;border:1px solid #30394f;color:var(--v3);border-radius:20px;padding:5px 12px;font:inherit;font-size:12.5px;cursor:pointer}.ai-quick button:hover{border-color:var(--v)}
-.ai-form{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
-.ai-form input{flex:1;min-width:0;background:#090d18;color:var(--white);border:1px solid #30394f;border-radius:12px;padding:10px 12px;font:inherit;font-size:14px}
-.ai-form button{background:linear-gradient(110deg,var(--v2),var(--v));color:#fff;border:0;border-radius:12px;padding:0 16px;font:inherit;font-weight:700;cursor:pointer}
-.ai-form button:disabled{opacity:.5;cursor:wait}
-</style>
+        #main-website{position:relative;z-index:1}
+        #code-rain{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.85}
+        #progress{position:fixed;top:0;right:0;height:3px;width:0;background:linear-gradient(90deg,#00f2fe,#9333ea,#ec4899);z-index:70;box-shadow:0 0 12px #00f2fe}
+        #cglow{position:fixed;top:0;left:0;width:420px;height:420px;margin:-210px 0 0 -210px;border-radius:50%;background:radial-gradient(circle,rgba(147,51,234,.18),transparent 65%);pointer-events:none;z-index:2;will-change:transform}
+        .marq{direction:ltr;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+        .marq-track{display:flex;width:max-content;animation:marq 45s linear infinite}
+        .marq.rev .marq-track{animation-direction:reverse}
+        .marq:hover .marq-track{animation-play-state:paused}
+        @keyframes marq{to{transform:translateX(-50%)}}
+        .rev-card{margin:0 .5rem;transition:transform .3s,border-color .3s}
+        .rev-card:hover{transform:translateY(-4px);border-color:rgba(250,204,21,.5)}
+        .ftok{position:absolute;font-family:monospace;color:rgba(0,242,254,.28);pointer-events:none;animation:ftok linear infinite;z-index:0}
+        @keyframes ftok{0%{transform:translateY(60px) rotate(0);opacity:0}15%,80%{opacity:1}100%{transform:translateY(-160px) rotate(18deg);opacity:0}}
+        .rv{opacity:0;translate:0 34px;transition:opacity .8s ease,translate .8s ease}
+        .rv.in{opacity:1;translate:0 0}
+        .glass-card.rv{transition:all .4s cubic-bezier(.4,0,.2,1),opacity .8s ease,translate .8s ease}
+        .star-btn{font-size:1.6rem;color:#475569;transition:transform .2s,color .2s}
+        .star-btn.on{color:#facc15;text-shadow:0 0 12px rgba(250,204,21,.7)}
+        .star-btn:hover{transform:scale(1.25) rotate(-8deg)}
+        .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#00f2fe;margin:0 2px;animation:dot 1s infinite}
+        .dot:nth-child(2){animation-delay:.15s}.dot:nth-child(3){animation-delay:.3s}
+        @keyframes dot{0%,80%,100%{transform:translateY(0);opacity:.4}40%{transform:translateY(-5px);opacity:1}}
+        .msg-in{animation:msgIn .35s ease}
+        @keyframes msgIn{from{opacity:0;transform:translateY(8px) scale(.97)}}
+        .chip{padding:.35rem .7rem;border-radius:999px;font-size:11px;border:1px solid rgba(0,242,254,.35);color:#00f2fe;white-space:nowrap;transition:all .2s}
+        .chip:hover{background:#00f2fe;color:#000}
+        .auth-pop{animation:authPop .5s cubic-bezier(.2,1.2,.3,1)}
+        @keyframes authPop{from{opacity:0;transform:scale(.9) translateY(20px)}}
+        @media (prefers-reduced-motion:reduce){.marq-track,.ftok,#code-rain{animation:none!important}.rv{opacity:1;translate:none}}
+    </style>
 </head>
-<body>
-<div class="bg-shapes" aria-hidden="true">
- <i class="sh blob" style="--s:420px;top:-120px;right:-100px;--d:18s"></i>
- <i class="sh ring" style="--s:70px;top:16%;left:7%;--d:12s"></i>
- <i class="sh sq" style="--s:46px;top:30%;right:9%;--d:16s"></i>
- <i class="sh dot" style="--s:16px;top:48%;left:14%;--d:9s"></i>
- <i class="sh tri" style="--s:44px;top:62%;right:6%;--d:20s"></i>
- <i class="sh plus" style="--s:34px;top:75%;left:8%;--d:15s"></i>
- <i class="sh ring" style="--s:40px;top:88%;right:18%;--d:11s;--l:-4s"></i>
- <i class="sh dot" style="--s:12px;top:8%;right:30%;--d:10s;--l:-2s"></i>
- <i class="sh sq" style="--s:30px;top:55%;left:48%;--d:18s;--l:-6s"></i>
-</div>
-<header>
- <div class="wrap nav">
-  <div class="logo"><i></i><span>𝐩𝐢𝐱𝐞𝐥-𝐬𝐭𝐮𝐝𝐢𝐨</span></div>
-  <nav class="nav-links">
-   <a href="#work">أعمالنا</a><a href="#prices">الباقات</a><a href="#order">اطلب الآن</a>
-   <a href="https://discord.gg/CjQS82TEwE" target="_blank" rel="noopener" class="cta">الديسكورد</a>
-  </nav>
- </div>
-</header>
+<body class="bg-darkBg text-slate-100 antialiased selection:bg-neonBlue selection:text-black">
+    <canvas id="code-rain"></canvas>
+    <div id="progress"></div>
+    <div id="cglow"></div>
 
-<main>
-<div class="wrap hero">
- <div>
-  <span class="tag">تصميم سوشيال ميديا وإعلانات</span>
-  <h1>خلّي إعلانك<br><span class="grad">يلفت النظر</span></h1>
-  <p>بوستات وإعلانات مرتبة للمحلات والمتاجر وصفحات الألعاب. اختار الباقة والستايل بضغطة، ونجهز لك تصميم يناسب نشاطك.</p>
-  <a class="btn" href="#order">اطلب تصميمك</a><a class="btn alt" href="#work">شوف أعمالنا</a>
-  <div class="stats"><div><b data-n="6">0</b><small>مجالات في أعمالنا</small></div><div><b data-n="4">0</b><small>باقات للاختيار</small></div><div><b data-n="40">0</b><small>ج.م تبدأ من</small></div></div>
- </div>
- <div class="hero-card">
-  <small>𝐩𝐢𝐱𝐞𝐥-𝐬𝐭𝐮𝐝𝐢𝐨 / CREATIVE DESIGN</small>
-  <b>فكرتك تستاهل<br>تصميم مميز</b>
-  <strong>DESIGN</strong>
-  <small>بوستات • إعلانات • عروض</small>
- </div>
-</div>
+    <!-- ==================== 1. INTRO / WELCOME SCREEN ==================== -->
+    <div id="intro-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden cursor-pointer" onclick="enterWebsite()">
+        <!-- Dark Overlay with Gradient -->
+        <div class="absolute inset-0 bg-gradient-to-t from-darkBg/80 via-transparent to-black/30 z-0"></div>
+        <canvas id="shape-canvas" class="absolute inset-0 w-full h-full pointer-events-none" style="z-index:0"></canvas>
+        
+        <!-- Particle Canvas -->
+        <canvas id="particle-canvas"></canvas>
 
-<div class="marquee" aria-hidden="true"><div class="track" id="track"></div></div>
+        <!-- Intro Content Container -->
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto flex flex-col items-center justify-center h-full space-y-8 pointer-events-none">
+            
+            <!-- Glowing Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-neonBlue/40 text-neonBlue text-sm tracking-widest animate-pulse-glow pointer-events-auto">
+                <i class="fa-solid fa-code text-neonBlue"></i>
+                <span>NEXT-GEN WEB DESIGN & DIGITAL AGENCY</span>
+            </div>
 
-<div class="wrap">
-<section id="work">
- <h2 class="section-title rv">أعمالنا</h2>
- <p class="sub rv">نماذج من تصميماتنا لمختلف المجالات. اضغط على أي تصميم لفتحه بالحجم الكامل أو لتخصيصه لمشروعك.</p>
- <div class="grid" id="gallery"></div>
-</section>
+            <!-- Main Title with Glow -->
+            <div class="space-y-3">
+                <h1 class="text-5xl md:text-8xl font-black tracking-wider glow-text uppercase font-sans text-white">
+                    PIXEL <span class="text-transparent bg-clip-text bg-gradient-to-r from-neonBlue to-neonPurple">STUDIO</span>
+                </h1>
+                <p class="text-xl md:text-3xl text-slate-300 font-light tracking-wide">
+                    بكسل ستوديو — ابني عالمك الرقمي باحترافية وتطور
+                </p>
+            </div>
 
-<section id="prices">
- <h2 class="section-title rv">باقات التصميم</h2>
- <p class="sub rv">أسعار بداية مقترحة — السعر النهائي يتأكد بعد معرفة تفاصيل الطلب.</p>
- <div class="grid prices">
-  <article class="price rv"><span class="count">باقة البداية</span><strong>40 ج.م</strong><p>تصميم بوست واحد للسوشيال ميديا.</p></article>
-  <article class="price rv"><span class="count">باقة صغيرة</span><strong>100 ج.م</strong><p>3 بوستات متناسقة لنفس النشاط أو الحملة.</p></article>
-  <article class="price featured rv"><span class="count">الأكثر توفيراً</span><strong>150 ج.م</strong><p>5 بوستات متنوعة لصفحتك أو متجرك.</p></article>
-  <article class="price rv"><span class="count">باقة متكاملة</span><strong>270 ج.م</strong><p>10 بوستات لمحتوى صفحتك وعروضك.</p></article>
- </div>
- <p class="sub" style="font-size:12px;margin-top:12px">الأسعار لا تشمل كتابة محتوى طويل أو تعديلات كبيرة غير متفق عليها. يتم الاتفاق على التفاصيل قبل بدء التصميم.</p>
-</section>
+            <!-- Interactive Features Icons -->
+            <div class="flex flex-wrap justify-center gap-6 text-slate-400 text-sm md:text-base pt-4 pointer-events-auto">
+                <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg glass-panel">
+                    <i class="fa-solid fa-globe text-neonBlue"></i> تصميم مواقع الشركات
+                </div>
+                <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg glass-panel">
+                    <i class="fa-solid fa-cart-shopping text-neonPurple"></i> المتاجر الإلكترونية
+                </div>
+                <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg glass-panel">
+                    <i class="fa-solid fa-gamepad text-pink-500"></i> مواقع الألعاب والديسكورد
+                </div>
+                
+            </div>
 
-<section>
- <h2 class="section-title rv">طريقة الطلب</h2>
- <p class="sub rv">3 خطوات بسيطة من أول الفكرة لحد استلام التصميم.</p>
- <div class="steps">
-  <div class="step rv"><em>01</em><h3>اختار طلبك</h3><p class="sub">النشاط، الباقة، الستايل والألوان بضغطة.</p></div>
-  <div class="step rv"><em>02</em><h3>نأكد التفاصيل</h3><p class="sub">نحدد السعر وموعد التسليم قبل التنفيذ.</p></div>
-  <div class="step rv"><em>03</em><h3>استلم تصميمك</h3><p class="sub">تراجع التصميم وتطلب التعديلات المتفق عليها.</p></div>
- </div>
-</section>
-
-<section id="order">
- <h2 class="section-title rv">اطلب تصميمك</h2>
- <p class="sub rv">اختار من القوائم بس — مفيش كتابة غير وسيلة التواصل.</p>
- <div class="order-panel rv">
-  <form id="orderForm" novalidate>
-   <input type="hidden" name="access_key" value="c4d29481-d64a-47fa-b933-d2d5a9d9cc34">
-   <input type="hidden" name="subject" value="طلب تصميم جديد - 𝐩𝐢𝐱𝐞𝐥-𝐬𝐭𝐮𝐝𝐢𝐨">
-   <input type="checkbox" name="botcheck" style="display:none">
-   <div id="questions"></div>
-   <div class="q"><h3>وسيلة التواصل</h3><small>اكتب واحدة على الأقل ليوصلك الرد.</small>
-    <div class="contact-row">
-     <div class="field"><label for="whatsapp">رقم واتساب (مع كود الدولة)</label><input id="whatsapp" name="whatsapp" type="tel" placeholder="+20..."></div>
-     <div class="field"><label for="email">البريد الإلكتروني</label><input id="email" name="email" type="email" placeholder="name@example.com"></div>
+            <!-- Enter Button -->
+            <div class="pt-6 pointer-events-auto">
+                <button onclick="enterWebsite(event)" class="group relative inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-neonBlue to-neonPurple text-black font-extrabold text-lg shadow-neon hover:shadow-[0_0_40px_rgba(0,242,254,0.8)] transition-all duration-300 transform hover:scale-105 active:scale-95">
+                    <span>دخول الموقع (Enter Website)</span>
+                    <i class="fa-solid fa-arrow-left group-hover:-translate-x-2 transition-transform duration-300 text-black"></i>
+                    <div class="absolute inset-0 rounded-2xl border-2 border-white/40 animate-ping opacity-20 pointer-events-none"></div>
+                </button>
+                <p class="text-xs text-slate-400 mt-3 animate-bounce">انقر في أي مكان أو اضغط الزر للدخول</p>
+            </div>
+        </div>
     </div>
-    <div class="err" id="contactErr">اكتب رقم واتساب أو بريد إلكتروني.</div>
-   </div>
-   <div class="q"><h3>ملاحظات إضافية (اختياري)</h3><div class="field"><textarea name="details" placeholder="أي تفاصيل تحب تضيفها..."></textarea></div></div>
-   <div class="summary" id="summary">اختياراتك هتظهر هنا.</div>
-   <button class="btn" type="submit">إرسال طلب التصميم</button>
-   <div id="orderStatus" class="notice" role="status"></div>
-  </form>
- </div>
-</section>
 
-<section id="contact">
- <div class="contact rv">
-  <h2 class="section-title">جاهز تبدأ؟</h2>
-  <p>للطلب السريع أو متابعة أحدث العروض، انضم إلى سيرفر الديسكورد أو راسلنا عبر البريد الإلكتروني.</p>
-  <b style="color:var(--v)">ahmedkhaleduu3@gmail.com</b><br>
-  <a class="discord-btn" href="https://discord.gg/CjQS82TEwE" target="_blank" rel="noopener">
-   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
-   انضم لسيرفر الديسكورد</a>
- </div>
-</section>
-</div>
-</main>
-<footer><div class="wrap">© 2026 𝐩𝐢𝐱𝐞𝐥-𝐬𝐭𝐮𝐝𝐢𝐨 — كل الحقوق محفوظة<br>تصميمات إبداعية للسوشيال ميديا والمتاجر.</div></footer>
+    <!-- ==================== MAIN WEBSITE CONTAINER ==================== -->
+    <div id="main-website" class="opacity-0 transition-opacity duration-1000 hidden">
 
-<script>
-const works=[["متجر ألعاب","إعلان جيمينج احترافي وعروض الألعاب"],["جيم","حملة رياضية واشتراكات الجيم"],["مطعم أو كافيه","إعلان وجبة وبراند مطعم"],["ملابس","عرض منتجات وتشكيلة ملابس"],["إلكترونيات","إعلان أجهزة وإكسسوارات"],["نوع آخر","تصميم ترويجي لخصومات المتاجر"]];
-const titles=["متجر ألعاب","إعلان جيم","إعلان مطعم","متجر ملابس","محل إلكترونيات","عروض وخصومات"];
-document.getElementById('gallery').innerHTML=works.map((w,i)=>`<article class="sample rv" style="--dl:-${i*1.1}s" data-project="${w[0]}"><a class="poster" href="./images/ad-${i+1}.jpg" target="_blank" rel="noopener"><img src="./images/ad-${i+1}.jpg" alt="${titles[i]} - تصميم من 𝐩𝐢𝐱𝐞𝐥-𝐬𝐭𝐮𝐝𝐢𝐨" loading="lazy"></a><div class="sample-info"><b>${titles[i]}</b><small>${w[1]}</small><div class="card-actions"><a class="view-btn" href="./images/ad-${i+1}.jpg" target="_blank" rel="noopener">عرض التصميم</a><button class="customize-btn" type="button">تخصيص</button></div></div></article>`).join('');
-const words=["بوستات سوشيال ميديا","إعلانات عروض","لوجو","تصميم متاجر","ألعاب","مطاعم","جيم","ملابس","إلكترونيات"];
-document.getElementById('track').innerHTML=[...words,...words].map(w=>`<span>✦ ${w}</span>`).join('');
+        <!-- ==================== 2. NAVBAR & HEADER ==================== -->
+        <header class="fixed top-0 left-0 right-0 z-40 glass-panel border-b border-white/10 transition-all duration-300">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+                
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-neonBlue to-neonPurple flex items-center justify-center shadow-neon group-hover:rotate-12 transition-transform duration-300">
+                        <i class="fa-solid fa-cube text-black text-2xl font-black"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-black tracking-wider text-white glow-text">PIXEL <span class="text-neonBlue">STUDIO</span></span>
+                        <span class="block text-[10px] tracking-widest text-slate-400 uppercase">Digital Studio</span>
+                    </div>
+                </a>
 
-/* أسئلة النموذج: كلها اختيارات */
-const Q=[
- {n:"projectType",t:"نوع المشروع",o:["متجر ألعاب","جيم","مطعم أو كافيه","ملابس","إلكترونيات","نوع آخر"]},
- {n:"designType",t:"مطلوب تصميم إيه؟",o:["بوست سوشيال ميديا","إعلان عرض أو خصم","لوجو","تصميمات متعددة","أخرى"]},
- {n:"package",t:"الباقة",o:["بوست واحد — 40 ج.م","3 بوستات — 100 ج.م","5 بوستات — 150 ج.م","10 بوستات — 270 ج.م"]},
- {n:"style",t:"ستايل التصميم",o:["عصري وبسيط","جريء وصاخب","فخم وهادي","ألعاب ونيون"]},
- {n:"colors",t:"الألوان المفضلة",s:"تقدر تختار أكتر من لون.",m:1,o:[["بنفسجي","#963cff"],["أسود","#111"],["ذهبي","#d4a73a"],["أحمر","#e33b4a"],["أزرق","#2f7bff"],["أخضر","#2ecb7a"],["برتقالي","#ff8a2b"],["أبيض","#f4f4f4"]]},
- {n:"delivery",t:"موعد التسليم",o:["خلال 24 ساعة","2-3 أيام","خلال أسبوع","مش مستعجل"]},
- {n:"payment",t:"طريقة الدفع",o:["كاش","إنستا باي"]}
-];
-const qs=document.getElementById('questions');
-qs.innerHTML=Q.map(q=>`<div class="q" data-q="${q.n}"><h3>${q.t}</h3>${q.s?`<small>${q.s}</small>`:''}<div class="chips">${q.o.map(o=>{const l=q.m?o[0]:o;return `<label class="chip"><input type="${q.m?'checkbox':'radio'}" name="${q.n}" value="${l}"><span>${q.m?`<i class="sw" style="background:${o[1]}"></i>`:''}${l}</span></label>`}).join('')}</div><div class="err">اختار ${q.m?'لون واحد على الأقل':'إجابة'} من فضلك.</div></div>`).join('');
+                <!-- Navigation Links (Desktop) -->
+                <nav class="hidden lg:flex items-center space-x-1 space-x-reverse text-sm font-medium">
+                    <a href="#hero" class="px-4 py-2 rounded-xl text-slate-200 hover:text-neonBlue hover:bg-white/5 transition-colors">الرئيسية</a>
+                    <a href="#services" class="px-4 py-2 rounded-xl text-slate-200 hover:text-neonBlue hover:bg-white/5 transition-colors">الخدمات</a>
+                    <a href="#portfolio" class="px-4 py-2 rounded-xl text-slate-200 hover:text-neonBlue hover:bg-white/5 transition-colors">معرض الأعمال</a>
+                    <a href="#reviews" class="px-4 py-2 rounded-xl text-slate-200 hover:text-neonBlue hover:bg-white/5 transition-colors">آراء العملاء</a>
+                    <a href="#about" class="px-4 py-2 rounded-xl text-slate-200 hover:text-neonBlue hover:bg-white/5 transition-colors">من نحن</a>
+                    <a href="#contact" class="px-4 py-2 rounded-xl text-slate-200 hover:text-neonBlue hover:bg-white/5 transition-colors">اتصل بنا</a>
+                </nav>
 
-const form=document.getElementById('orderForm'),status=document.getElementById('orderStatus'),sum=document.getElementById('summary');
-const val=n=>[...form.querySelectorAll(`[name="${n}"]:checked`)].map(i=>i.value);
-function upd(){const p=Q.map(q=>{const v=val(q.n);return v.length?`${q.t}: ${v.join('، ')}`:null}).filter(Boolean);sum.textContent=p.length?p.join(' • '):'اختياراتك هتظهر هنا.'}
-form.addEventListener('change',upd);
+                <!-- Action Buttons -->
+                <div class="hidden md:flex items-center gap-4">
+                    <div id="auth-area" class="flex items-center gap-2"></div>
+                    <button id="admin-btn" style="display:none" onclick="openAdminDashboard()" class="relative px-4 py-2 rounded-xl glass-panel border border-neonPurple/50 text-neonPurple hover:bg-neonPurple/10 transition-all flex items-center gap-2 text-sm font-semibold">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>لوحة الإدارة</span>
+                    </button>
+                    <button onclick="openOrderModal()" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-neonBlue to-neonPurple text-black font-bold text-sm shadow-neon hover:shadow-[0_0_30px_rgba(0,242,254,0.6)] transition-all transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-rocket ml-1"></i> اطلب تصميم موقع
+                    </button>
+                </div>
 
-document.querySelectorAll('.customize-btn').forEach(b=>b.addEventListener('click',()=>{
- const card=b.closest('.sample');
- const r=form.querySelector(`[name="projectType"][value="${card.dataset.project}"]`);if(r)r.checked=true;
- const d=form.querySelector('[name="designType"][value="بوست سوشيال ميديا"]');if(d)d.checked=true;
- upd();document.getElementById('order').scrollIntoView({behavior:'smooth'});
-}));
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden flex items-center gap-2">
+                    <button onclick="openOrderModal()" class="px-3 py-2 rounded-lg bg-neonBlue text-black text-xs font-bold md:hidden">
+                        طلب
+                    </button>
+                    <button onclick="toggleMobileMenu()" class="p-2.5 rounded-xl glass-panel text-slate-200 hover:text-neonBlue">
+                        <i id="mobile-menu-icon" class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
 
-form.addEventListener('submit',e=>{
- e.preventDefault();let ok=true,first=null;
- Q.forEach(q=>{const box=form.querySelector(`[data-q="${q.n}"]`),bad=!val(q.n).length;box.classList.toggle('bad',bad);if(bad){ok=false;first=first||box}});
- const hasC=form.whatsapp.value.trim()||form.email.value.trim();
- document.getElementById('contactErr').style.display=hasC?'none':'block';
- if(!hasC){ok=false;first=first||form.whatsapp}
- if(!ok){first.scrollIntoView({behavior:'smooth',block:'center'});return}
- status.style.display='block';status.textContent='جاري إرسال الطلب...';
- const data={access_key:form.access_key.value,subject:form.subject.value,botcheck:form.botcheck.checked,whatsapp:form.whatsapp.value,email:form.email.value,details:form.details.value};
- Q.forEach(q=>data[q.n]=val(q.n).join('، '));
- fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(data)})
- .then(async r=>{const j=await r.json();if(r.status==200){status.textContent='تم إرسال طلبك بنجاح! سنتواصل معك قريباً.';form.reset();upd()}else status.textContent=j.message||'حدث خطأ، يرجى المحاولة مرة أخرى.'})
- .catch(()=>status.textContent='عذراً، حدث خطأ في الاتصال بالإنترنت.');
-});
+            <!-- Mobile Dropdown Menu -->
+            <div id="mobile-menu" class="hidden lg:hidden glass-panel border-t border-white/10 px-6 py-4 space-y-3">
+                <a href="#hero" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 hover:text-neonBlue">الرئيسية</a>
+                <a href="#services" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 hover:text-neonBlue">الخدمات</a>
+                <a href="#portfolio" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 hover:text-neonBlue">معرض الأعمال</a>
+                <a href="#about" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 hover:text-neonBlue">من نحن</a>
+                <div class="pt-2 border-t border-white/10 flex flex-col gap-2">
+                    <div id="auth-area-m" class="flex items-center justify-center gap-2"></div>
+                    <button id="admin-btn-m" style="display:none" onclick="openAdminDashboard(); toggleMobileMenu();" class="w-full py-2.5 rounded-xl glass-panel border border-neonPurple/50 text-neonPurple text-center font-semibold">
+                        <i class="fa-solid fa-shield-halved ml-2"></i> لوحة الإدارة
+                    </button>
+                    <button onclick="openOrderModal(); toggleMobileMenu();" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-neonBlue to-neonPurple text-black font-bold text-center">
+                        <i class="fa-solid fa-rocket ml-2"></i> اطلب تصميم موقع
+                    </button>
+                </div>
+            </div>
+        </header>
 
-/* ظهور تدريجي + عدّاد الأرقام */
-if ('IntersectionObserver' in window) {
-  const io=new IntersectionObserver(es=>es.forEach(x=>{
-    if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}
-  }),{threshold:.12});
-  document.documentElement.classList.add('js');
-  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-}
-document.querySelectorAll('[data-n]').forEach(el=>{const t=+el.dataset.n;let c=0;const s=setInterval(()=>{c+=Math.max(1,Math.ceil(t/30));if(c>=t){c=t;clearInterval(s)}el.textContent=c},40)});
-</script>
+        <div class="pt-20"><div class="marq border-b border-white/5 bg-black/50 py-2"><div id="rev-ticker-track" class="marq-track" style="animation-duration:70s"></div></div></div>
 
-<button class="ai-fab" id="aiFab" type="button" aria-label="تحدث مع المساعد الذكي"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm4 6a1.3 1.3 0 1 0 0 2.6A1.3 1.3 0 0 0 8 10zm4 0a1.3 1.3 0 1 0 0 2.6A1.3 1.3 0 0 0 12 10zm4 0a1.3 1.3 0 1 0 0 2.6A1.3 1.3 0 0 0 16 10z"/></svg></button>
-<div class="ai-box" id="aiBox" role="dialog" aria-label="المساعد الذكي">
- <div class="ai-head"><div><b>مساعد 𝐩𝐢𝐱𝐞𝐥-𝐬𝐭𝐮𝐝𝐢𝐨</b><small>اسألني عن التصميم والأسعار والطلب</small></div><button type="button" id="aiClose" aria-label="إغلاق">✕</button></div>
- <div class="ai-msgs" id="aiMsgs" aria-live="polite"></div>
- <div class="ai-quick" id="aiQuick"></div>
- <form class="ai-form" id="aiForm"><input id="aiInput" autocomplete="off" placeholder="اكتب سؤالك هنا..." maxlength="500"><button type="submit" id="aiSend">إرسال</button></form>
-</div>
+        <!-- ==================== 3. HERO SECTION ==================== -->
+        <section id="hero" class="relative pt-14 pb-20 md:pt-24 md:pb-32 overflow-hidden">
+            <!-- Background Glow Gradients -->
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-neonBlue/10 rounded-full blur-[120px] pointer-events-none"></div>
+            <div class="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-neonPurple/10 rounded-full blur-[140px] pointer-events-none"></div>
 
-<script>
-/* ===== المساعد الذكي =====
-   لتفعيل الذكاء الاصطناعي الحقيقي: ارفع ملف worker.js على Cloudflare Workers
-   وضع رابطه هنا. لو تُرك فاضي، المساعد يرد بإجابات جاهزة عن الموقع. */
-const AI_ENDPOINT="";
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Hero Content -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-right">
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel border border-neonBlue/30 text-neonBlue text-sm animate-pulse-glow">
+                            <i class="fa-solid fa-bolt"></i>
+                            <span>المنصة الأولى لتصميم المواقع الفاخرة</span>
+                        </div>
+                        
+                        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-tight">
+                            ابنِ عالمك الرقمي <br>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-neonBlue via-electricCyan to-neonPurple glow-text">باحترافية وتطور</span>
+                        </h1>
 
-const KB=[
- [/سعر|اسعار|أسعار|بكام|كام|تكلف|باقه|باقة|باقات|عرض سعر/,"الباقات عندنا:\n• بوست واحد — 40 ج.م\n• 3 بوستات — 100 ج.م\n• 5 بوستات — 150 ج.م (الأكثر توفيراً)\n• 10 بوستات — 270 ج.م\nالسعر النهائي بيتأكد بعد معرفة تفاصيل طلبك."],
- [/تسليم|امتى|إمتى|وقت|مدة|مده|سريع|كام يوم|يوم/,"مواعيد التسليم المتاحة: خلال 24 ساعة، أو 2-3 أيام، أو خلال أسبوع، أو مش مستعجل. بتختار الموعد في نموذج الطلب ونأكده معاك قبل التنفيذ."],
- [/دفع|ادفع|إنستا|انستا|كاش|فلوس/,"طرق الدفع: كاش أو إنستا باي. بنتفق على التفاصيل والسعر قبل ما نبدأ التصميم."],
- [/ستايل|شكل|نمط|تصميم ايه|أنواع|انواع/,"الستايلات المتاحة: عصري وبسيط، جريء وصاخب، فخم وهادي، وألعاب ونيون. وتقدر تختار أكتر من لون مفضّل في نموذج الطلب."],
- [/لون|الوان|ألوان/,"تقدر تختار أكتر من لون: بنفسجي، أسود، ذهبي، أحمر، أزرق، أخضر، برتقالي، أبيض. ولو مش متأكد اختار اللي بيمثل براندك وهنقترح عليك الأنسب."],
- [/تعديل|عدل|تغيير|غير/,"بعد استلام التصميم تقدر تطلب التعديلات المتفق عليها. الأسعار لا تشمل تعديلات كبيرة غير متفق عليها، فالأفضل تكتب تفاصيلك كاملة من البداية."],
- [/لوجو|شعار|logo/,"أيوه بنصمم لوجو. اختار «لوجو» في سؤال «مطلوب تصميم إيه؟» داخل نموذج الطلب وسيب لنا تفاصيل نشاطك."],
- [/مقاس|حجم|ستوري|انستجرام|إنستجرام|فيسبوك|يوتيوب/,"مش لازم تحدد المقاس، بنختار المقاس المناسب للمنصة اللي هتنشر عليها. لو عايز مقاس معين اكتبه في ملاحظات الطلب."],
- [/مجال|نشاط|مطعم|جيم|ملابس|العاب|ألعاب|الكترونيات|إلكترونيات|متجر/,"بنشتغل في مجالات زي: متاجر الألعاب، الجيم، المطاعم والكافيهات، الملابس، الإلكترونيات، وعروض الخصومات. شوف نماذج من شغلنا في قسم «أعمالنا» وتقدر تضغط «تخصيص» على أي نموذج."],
- [/تواصل|ايميل|إيميل|بريد|ديسكورد|واتس|رقم/,"تقدر تتواصل معانا على ahmedkhaleduu3@gmail.com أو تنضم لسيرفر الديسكورد: https://discord.gg/CjQS82TEwE"],
- [/اطلب|طلب|ازاي|إزاي|اعمل|ابدأ|ابدا|خطوات/,"الطلب بسيط: ١) اختار النشاط والباقة والستايل والألوان من النموذج ٢) نأكد معاك التفاصيل والسعر وموعد التسليم ٣) تستلم تصميمك وتطلب التعديلات المتفق عليها. انزل لقسم «اطلب تصميمك» وابدأ."],
- [/مرحبا|اهلا|أهلا|هاي|سلام|صباح|مساء|hi|hello/,"أهلاً بيك! 👋 أنا مساعد 𝐩𝐢𝐱𝐞𝐥-𝐬𝐭𝐮𝐝𝐢𝐨. اسألني عن الأسعار أو الستايلات أو مواعيد التسليم أو إزاي تطلب تصميمك."]
-];
-const QUICK=["الأسعار","مواعيد التسليم","إزاي أطلب؟","الستايلات المتاحة","طرق الدفع"];
-const box=document.getElementById('aiBox'),msgs=document.getElementById('aiMsgs'),inp=document.getElementById('aiInput'),sendB=document.getElementById('aiSend');
-const hist=[];let busy=false;
-function add(t,who){const d=document.createElement('div');d.className='ai-m '+who;d.textContent=t;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d}
-function typing(){const d=document.createElement('div');d.className='ai-m bot ai-typing';d.innerHTML='<i></i><i></i><i></i>';msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d}
-function local(q){for(const[r,a]of KB)if(r.test(q))return a;return "سؤال حلو! للتفاصيل اللي مش عندي دلوقتي، اكتب لنا في نموذج الطلب أو كلمنا على الديسكورد أو ahmedkhaleduu3@gmail.com وهنرد عليك بسرعة."}
-async function ask(q){
- hist.push({role:'user',content:q});
- if(AI_ENDPOINT){
-  const r=await fetch(AI_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:hist.slice(-12)})});
-  if(!r.ok)throw new Error('bad');const j=await r.json();if(!j.reply)throw new Error('empty');return j.reply;
- }
- await new Promise(r=>setTimeout(r,600));return local(q);
-}
-async function send(q){
- q=q.trim();if(!q||busy)return;busy=true;sendB.disabled=true;
- add(q,'me');inp.value='';document.getElementById('aiQuick').style.display='none';
- const t=typing();let a;
- try{a=await ask(q)}catch(e){a=local(q)}
- t.remove();add(a,'bot');hist.push({role:'assistant',content:a});busy=false;sendB.disabled=false;inp.focus();
-}
-document.getElementById('aiQuick').innerHTML=QUICK.map(q=>`<button type="button">${q}</button>`).join('');
-document.getElementById('aiQuick').addEventListener('click',e=>{if(e.target.tagName==='BUTTON')send(e.target.textContent)});
-document.getElementById('aiForm').addEventListener('submit',e=>{e.preventDefault();send(inp.value)});
-function toggle(o){box.classList.toggle('open',o);if(o){if(!msgs.children.length)add("أهلاً بيك في 𝐩𝐢𝐱𝐞𝐥-𝐬𝐭𝐮𝐝𝐢𝐨! 👋\nأقدر أساعدك في اختيار التصميم المناسب والأسعار ومواعيد التسليم وإزاي تطلب. اسألني أي حاجة.",'bot');inp.focus()}}
-document.getElementById('aiFab').addEventListener('click',()=>toggle(!box.classList.contains('open')));
-document.getElementById('aiClose').addEventListener('click',()=>toggle(false));
-</script>
+                        <p class="text-lg sm:text-xl text-slate-300 font-light max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                            نحن في <strong class="text-white font-semibold">PIXEL STUDIO</strong> نصمم ونطور مواقع إلكترونية متطورة، متاجر ذكية، ومنصات رقمية تخطف الأنظار وتلبي تطلعات عملائك بأحدث التقنيات العالمية.
+                        </p>
+
+                        <!-- CTA Buttons -->
+                        <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
+                            <button onclick="openOrderModal()" class="px-8 py-4 rounded-2xl bg-gradient-to-r from-neonBlue to-neonPurple text-black font-extrabold text-base shadow-neon hover:shadow-[0_0_40px_rgba(0,242,254,0.8)] transition-all transform hover:-translate-y-1">
+                                <i class="fa-solid fa-rocket ml-2"></i> احصل على موقعك الآن
+                            </button>
+                            <a href="#portfolio" class="px-8 py-4 rounded-2xl glass-panel border border-white/20 text-white font-bold text-base hover:bg-white/10 transition-all flex items-center justify-center">
+                                <i class="fa-solid fa-eye ml-2 text-neonBlue"></i> استعرض أعمالنا
+                            </a>
+                        </div>
+
+                        <!-- Quick Stats -->
+                        <div class="grid grid-cols-3 gap-4 pt-8 border-t border-white/10 max-w-lg mx-auto lg:mx-0">
+                            <div>
+                                <h3 class="text-3xl font-black text-neonBlue">150+</h3>
+                                <p class="text-xs text-slate-400 mt-1">مشروع منجز</p>
+                            </div>
+                            <div>
+                                <h3 class="text-3xl font-black text-neonPurple">99%</h3>
+                                <p class="text-xs text-slate-400 mt-1">رضا العملاء</p>
+                            </div>
+                            <div>
+                                <h3 class="text-3xl font-black text-electricCyan">24/7</h3>
+                                <p class="text-xs text-slate-400 mt-1">دعم فني متواصل</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hero Visual / 3D Floating Mockup -->
+                    <div class="lg:col-span-5 relative flex justify-center">
+                        <div class="relative w-full max-w-md aspect-square rounded-3xl glass-panel p-6 border border-neonBlue/30 shadow-neon animate-float flex flex-col justify-between overflow-hidden">
+                            <!-- Floating Card Header -->
+                            <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                </div>
+                                <span class="text-xs text-slate-400 font-mono">pixel-studio.io</span>
+                            </div>
+                            <!-- Code Snippet & UI Simulation -->
+                            <div class="space-y-3 font-mono text-xs text-slate-300 py-4">
+                                <div class="text-neonBlue">const createFuture = () =&gt; {</div>
+                                <div class="pl-4 text-neonPurple">innovation: true,</div>
+                                <div class="pl-4 text-electricCyan">creativity: true,</div>
+                                <div class="pl-4 text-pink-400">success: 'guaranteed'</div>
+                                <div class="text-neonBlue">};</div>
+                                <div class="p-3 rounded-xl bg-black/40 border border-white/10 mt-3">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-white font-bold">الحالة: نشط الآن</span>
+                                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                                    </div>
+                                    <p class="text-[11px] text-slate-400">جاهز لبدء مشروعك الرقمي القادم بأعلى معايير الجودة العالمية.</p>
+                                </div>
+                            </div>
+                            <!-- Card Footer -->
+                            <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
+                                <span>PIXEL STUDIO v3.5</span>
+                                <span class="text-neonBlue">AI & Web Powered</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 4. SERVICES SECTION (خدمات الموقع) ==================== -->
+        <section id="services" class="py-24 relative bg-darkBg/80">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                    <span class="px-4 py-1.5 rounded-full glass-panel border border-neonPurple/40 text-neonPurple text-sm font-semibold">خدماتنا الاحترافية</span>
+                    <h2 class="text-3xl sm:text-5xl font-black tracking-tight">حلول رقمية متكاملة لنجاح عملك</h2>
+                    <p class="text-slate-400 text-base sm:text-lg">نقدم باقة متكاملة من خدمات تصميم وتطوير المواقع بأعلى معايير الجودة والأداء الفائق.</p>
+                </div>
+
+                <!-- Services Grid (7 Services) -->
+                <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service items will be rendered via JS or statically here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 6. PORTFOLIO SECTION (معرض الأعمال) ==================== -->
+        <section id="portfolio" class="py-24 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-12 space-y-4">
+                    <span class="px-4 py-1.5 rounded-full glass-panel border border-neonBlue/40 text-neonBlue text-sm font-semibold">معرض الأعمال</span>
+                    <h2 class="text-3xl sm:text-5xl font-black tracking-tight">أحدث المشاريع التي نفذناها</h2>
+                    <p class="text-slate-400 text-base sm:text-lg">تصفح نماذج من أعمالنا الاحترافية التي صممت بعناية لتناسب تطلعات عملائنا.</p>
+                </div>
+
+                <!-- Portfolio Filters -->
+                <div class="flex flex-wrap justify-center gap-3 mb-12" id="portfolio-filters">
+                    <button onclick="filterPortfolio('all')" class="px-5 py-2 rounded-xl bg-neonBlue text-black font-bold text-sm transition-all filter-btn active">الكل</button>
+                    <button onclick="filterPortfolio('corporate')" class="px-5 py-2 rounded-xl glass-panel text-slate-300 hover:text-white text-sm transition-all filter-btn">مواقع الشركات</button>
+                    <button onclick="filterPortfolio('ecommerce')" class="px-5 py-2 rounded-xl glass-panel text-slate-300 hover:text-white text-sm transition-all filter-btn">المتاجر الإلكترونية</button>
+                    <button onclick="filterPortfolio('gaming')" class="px-5 py-2 rounded-xl glass-panel text-slate-300 hover:text-white text-sm transition-all filter-btn">ألعاب وديسكورد</button>
+                </div>
+
+                <!-- Portfolio Grid -->
+                <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Portfolio items rendered via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== REVIEWS ==================== -->
+        <section id="reviews" class="py-24 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 text-center mb-12 space-y-4">
+                <span class="px-4 py-1.5 rounded-full glass-panel border border-yellow-400/40 text-yellow-400 text-sm font-semibold">رضا العملاء</span>
+                <h2 class="text-3xl sm:text-5xl font-black tracking-tight">تقييم العملاء</h2>
+                <p class="text-slate-400 text-sm sm:text-base">تقييم <b id="rev-avg" class="text-yellow-400">5.0</b> من <span id="rev-count">0</span> تقييم. التقييم متاح لكل عميل بعد استلام طلبه.</p>
+            </div>
+            <div class="marq mb-4"><div id="rev-row1" class="marq-track" style="animation-duration:50s"></div></div>
+            <div class="marq rev"><div id="rev-row2" class="marq-track" style="animation-duration:60s"></div></div>
+            <div class="text-center mt-10"><button onclick="openMyOrders()" class="px-6 py-3 rounded-xl glass-panel border border-yellow-400/40 text-yellow-400 font-bold text-sm hover:bg-yellow-400 hover:text-black transition-all"><i class="fa-solid fa-star ml-2"></i> قيّم طلبك</button></div>
+        </section>
+
+        <!-- ==================== ABOUT & WHY US SECTION ==================== -->
+        <section id="about" class="py-24 relative bg-cardBg/30 border-y border-white/5">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-6">
+                        <span class="px-4 py-1.5 rounded-full glass-panel border border-neonBlue/40 text-neonBlue text-sm font-semibold">لماذا بكسل ستوديو؟</span>
+                        <h2 class="text-3xl sm:text-4xl font-black leading-tight">نصنع التميز الرقمي لمشروعك بأيدي خبراء احترافيين</h2>
+                        <p class="text-slate-300 leading-relaxed">
+                            نؤمن بأن الموقع الإلكتروني ليس مجرد صفحات على الإنترنت، بل هو الواجهة الحقيقية لعلامتك التجارية ومرآة لنجاحك. نعمل جاهدين على دمج التصميم الفاخر مع الأداء الفائق والسرعة المذهلة.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                            <div class="flex items-start gap-3 p-4 rounded-2xl glass-panel">
+                                <div class="w-10 h-10 rounded-xl bg-neonBlue/20 text-neonBlue flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-gauge-high"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white mb-1">سرعة فائقة</h4>
+                                    <p class="text-xs text-slate-400">تحميل فائق السرعة وأداء ممتاز على محركات البحث.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 p-4 rounded-2xl glass-panel">
+                                <div class="w-10 h-10 rounded-xl bg-neonPurple/20 text-neonPurple flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white mb-1">أمان وحماية عالية</h4>
+                                    <p class="text-xs text-slate-400">تأمين كامل ضد الاختراق وحماية بيانات العملاء.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative flex justify-center">
+                        <div class="w-full max-w-lg aspect-video rounded-3xl glass-panel p-6 border border-neonPurple/40 shadow-neon-purple flex flex-col justify-center items-center text-center space-y-4">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-neonBlue to-neonPurple flex items-center justify-center shadow-neon">
+                                <i class="fa-solid fa-headset text-black text-3xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold">هل لديك فكرة مشروع ترغب في تنفيذها؟</h3>
+                            <p class="text-slate-400 text-sm max-w-md">تواصل معنا الآن عبر الشات المباشر أو اطلب الخدمة وسيقوم فريقنا بمساعدتك فوراً.</p>
+                            <button onclick="openOrderModal()" class="px-6 py-3 rounded-xl bg-gradient-to-r from-neonBlue to-neonPurple text-black font-bold text-sm shadow-neon">
+                                ابدأ مشروعك الآن
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== FOOTER ==================== -->
+        <footer id="contact" class="bg-black/80 border-t border-white/10 pt-16 pb-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+                    <div class="space-y-4 md:col-span-1">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-neonBlue to-neonPurple flex items-center justify-center">
+                                <i class="fa-solid fa-cube text-black font-black"></i>
+                            </div>
+                            <span class="text-xl font-black text-white glow-text">PIXEL <span class="text-neonBlue">STUDIO</span></span>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            منصة احترافية متكاملة لصناعة وتصميم المواقع الإلكترونية والحلول الرقمية المبتكرة.
+                        </p>
+                        <div class="flex items-center gap-3 pt-2">
+                            <a href="#" class="w-9 h-9 rounded-xl glass-panel flex items-center justify-center text-slate-300 hover:text-neonBlue transition-colors"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" class="w-9 h-9 rounded-xl glass-panel flex items-center justify-center text-slate-300 hover:text-neonBlue transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="https://discord.gg/Vzp2g9AsHq" target="_blank" rel="noopener"\1</i></a>
+                            <a href="#" class="w-9 h-9 rounded-xl glass-panel flex items-center justify-center text-slate-300 hover:text-neonBlue transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white mb-4 text-sm tracking-wider">روابط سريعة</h4>
+                        <ul class="space-y-2.5 text-xs text-slate-400">
+                            <li><a href="#hero" class="hover:text-neonBlue transition-colors">الرئيسية</a></li>
+                            <li><a href="#services" class="hover:text-neonBlue transition-colors">الخدمات</a></li>
+                            <li><a href="#portfolio" class="hover:text-neonBlue transition-colors">معرض الأعمال</a></li>
+                            <li><a href="#about" class="hover:text-neonBlue transition-colors">من نحن</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white mb-4 text-sm tracking-wider">الخدمات</h4>
+                        <ul class="space-y-2.5 text-xs text-slate-400">
+                            <li><a href="#services" class="hover:text-neonBlue transition-colors">تصميم مواقع الشركات</a></li>
+                            <li><a href="#services" class="hover:text-neonBlue transition-colors">المتاجر الإلكترونية</a></li>
+                            <li><a href="#services" class="hover:text-neonBlue transition-colors">مواقع الألعاب والديسكورد</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white mb-4 text-sm tracking-wider">تواصل معنا</h4>
+                        <ul class="space-y-2.5 text-xs text-slate-400">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-envelope text-neonBlue"></i> <a href="mailto:ahmedkhaleduu3@gmail.com" class="hover:text-neonBlue">ahmedkhaleduu3@gmail.com</a></li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-phone text-neonPurple"></i> +966 50 000 0000</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-electricCyan"></i> الرياض، المملكة العربية السعودية</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
+                    <p>&copy; 2026 PIXEL STUDIO. جميع الحقوق محفوظة.</p>
+                    <p class="mt-4 sm:mt-0">صُمم بشغف وإتقان لعالم رقمي أفضل.</p>
+                </div>
+            </div>
+        </footer>
+
+    </div> <!-- END MAIN WEBSITE -->
+
+    <!-- ==================== 5. ORDER MODAL (نظام طلب تصميم موقع) ==================== -->
+    <div id="order-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden">
+        <div class="glass-panel w-full max-w-2xl rounded-3xl p-6 md:p-8 border border-neonBlue/30 shadow-neon relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeOrderModal()" class="absolute top-6 left-6 w-10 h-10 rounded-full glass-panel flex items-center justify-center text-slate-400 hover:text-white transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            
+            <div class="mb-6 space-y-2">
+                <span class="px-3 py-1 rounded-full bg-neonBlue/20 text-neonBlue text-xs font-bold">نموذج الطلب الفوري</span>
+                <h3 class="text-2xl md:text-3xl font-black text-white">اطلب تصميم موقعك الخاص</h3>
+                <p class="text-slate-400 text-xs md:text-sm">املأ التفاصيل أدناه وسيتواصل معك فريقنا خلال دقائق لتأكيد البدء في المشروع.</p>
+            </div>
+
+            <div id="rev-mini" class="mb-4 p-3 rounded-xl bg-black/40 border border-yellow-400/20 text-xs text-slate-300 transition-opacity duration-500"></div>
+
+            <form id="order-form" onsubmit="submitOrder(event)" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1.5">اسمك الكريم</label>
+                        <input type="text" id="client-name" required placeholder="مثال: أحمد محمد" class="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white text-sm focus:outline-none focus:border-neonBlue transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1.5">رقم الجوال / الواتساب</label>
+                        <input type="tel" id="client-phone" required placeholder="+966 5xxxxxxxx" class="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white text-sm focus:outline-none focus:border-neonBlue transition-colors">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1.5">اسم المشروع المقترح</label>
+                        <input type="text" id="project-title" required placeholder="مثال: متجر الألعاب الذكي" class="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white text-sm focus:outline-none focus:border-neonBlue transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1.5">نوع الخدمة / التصميم</label>
+                        <select id="project-category" class="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white text-sm focus:outline-none focus:border-neonBlue transition-colors">
+                            <option value="corporate">تصميم مواقع الشركات</option>
+                            <option value="ecommerce">تصميم المتاجر الإلكترونية</option>
+                            <option value="gaming">تصميم مواقع الألعاب والديسكورد</option>
+                            <option value="personal">تصميم المواقع الشخصية</option>
+                            <option value="upgrade">تطوير وتحسين المواقع الموجودة</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-1.5">تفاصيل وأفكار المشروع</label>
+                    <textarea id="project-details" rows="4" required placeholder="اكتب تفاصيل الفكرة، الألوان المفضلة، أو أي ميزات خاصة تريدها..." class="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white text-sm focus:outline-none focus:border-neonBlue transition-colors resize-none"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-1.5">إرفاق ملفات توضيحية (اختياري)</label>
+                    <div class="border-2 border-dashed border-white/10 rounded-2xl p-4 text-center hover:border-neonBlue transition-colors cursor-pointer" onclick="document.getElementById('file-upload').click()">
+                        <i class="fa-solid fa-cloud-arrow-up text-2xl text-neonBlue mb-2"></i>
+                        <p class="text-xs text-slate-300" id="file-label-text">اضغط لاختيار ملف أو اسحبه هنا</p>
+                        <input type="file" id="file-upload" class="hidden" onchange="handleFileSelect(event)">
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-neonBlue to-neonPurple text-black font-extrabold text-base shadow-neon hover:shadow-[0_0_30px_rgba(0,242,254,0.8)] transition-all mt-2">
+                    <i class="fa-solid fa-paper-plane ml-2"></i> إرسال طلب التصميم الآن
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==================== AUTH MODAL ==================== -->
+    <div id="auth-modal" class="fixed inset-0 z-[60] hidden items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+        <div class="auth-pop glass-panel w-full max-w-md rounded-3xl p-6 md:p-8 border border-neonBlue/30 shadow-neon relative max-h-[94vh] overflow-y-auto">
+            <button id="auth-close" onclick="closeAuth()" class="absolute top-5 left-5 w-9 h-9 rounded-full glass-panel flex items-center justify-center text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            <div class="text-center mb-5">
+                <div class="w-14 h-14 mx-auto rounded-2xl bg-gradient-to-tr from-neonBlue to-neonPurple flex items-center justify-center shadow-neon animate-float"><i class="fa-solid fa-user-astronaut text-black text-2xl"></i></div>
+                <h3 class="text-2xl font-black mt-3">أهلاً بك في بكسل ستوديو</h3>
+                <p class="text-xs text-slate-400 mt-1">سجّل لتطلب مشروعك وتتابعه وتقيّم تجربتك بعد التسليم</p>
+            </div>
+            <div class="grid grid-cols-2 gap-2 p-1 rounded-xl bg-black/40 mb-4">
+                <button id="au-tab-login" onclick="setAuthMode('login')" class="py-2 rounded-lg text-sm font-bold">تسجيل دخول</button>
+                <button id="au-tab-signup" onclick="setAuthMode('signup')" class="py-2 rounded-lg text-sm font-bold">حساب جديد</button>
+            </div>
+            <form onsubmit="submitAuth(event)" class="space-y-3">
+                <input id="au-name" type="text" placeholder="الاسم" class="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white text-sm focus:outline-none focus:border-neonBlue">
+                <input id="au-email" type="email" required placeholder="البريد الإلكتروني (أي بريد)" dir="ltr" class="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white text-sm focus:outline-none focus:border-neonBlue text-left">
+                <input id="au-pass" type="password" required minlength="6" placeholder="كلمة المرور (6 أحرف على الأقل)" dir="ltr" class="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white text-sm focus:outline-none focus:border-neonBlue text-left">
+                <p id="au-err" class="text-xs text-red-400 min-h-[1rem]"></p>
+                <button id="au-submit" type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-neonBlue to-neonPurple text-black font-extrabold shadow-neon hover:shadow-[0_0_30px_rgba(0,242,254,.8)] transition-all"></button>
+            </form>
+            <div class="flex items-center gap-3 my-4 text-[11px] text-slate-500"><span class="flex-1 h-px bg-white/10"></span>أو سجّل عبر منصة<span class="flex-1 h-px bg-white/10"></span></div>
+            <div class="grid grid-cols-3 gap-2">
+                <button onclick="socialLogin('google')" class="py-3 rounded-xl glass-panel hover:border-neonBlue/60 text-lg transition-all hover:-translate-y-1"><i class="fa-brands fa-google text-red-400"></i></button>
+                <button onclick="socialLogin('github')" class="py-3 rounded-xl glass-panel hover:border-neonBlue/60 text-lg transition-all hover:-translate-y-1"><i class="fa-brands fa-github"></i></button>
+                <button onclick="socialLogin('facebook')" class="py-3 rounded-xl glass-panel hover:border-neonBlue/60 text-lg transition-all hover:-translate-y-1"><i class="fa-brands fa-facebook text-blue-400"></i></button>
+            </div>
+            <p id="au-demo" class="text-[10px] text-slate-500 text-center mt-4"></p>
+        </div>
+    </div>
+
+    <!-- ==================== MY ORDERS / REVIEW MODAL ==================== -->
+    <div id="my-orders-modal" class="fixed inset-0 z-[55] hidden items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+        <div class="auth-pop glass-panel w-full max-w-2xl rounded-3xl p-6 md:p-8 border border-yellow-400/30 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="show('my-orders-modal',false)" class="absolute top-5 left-5 w-9 h-9 rounded-full glass-panel flex items-center justify-center text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="text-2xl font-black mb-1">طلباتي</h3>
+            <p class="text-xs text-slate-400 mb-5">بعد أن يكتمل طلبك يظهر لك هنا زر التقييم.</p>
+            <div id="my-orders-list" class="space-y-4"></div>
+        </div>
+    </div>
+
+    <!-- ==================== 6. REAL-TIME LIVE CHAT WIDGET ==================== -->
+    <div class="fixed bottom-6 left-6 z-50">
+        <!-- Floating Chat Toggle Button -->
+        <button onclick="toggleChatWidget()" id="chat-toggle-btn" class="relative w-14 h-14 rounded-2xl bg-gradient-to-tr from-neonBlue to-neonPurple text-black flex items-center justify-center shadow-neon hover:scale-110 transition-all duration-300 group">
+            <i class="fa-solid fa-comments text-2xl"></i>
+            <span id="chat-badge" class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center shadow-md animate-bounce">1</span>
+            <div class="absolute inset-0 rounded-2xl border-2 border-white/50 animate-ping opacity-25 pointer-events-none"></div>
+        </button>
+
+        <!-- Chat Box Window -->
+        <div id="chat-box" class="hidden absolute bottom-20 left-0 w-80 sm:w-96 glass-panel rounded-3xl border border-neonBlue/30 shadow-neon overflow-hidden flex flex-col h-[500px]">
+            <!-- Chat Header -->
+            <div class="px-4 py-3 bg-black/60 border-b border-white/10 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="relative">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-neonBlue to-neonPurple flex items-center justify-center font-bold text-black">
+                            PS
+                        </div>
+                        <span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-400 border-2 border-black"></span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white text-sm">مساعد بكسل الذكي</h4>
+                        <span class="text-[10px] text-emerald-400 flex items-center gap-1">ذكاء اصطناعي، يرد فوراً</span>
+                    </div>
+                </div>
+                <button onclick="toggleChatWidget()" class="text-slate-400 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Chat Messages Area -->
+            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 text-xs">
+                <!-- Messages populated via JS -->
+            </div>
+
+            <div id="chat-chips" class="px-3 py-2 flex gap-2 overflow-x-auto bg-black/40 border-t border-white/10"></div>
+            <!-- Chat Input Area -->
+            <div class="p-3 bg-black/60 border-t border-white/15 flex items-center gap-2">
+                <button onclick="triggerChatAttachment()" class="p-2.5 rounded-xl glass-panel text-slate-300 hover:text-neonBlue transition-colors">
+                    <i class="fa-solid fa-paperclip"></i>
+                </button>
+                <input type="file" id="chat-file-input" class="hidden" onchange="sendChatFile(event)">
+                <input type="text" id="chat-input" onkeypress="handleChatKeypress(event)" placeholder="اكتب رسالتك هنا..." class="flex-1 px-4 py-2.5 rounded-xl bg-black/50 border border-white/10 text-white text-xs focus:outline-none focus:border-neonBlue">
+                <button onclick="sendChatMessage()" class="p-2.5 rounded-xl bg-gradient-to-r from-neonBlue to-neonPurple text-black font-bold hover:shadow-neon transition-all">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 7. ADMIN DASHBOARD MODAL ==================== -->
+    <div id="admin-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-lg hidden">
+        <div class="glass-panel w-full max-w-6xl rounded-3xl p-6 md:p-8 border border-neonPurple/50 shadow-neon-purple relative h-[90vh] flex flex-col overflow-hidden">
+            <!-- Header -->
+            <div class="flex items-center justify-between pb-6 border-b border-white/10">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-2xl bg-neonPurple/20 text-neonPurple flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-black text-white">لوحة تحكم الإدارة (Admin Dashboard)</h3>
+                        <p class="text-xs text-slate-400">إدارة الطلبات، العملاء، المحادثات، والخدمات.</p>
+                    </div>
+                </div>
+                <button onclick="closeAdminDashboard()" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-slate-400 hover:text-white transition-colors">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Admin Navigation Tabs -->
+            <div class="flex flex-wrap gap-2 py-4 border-b border-white/10">
+                <button onclick="switchAdminTab('stats')" id="tab-btn-stats" class="px-4 py-2 rounded-xl bg-neonPurple text-black font-bold text-xs transition-all">نظرة عامة</button>
+                <button onclick="switchAdminTab('orders')" id="tab-btn-orders" class="px-4 py-2 rounded-xl glass-panel text-slate-300 hover:text-white text-xs transition-all">طلبات العملاء (<span id="admin-orders-count">0</span>)</button>
+                <button onclick="switchAdminTab('chats')" id="tab-btn-chats" class="px-4 py-2 rounded-xl glass-panel text-slate-300 hover:text-white text-xs transition-all">إدارة الشات</button>
+                <button onclick="switchAdminTab('services')" id="tab-btn-services" class="px-4 py-2 rounded-xl glass-panel text-slate-300 hover:text-white text-xs transition-all">إدارة الخدمات والمعرض</button>
+            </div>
+
+            <!-- Admin Content Body -->
+            <div class="flex-1 overflow-y-auto py-6">
+                <!-- Tab 1: Stats -->
+                <div id="admin-tab-stats" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="p-5 rounded-2xl glass-panel border border-white/10">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs text-slate-400">إجمالي الزوار</span>
+                                <i class="fa-solid fa-users text-neonBlue"></i>
+                            </div>
+                            <h4 class="text-3xl font-black text-white">4,820</h4>
+                            <span class="text-[10px] text-emerald-400 mt-1 block">+12% هذا الأسبوع</span>
+                        </div>
+                        <div class="p-5 rounded-2xl glass-panel border border-white/10">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs text-slate-400">الطلبات الجديدة</span>
+                                <i class="fa-solid fa-rocket text-neonPurple"></i>
+                            </div>
+                            <h4 class="text-3xl font-black text-white" id="stat-orders-count">3</h4>
+                            <span class="text-[10px] text-emerald-400 mt-1 block">قيد المتابعة</span>
+                        </div>
+                        <div class="p-5 rounded-2xl glass-panel border border-white/10">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs text-slate-400">المحادثات النشطة</span>
+                                <i class="fa-solid fa-comments text-electricCyan"></i>
+                            </div>
+                            <h4 class="text-3xl font-black text-white">1</h4>
+                            <span class="text-[10px] text-emerald-400 mt-1 block">متصل الآن</span>
+                        </div>
+                        <div class="p-5 rounded-2xl glass-panel border border-white/10">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs text-slate-400">الأرباح التقديرية</span>
+                                <i class="fa-solid fa-wallet text-emerald-400"></i>
+                            </div>
+                            <h4 class="text-3xl font-black text-white">$14,500</h4>
+                            <span class="text-[10px] text-emerald-400 mt-1 block">هذا الشهر</span>
+                        </div>
+                    </div>
+
+                    <!-- Quick Activity -->
+                    <div class="p-6 rounded-2xl glass-panel border border-white/10">
+                        <h4 class="font-bold text-white mb-4 text-sm">آخر النشاطات والعمليات</h4>
+                        <div class="space-y-3 text-xs text-slate-300" id="admin-activity-list">
+                            <div class="flex items-center justify-between p-3 rounded-xl bg-black/40">
+                                <span>طلب تصميم متجر إلكتروني جديد من العميل (أحمد)</span>
+                                <span class="text-neonBlue">منذ 10 دقائق</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 rounded-xl bg-black/40">
+                                <span>تم الرد على استفسار عبر الشات المباشر</span>
+                                <span class="text-neonPurple">منذ 25 دقيقة</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 2: Orders Management -->
+                <div id="admin-tab-orders" class="hidden space-y-4">
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="font-bold text-white text-sm">طلبات العملاء الواردة</h4>
+                        <button onclick="loadAdminOrders()" class="px-3 py-1.5 rounded-lg glass-panel text-xs text-neonBlue"><i class="fa-solid fa-rotate ml-1"></i> تحديث</button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-right text-xs">
+                            <thead class="bg-black/60 text-slate-400 border-b border-white/10">
+                                <tr>
+                                    <th class="p-3">اسم العميل</th>
+                                    <th class="p-3">الهاتف</th>
+                                    <th class="p-3">اسم المشروع</th>
+                                    <th class="p-3">نوع الخدمة</th>
+                                    <th class="p-3">التفاصيل</th>
+                                    <th class="p-3">الحالة</th>
+                                    <th class="p-3">الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-orders-tbody" class="divide-y divide-white/5">
+                                <!-- Populated via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Tab 3: Chat Management -->
+                <div id="admin-tab-chats" class="hidden h-[450px] flex gap-4">
+                    <!-- Conversations List -->
+                    <div class="w-1/3 glass-panel rounded-2xl p-4 flex flex-col">
+                        <h4 class="font-bold text-white text-xs mb-3">المحادثات النشطة</h4>
+                        <div class="space-y-2 overflow-y-auto flex-1" id="admin-chats-list">
+                            <div onclick="selectAdminChat('user_1')" class="p-3 rounded-xl bg-neonBlue/20 border border-neonBlue/40 cursor-pointer flex items-center justify-between">
+                                <div>
+                                    <h5 class="font-bold text-white text-xs">العميل الحالي (أنت)</h5>
+                                    <p class="text-[10px] text-slate-400 truncate w-36">مرحباً، أريد الاستفسار عن...</p>
+                                </div>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Chat Reply Box -->
+                    <div class="flex-1 glass-panel rounded-2xl flex flex-col overflow-hidden">
+                        <div class="px-4 py-3 bg-black/50 border-b border-white/10 flex items-center justify-between">
+                            <span class="font-bold text-white text-xs">محادثة مع العميل</span>
+                            <span class="text-[10px] text-emerald-400">نشط الآن</span>
+                        </div>
+                        <div id="admin-chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 text-xs">
+                            <!-- Admin chat view -->
+                        </div>
+                        <div class="p-3 bg-black/50 border-t border-white/10 flex gap-2">
+                            <input type="text" id="admin-chat-input" onkeypress="handleAdminChatKeypress(event)" placeholder="اكتب رد الإدارة..." class="flex-1 px-4 py-2.5 rounded-xl bg-black/50 border border-white/10 text-white text-xs focus:outline-none focus:border-neonPurple">
+                            <button onclick="sendAdminChatMessage()" class="px-4 py-2.5 rounded-xl bg-neonPurple text-black font-bold text-xs shadow-neon-purple">إرسال</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 4: Services & Portfolio Management -->
+                <div id="admin-tab-services" class="hidden space-y-6">
+                    <div class="flex items-center justify-between">
+                        <h4 class="font-bold text-white text-sm">إدارة الخدمات المتاحة في الموقع</h4>
+                        <button onclick="addNewServicePrompt()" class="px-4 py-2 rounded-xl bg-neonBlue text-black font-bold text-xs"><i class="fa-solid fa-plus ml-1"></i> إضافة خدمة جديدة</button>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="admin-services-list">
+                        <!-- Populated via JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== JAVASCRIPT LOGIC ==================== -->
+    <script>
+        // --- DATA STORAGE & APP STATE ---
+        let appState = {
+            services: [
+                { id: '1', title: 'تصميم مواقع الشركات', category: 'corporate', desc: 'مواقع احترافية تعكس هوية شركتك وتعزز ثقة العملاء بها.', icon: 'fa-globe', price: 'يبدأ من $1,200' },
+                { id: '2', title: 'تصميم المتاجر الإلكترونية', category: 'ecommerce', desc: 'متاجر متكاملة وسريعة مع بوابات دفع آمنة وإدارة منتجات ذكية.', icon: 'fa-cart-shopping', price: 'يبدأ من $1,200' },
+                { id: '3', title: 'مواقع الألعاب والديسكورد', category: 'gaming', desc: 'تصاميم سايبربانك ومبهرة لمجتمعات الألعاب وسيرفرات الديسكورد.', icon: 'fa-gamepad', price: 'يبدأ من $800' },
+                { id: '4', title: 'تصميم المواقع الشخصية', category: 'personal', desc: 'مواقع السيرة الذاتية وبورتفوليو احترافي للمؤثرين والمحترفين.', icon: 'fa-user-tie', price: 'يبدأ من $600' },
+                { id: '7', title: 'تطوير وتحسين المواقع', category: 'upgrade', desc: 'تحسين السرعة، الأمان، وتحديث واجهات مواقعك الحالية.', icon: 'fa-wand-magic-sparkles', price: 'يبدأ من $300' }
+            ],
+            portfolio: [
+                { id: 1, title: 'منصة نيو تك للبرمجيات', category: 'corporate', image: 'https://placehold.co/600x400/12121a/00f2fe?text=Neo+Tech+Corp', desc: 'موقع إلكتروني متطور لشركة برمجيات عالمية.' },
+                { id: 2, title: 'متجر دراجون للألعاب', category: 'gaming', image: 'https://placehold.co/600x400/12121a/9333ea?text=Dragon+Gaming', desc: 'متجر ومجتمع ألعاب بتصميم سايبربانك فاخر.' },
+                { id: 3, title: 'سوق الأقواس الذكي', category: 'ecommerce', image: 'https://placehold.co/600x400/12121a/38bdf8?text=Smart+Store', desc: 'متجر إلكتروني شامل مع نظام دفع وبحث متقدم.' },
+                { id: 5, title: 'بورتفوليو المصمم ريان', category: 'personal', image: 'https://placehold.co/600x400/12121a/00f2fe?text=Designer+Portfolio', desc: 'موقع شخصي يعرض أعمال التصميم الفني.' },
+            ],
+            orders: JSON.parse(localStorage.getItem('pixel_orders')) || [
+                { id: 1, name: 'سلطان العتيبي', phone: '+966501112233', title: 'متجر عطور فاخر', category: 'ecommerce', details: 'أريد متجر إلكتروني متكامل لبيع العطور بتصميم فخم.', status: 'قيد التنفيذ' }
+            ],
+            messages: JSON.parse(localStorage.getItem('pixel_messages')) || [
+                { sender: 'bot', text: 'أهلاً بك في PIXEL STUDIO! أنا سارة مساعدة الدعم الفني. كيف يمكنني مساعدتك في تصميم موقعك اليوم؟', time: '12:00 م' }
+            ]
+        };
+
+        // --- PARTICLE BACKGROUND ANIMATION ---
+        window.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('particle-canvas');
+            const ctx = canvas.getContext('2d');
+            let particlesArray = [];
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2.5 + 1;
+                    this.speedX = (Math.random() - 0.5) * 0.8;
+                    this.speedY = (Math.random() - 0.5) * 0.8;
+                    this.color = Math.random() > 0.5 ? '#00f2fe' : '#9333ea';
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.x > canvas.width) this.x = 0;
+                    else if (this.x < 0) this.x = canvas.width;
+                    if (this.y > canvas.height) this.y = 0;
+                    else if (this.y < 0) this.y = canvas.height;
+                }
+                draw() {
+                    ctx.fillStyle = this.color;
+                    ctx.shadowBlur = 10;
+                    ctx.shadowColor = this.color;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < 70; i++) {
+                particlesArray.push(new Particle());
+            }
+
+            function animateParticles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particlesArray.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                requestAnimationFrame(animateParticles);
+            }
+            animateParticles();
+
+            // Render Services & Portfolio
+            renderServices();
+            renderPortfolio('all');
+            renderChatMessages();
+            updateAdminStats();
+        });
+
+        // --- MOUSE PARALLAX EFFECT ON INTRO ---
+        const introScreen = document.getElementById('intro-screen');
+        document.addEventListener('mousemove', (e) => {
+            if (!introScreen.classList.contains('hidden')) {
+                const x = (e.clientX / window.innerWidth - 0.5) * 20;
+                const y = (e.clientY / window.innerHeight - 0.5) * 20;
+                introScreen.style.transform = `scale(1.05) translate(${x}px, ${y}px)`;
+            }
+        });
+
+        // --- ENTER WEBSITE FUNCTION ---
+        function enterWebsite(event) {
+            if (event) event.stopPropagation();
+            introScreen.style.opacity = '0';
+            setTimeout(() => {
+                introScreen.classList.add('hidden');
+                const mainWebsite = document.getElementById('main-website');
+                mainWebsite.classList.remove('hidden');
+                setTimeout(() => {
+                    mainWebsite.style.opacity = '1';
+                }, 50);
+            }, 800);
+        }
+
+        // --- MOBILE MENU TOGGLE ---
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            menu.classList.toggle('hidden');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
+        }
+
+        // --- RENDER SERVICES ---
+        function renderServices() {
+            const grid = document.getElementById('services-grid');
+            grid.innerHTML = appState.services.map(s => `
+                <div class="glass-card rounded-3xl p-8 flex flex-col justify-between border border-white/10 group">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-neonBlue/20 to-neonPurple/20 text-neonBlue flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform shadow-neon">
+                            <i class="fa-solid ${s.icon}"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">${s.title}</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">${s.desc}</p>
+                    </div>
+                    <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                        <span class="text-neonBlue font-mono font-bold text-sm">${s.price}</span>
+                        <button onclick="openOrderModalWithService('${s.title}')" class="px-4 py-2 rounded-xl bg-neonBlue/20 text-neonBlue hover:bg-neonBlue hover:text-black font-bold text-xs transition-all">
+                            اطلب الخدمة الآن
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Also render in Admin Services tab
+            const adminGrid = document.getElementById('admin-services-list');
+            if (adminGrid) {
+                adminGrid.innerHTML = appState.services.map(s => `
+                    <div class="p-4 rounded-2xl glass-panel border border-white/10 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <h5 class="font-bold text-white text-sm">${s.title}</h5>
+                                <i class="fa-solid ${s.icon} text-neonBlue"></i>
+                            </div>
+                            <p class="text-xs text-slate-400 mb-3">${s.desc}</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-2 border-t border-white/10">
+                            <span class="text-xs text-neonBlue font-mono">${s.price}</span>
+                            <button onclick="deleteService('${s.id}')" class="text-red-400 hover:text-red-300 text-xs"><i class="fa-solid fa-trash"></i> حذف</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // --- RENDER PORTFOLIO ---
+        function renderPortfolio(category) {
+            const grid = document.getElementById('portfolio-grid');
+            const filtered = category === 'all' ? appState.portfolio : appState.portfolio.filter(p => p.category === category);
+            
+            grid.innerHTML = filtered.map(p => `
+                <div class="glass-card rounded-3xl overflow-hidden border border-white/10 group">
+                    <div class="relative overflow-hidden aspect-video">
+                        <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-transparent to-transparent opacity-80"></div>
+                        <span class="absolute top-4 right-4 px-3 py-1 rounded-full glass-panel text-[10px] text-neonBlue font-bold uppercase">${p.category}</span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="text-xl font-bold text-white">${p.title}</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">${p.desc}</p>
+                        <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                            <button onclick="showProjectPreview('${p.title}')" class="text-xs text-neonBlue font-bold hover:underline flex items-center gap-1">
+                                <i class="fa-solid fa-eye"></i> معاينة المشروع
+                            </button>
+                            <button onclick="openOrderModal()" class="px-3 py-1.5 rounded-lg bg-neonPurple/20 text-neonPurple hover:bg-neonPurple hover:text-black font-bold text-xs transition-all">
+                                اطلب مثل هذا
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Update filter buttons style
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-neonBlue', 'text-black');
+                btn.classList.add('glass-panel', 'text-slate-300');
+            });
+            event && event.target.classList.remove('glass-panel', 'text-slate-300');
+            event && event.target.classList.add('bg-neonBlue', 'text-black');
+        }
+
+        function filterPortfolio(cat) {
+            renderPortfolio(cat);
+        }
+
+        function showProjectPreview(title) {
+            alert('معاينة المشروع: ' + title + '\n(هذا المشروع تم تطويره بالكامل بواسطة PIXEL STUDIO مع لوحة تحكم وتصميم متجاوب).');
+        }
+
+        // --- ORDER SYSTEM MODAL ---
+        const orderModal = document.getElementById('order-modal');
+
+        function openOrderModal() {
+            orderModal.classList.remove('hidden');
+        }
+
+        function closeOrderModal() {
+            orderModal.classList.add('hidden');
+        }
+
+        function openOrderModalWithService(serviceTitle) {
+            document.getElementById('project-title').value = serviceTitle;
+            openOrderModal();
+        }
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) {
+                document.getElementById('file-label-text').innerText = 'تم إرفاق الملف: ' + file.name;
+            }
+        }
+
+        function submitOrder(event) {
+            event.preventDefault();
+            const name = document.getElementById('client-name').value;
+            const phone = document.getElementById('client-phone').value;
+            const title = document.getElementById('project-title').value;
+            const category = document.getElementById('project-category').value;
+            const details = document.getElementById('project-details').value;
+
+            const newOrder = {
+                id: Date.now(),
+                name,
+                phone,
+                title,
+                category,
+                details,
+                status: 'قيد المراجعة'
+            };
+
+            appState.orders.unshift(newOrder);
+            localStorage.setItem('pixel_orders', JSON.stringify(appState.orders));
+
+            closeOrderModal();
+            document.getElementById('order-form').reset();
+            document.getElementById('file-label-text').innerText = 'اضغط لاختيار ملف أو اسحبه هنا';
+
+            alert('تم استلام طلبك بنجاح يا ' + name + '! سيقوم فريقنا بالتواصل معك عبر الهاتف أو الواتساب خلال دقائق.');
+            updateAdminStats();
+            loadAdminOrders();
+        }
+
+        // --- REAL-TIME LIVE CHAT SYSTEM ---
+        const chatBox = document.getElementById('chat-box');
+        const chatBadge = document.getElementById('chat-badge');
+        let chatOpen = false;
+
+        function toggleChatWidget() {
+            chatOpen = !chatOpen;
+            if (chatOpen) {
+                chatBox.classList.remove('hidden');
+                chatBadge.classList.add('hidden');
+                renderChatMessages();
+            } else {
+                chatBox.classList.add('hidden');
+            }
+        }
+
+        function renderChatMessages() {
+            const container = document.getElementById('chat-messages');
+            const adminContainer = document.getElementById('admin-chat-messages');
+            
+            const html = appState.messages.map(m => `
+                <div class="flex flex-col ${m.sender === 'client' ? 'items-end' : 'items-start'}">
+                    <div class="max-w-[80%] p-3 rounded-2xl ${m.sender === 'client' ? 'bg-neonBlue text-black font-semibold rounded-br-none' : 'glass-panel text-slate-200 rounded-bl-none border border-white/10'}">
+                        ${m.text}
+                    </div>
+                    <span class="text-[9px] text-slate-500 mt-1">${m.time}</span>
+                </div>
+            `).join('');
+
+            container.innerHTML = html;
+            container.scrollTop = container.scrollHeight;
+
+            if (adminContainer) {
+                adminContainer.innerHTML = html;
+                adminContainer.scrollTop = adminContainer.scrollHeight;
+            }
+        }
+
+        function sendChatMessage() {
+            const input = document.getElementById('chat-input');
+            const text = input.value.trim();
+            if (!text) return;
+
+            const timeNow = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            appState.messages.push({ sender: 'client', text, time: timeNow });
+            localStorage.setItem('pixel_messages', JSON.stringify(appState.messages));
+            input.value = '';
+            renderChatMessages();
+
+            // Simulate intelligent auto-reply from Pixel Studio support bot
+            setTimeout(() => {
+                let botReply = 'شكرا لتواصلك معنا! لقد تلقينا رسالتك وسيقوم أحد مهندسينا بالرد عليك فوراً.';
+                if (text.includes('سعر') || text.includes('تكلفة')) {
+                    botReply = 'تختلف الأسعار حسب متطلبات المشروع، تبدأ مشاريعنا من $300 وتصل حسب المواصفات. هل ترغب في طلب عرض سعر مخصص؟';
+                } else if (text.includes('موقع') || text.includes('متجر')) {
+                    botReply = 'ممتاز! يمكنك الضغط على زر "اطلب تصميم موقع" في الأعلى لتحديد تفاصيل مشروعك وسنباشر العمل فوراً.';
+                }
+                appState.messages.push({ sender: 'bot', text: botReply, time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) });
+                localStorage.setItem('pixel_messages', JSON.stringify(appState.messages));
+                renderChatMessages();
+            }, 1000);
+        }
+
+        function handleChatKeypress(e) {
+            if (e.key === 'Enter') sendChatMessage();
+        }
+
+        function triggerChatAttachment() {
+            document.getElementById('chat-file-input').click();
+        }
+
+        function sendChatFile(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const timeNow = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                appState.messages.push({ sender: 'client', text: `[ملف مرفق: ${file.name}]`, time: timeNow });
+                localStorage.setItem('pixel_messages', JSON.stringify(appState.messages));
+                renderChatMessages();
+            }
+        }
+
+        // --- ADMIN DASHBOARD ---
+        const adminModal = document.getElementById('admin-modal');
+
+        function openAdminDashboard() {
+            adminModal.classList.remove('hidden');
+            updateAdminStats();
+            loadAdminOrders();
+            renderServices();
+        }
+
+        function closeAdminDashboard() {
+            adminModal.classList.add('hidden');
+        }
+
+        function switchAdminTab(tabName) {
+            ['stats', 'orders', 'chats', 'services'].forEach(t => {
+                document.getElementById(`admin-tab-${t}`).classList.add('hidden');
+                document.getElementById(`tab-btn-${t}`).classList.remove('bg-neonPurple', 'text-black');
+                document.getElementById(`tab-btn-${t}`).classList.add('glass-panel', 'text-slate-300');
+            });
+            document.getElementById(`admin-tab-${tabName}`).classList.remove('hidden');
+            document.getElementById(`tab-btn-${tabName}`).classList.remove('glass-panel', 'text-slate-300');
+            document.getElementById(`tab-btn-${tabName}`).classList.add('bg-neonPurple', 'text-black');
+        }
+
+        function updateAdminStats() {
+            document.getElementById('stat-orders-count').innerText = appState.orders.length;
+            document.getElementById('admin-orders-count').innerText = appState.orders.length;
+        }
+
+        function loadAdminOrders() {
+            const tbody = document.getElementById('admin-orders-tbody');
+            tbody.innerHTML = appState.orders.map(o => `
+                <tr class="hover:bg-white/5 transition-colors">
+                    <td class="p-3 font-bold text-white">${o.name}</td>
+                    <td class="p-3 text-slate-300">${o.phone}</td>
+                    <td class="p-3 text-neonBlue font-semibold">${o.title}</td>
+                    <td class="p-3 text-slate-300">${o.category}</td>
+                    <td class="p-3 text-slate-400 max-w-xs truncate">${o.details}</td>
+                    <td class="p-3"><span class="px-2.5 py-1 rounded-full bg-yellow-500/20 text-yellow-400 text-[10px]">${o.status}</span></td>
+                    <td class="p-3 flex gap-2">
+                        <button onclick="updateOrderStatus('${o.id}', 'مكتمل')" class="px-2 py-1 rounded bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500 hover:text-black transition-all">قبول</button>
+                        <button onclick="deleteOrder('${o.id}')" class="px-2 py-1 rounded bg-red-500/20 text-red-400 hover:bg-red-500 hover:text-black transition-all">حذف</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function updateOrderStatus(id, newStatus) {
+            appState.orders = appState.orders.map(o => o.id == id ? {...o, status: newStatus} : o);
+            localStorage.setItem('pixel_orders', JSON.stringify(appState.orders));
+            loadAdminOrders();
+        }
+
+        function deleteOrder(id) {
+            appState.orders = appState.orders.filter(o => o.id != id);
+            localStorage.setItem('pixel_orders', JSON.stringify(appState.orders));
+            loadAdminOrders();
+            updateAdminStats();
+        }
+
+        function sendAdminChatMessage() {
+            const input = document.getElementById('admin-chat-input');
+            const text = input.value.trim();
+            if (!text) return;
+
+            const timeNow = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            appState.messages.push({ sender: 'bot', text: 'رد الإدارة: ' + text, time: timeNow });
+            localStorage.setItem('pixel_messages', JSON.stringify(appState.messages));
+            input.value = '';
+            renderChatMessages();
+        }
+
+        function handleAdminChatKeypress(e) {
+            if (e.key === 'Enter') sendAdminChatMessage();
+        }
+
+        function selectAdminChat(chatId) {
+            // Placeholder for multi-chat switching
+            renderChatMessages();
+        }
+
+        function addNewServicePrompt() {
+            const title = prompt('أدخل عنوان الخدمة الجديدة:');
+            if (!title) return;
+            const desc = prompt('أدخل وصف الخدمة:');
+            const price = prompt('أدخل السعر (مثال: يبدأ من $500):');
+
+            const newService = {
+                id: Date.now().toString(),
+                title,
+                category: 'corporate',
+                desc: desc || 'خدمة تصميم احترافية من بكسل ستوديو.',
+                icon: 'fa-code',
+                price: price || 'يبدأ من $500'
+            };
+
+            appState.services.push(newService);
+            renderServices();
+            alert('تم إضافة الخدمة بنجاح!');
+        }
+
+        function deleteService(id) {
+            appState.services = appState.services.filter(s => s.id !== id);
+            renderServices();
+            alert('تم حذف الخدمة بنجاح.');
+        }
+    </script>
+
+    <script>
+    // ================= الإعدادات =================
+    // للتسجيل الحقيقي (جوجل/جيت هاب/فيسبوك + بريد) ضع إعدادات Firebase هنا. بدونها يعمل الوضع التجريبي على المتصفح فقط.
+    const FIREBASE_CONFIG = null; // { apiKey:'...', authDomain:'...', projectId:'...', appId:'...' }
+    const OWNER_EMAILS = ['ahmedkhaleduu3@gmail.com']; // الحسابات التي ترى لوحة الإدارة
+    const AI_ENDPOINT = ''; // اختياري: رابط خادم ذكاء اصطناعي يستقبل {message,history,user} ويرد {reply}
+
+    const OWNER_MAIL = 'ahmedkhaleduu3@gmail.com';
+    function notifyOwner(subject, data) {
+        fetch('https://formsubmit.co/ajax/' + OWNER_MAIL, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify({ _subject: 'PIXEL STUDIO | ' + subject, _template: 'table', ...data }) }).catch(() => {});
+    }
+    const $ = id => document.getElementById(id);
+    const esc = v => String(v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const LS = (k, d) => { try { const v = JSON.parse(localStorage.getItem(k)); return v ?? d; } catch (e) { return d; } };
+    const sv = (k, v) => localStorage.setItem(k, JSON.stringify(v));
+    function show(id, on) { const el = $(id); el.classList.toggle('hidden', !on); el.classList.toggle('flex', on); }
+    function toast(msg) {
+        const t = document.createElement('div');
+        t.className = 'fixed bottom-24 left-1/2 -translate-x-1/2 z-[80] px-5 py-3 rounded-xl glass-panel border border-neonBlue/40 text-sm text-white shadow-neon msg-in';
+        t.textContent = msg; document.body.appendChild(t);
+        setTimeout(() => { t.style.transition = 'opacity .5s'; t.style.opacity = 0; setTimeout(() => t.remove(), 500); }, 2800);
+    }
+
+    // ================= تسجيل الدخول =================
+    let user = LS('pixel_session', null), fb = null, authMode = 'login', authLocked = false;
+    async function sha(t) {
+        if (!(window.crypto && crypto.subtle)) return btoa(unescape(encodeURIComponent(t)));
+        const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t));
+        return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join('');
+    }
+    function loadScript(src) { return new Promise((r, j) => { const s = document.createElement('script'); s.src = src; s.onload = r; s.onerror = j; document.head.appendChild(s); }); }
+    async function initAuth() {
+        if (FIREBASE_CONFIG) {
+            try {
+                const v = '10.12.2';
+                await loadScript(`https://www.gstatic.com/firebasejs/${v}/firebase-app-compat.js`);
+                await loadScript(`https://www.gstatic.com/firebasejs/${v}/firebase-auth-compat.js`);
+                firebase.initializeApp(FIREBASE_CONFIG); fb = firebase.auth();
+                fb.onAuthStateChanged(u => setUser(u ? { name: u.displayName || u.email.split('@')[0], email: u.email, uid: u.uid, provider: u.providerData[0] ? u.providerData[0].providerId : 'password' } : null));
+            } catch (e) { toast('تعذر تحميل Firebase، تم تفعيل الوضع التجريبي'); }
+        }
+        $('au-demo').textContent = fb ? '' : 'وضع تجريبي: الحسابات تُحفظ على هذا المتصفح فقط.';
+        setAuthMode('login'); renderAuth();
+    }
+    function setUser(u) {
+        user = u; sv('pixel_session', u); renderAuth();
+        if (u) { authLocked = false; closeAuth(true); } else if (!$('main-website').classList.contains('hidden')) openAuth(true);
+    }
+    function setAuthMode(m) {
+        authMode = m; $('au-err').textContent = '';
+        $('au-name').style.display = m === 'signup' ? '' : 'none';
+        $('au-submit').textContent = m === 'signup' ? 'إنشاء الحساب' : 'دخول';
+        const on = 'bg-neonBlue text-black', off = 'text-slate-300';
+        $('au-tab-login').className = 'py-2 rounded-lg text-sm font-bold ' + (m === 'login' ? on : off);
+        $('au-tab-signup').className = 'py-2 rounded-lg text-sm font-bold ' + (m === 'signup' ? on : off);
+    }
+    function openAuth(locked) { authLocked = !!locked; $('auth-close').style.display = authLocked ? 'none' : ''; show('auth-modal', true); }
+    function closeAuth(force) { if (authLocked && !force) return; show('auth-modal', false); }
+    async function submitAuth(e) {
+        e.preventDefault();
+        const email = $('au-email').value.trim().toLowerCase(), pass = $('au-pass').value, name = $('au-name').value.trim() || email.split('@')[0];
+        try {
+            if (fb) {
+                if (authMode === 'signup') { const c = await fb.createUserWithEmailAndPassword(email, pass); await c.user.updateProfile({ displayName: name }); setUser({ name, email, uid: c.user.uid, provider: 'password' }); }
+                else await fb.signInWithEmailAndPassword(email, pass);
+                return;
+            }
+            const users = LS('pixel_users', {}), h = await sha(pass);
+            if (authMode === 'signup') { if (users[email]) throw new Error('هذا البريد مسجل بالفعل، سجّل الدخول.'); users[email] = { name, h }; sv('pixel_users', users); }
+            else if (!users[email] || users[email].h !== h) throw new Error('البريد أو كلمة المرور غير صحيحة.');
+            setUser({ name: users[email].name, email, uid: email, provider: 'password' });
+        } catch (x) { $('au-err').textContent = x.code ? 'تعذر تنفيذ العملية (' + x.code.replace('auth/', '') + ')' : x.message; }
+    }
+    async function socialLogin(p) {
+        if (fb) {
+            try { const cls = { google: 'GoogleAuthProvider', github: 'GithubAuthProvider', facebook: 'FacebookAuthProvider' }[p]; await fb.signInWithPopup(new firebase.auth[cls]()); }
+            catch (x) { $('au-err').textContent = 'تعذر الدخول عبر ' + p; }
+            return;
+        }
+        const email = prompt('الوضع التجريبي: اكتب بريدك على ' + p);
+        if (!email || !email.includes('@')) return;
+        setUser({ name: email.split('@')[0], email: email.toLowerCase(), uid: p + ':' + email.toLowerCase(), provider: p });
+    }
+    function logout() { if (fb) fb.signOut(); else setUser(null); }
+    function renderAuth() {
+        const owner = user && OWNER_EMAILS.includes(user.email);
+        const html = user
+            ? `<button onclick="openMyOrders()" class="px-3 py-2 rounded-xl glass-panel text-xs text-yellow-400 border border-yellow-400/30 hover:bg-yellow-400/10"><i class="fa-solid fa-list-check ml-1"></i> طلباتي</button>
+               <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl glass-panel"><span class="w-7 h-7 rounded-lg bg-gradient-to-tr from-neonBlue to-neonPurple text-black font-black flex items-center justify-center text-xs">${esc((user.name || '?')[0]).toUpperCase()}</span><span class="text-xs text-white max-w-[90px] truncate">${esc(user.name)}</span><button onclick="logout()" title="خروج" class="text-slate-400 hover:text-red-400"><i class="fa-solid fa-right-from-bracket"></i></button></div>`
+            : `<button onclick="openAuth()" class="px-4 py-2 rounded-xl glass-panel border border-neonBlue/50 text-neonBlue text-sm font-semibold">تسجيل الدخول</button>`;
+        ['auth-area', 'auth-area-m'].forEach(i => { if ($(i)) $(i).innerHTML = html; });
+        ['admin-btn', 'admin-btn-m'].forEach(i => { if ($(i)) $(i).style.display = owner ? '' : 'none'; });
+    }
+    // الدخول للموقع يتطلب حساباً
+    const _enter = enterWebsite;
+    enterWebsite = function (e) { _enter(e); setTimeout(() => { if (!user) openAuth(true); }, 1300); };
+
+    // ================= الطلبات والتقييمات =================
+    const seedRev = [
+        { n: 'عبدالرحمن صلاح', r: 5, t: 'الموقع وصل أحسن من الفكرة اللي في دماغي، والألوان والحركة تجنن.' },
+        { n: 'لجين الشمري', r: 5, t: 'ردّوا عليّ بسرعة وعدّلوا كل ملاحظاتي بدون تأخير.' },
+        { n: 'كريم منصور', r: 4, t: 'متجري صار يشتغل بسلاسة والعملاء ما عادوا يسألون كيف يطلبون.' },
+        { n: 'أسماء الزهراني', r: 5, t: 'شغل نظيف ومرتب، واستلمت الموقع في الوقت المتفق عليه.' },
+        { n: 'Omar Hassan', r: 5, t: 'سيرفر الديسكورد عندنا صار له واجهة تشبه هويته تماماً.' },
+        { n: 'دانة العمري', r: 5, t: 'موقعي الشخصي يعرّف الناس بشغلي من أول ثانية، شكراً لكم.' },
+        { n: 'مصطفى جمال', r: 4, t: 'تعامل محترم وأسعار مناسبة مقارنة بالجودة اللي استلمتها.' },
+        { n: 'ريناد القحطاني', r: 5, t: 'شرحوا لي كل خطوة بصبر، وطلعت النتيجة فوق التوقع.' },
+        { n: 'Yasmine A.', r: 5, t: 'Smooth process from start to finish and a really sharp design.' },
+        { n: 'تركي المطيري', r: 4, t: 'سرعة الموقع ممتازة والتصميم يلفت النظر على الجوال.' }
+    ];
+    let reviews = LS('pixel_reviews_v2', seedRev);
+    const stars = n => '★'.repeat(n) + '☆'.repeat(5 - n);
+    const revCard = v => `<div dir="rtl" class="rev-card glass-panel rounded-2xl p-4 w-72 shrink-0 border border-white/10"><div class="text-yellow-400 text-sm tracking-widest">${stars(v.r)}</div><p class="text-xs text-slate-300 my-2 leading-relaxed">${esc(v.t)}</p><span class="text-[11px] text-neonBlue font-bold">${esc(v.n)}</span></div>`;
+    function renderReviews() {
+        const list = reviews.length ? reviews : seedRev, k = list.length < 6 ? 4 : 2;
+        const rep = a => Array.from({ length: k }, () => a).flat();
+        $('rev-row1').innerHTML = rep(list).map(revCard).join('');
+        $('rev-row2').innerHTML = rep([...list].reverse()).map(revCard).join('');
+        $('rev-ticker-track').innerHTML = rep(list).map(v => `<span dir="rtl" class="mx-6 text-xs text-slate-300 whitespace-nowrap"><span class="text-yellow-400">${stars(v.r)}</span> ${esc(v.t)} <b class="text-neonBlue">— ${esc(v.n)}</b></span>`).join('');
+        $('rev-avg').textContent = (list.reduce((a, v) => a + v.r, 0) / list.length).toFixed(1);
+        $('rev-count').textContent = list.length;
+    }
+    let miniI = 0;
+    setInterval(() => {
+        const el = $('rev-mini'); if (!el) return; const list = reviews.length ? reviews : seedRev;
+        el.style.opacity = 0;
+        setTimeout(() => { const v = list[miniI++ % list.length]; el.innerHTML = `<span class="text-yellow-400">${stars(v.r)}</span> ${esc(v.t)} <b class="text-neonBlue">— ${esc(v.n)}</b>`; el.style.opacity = 1; }, 500);
+    }, 4500);
+
+    function openOrderModal() {
+        if (!user) { openAuth(); toast('سجّل دخولك أولاً لإرسال الطلب'); return; }
+        orderModal.classList.remove('hidden');
+        if (!$('client-name').value) $('client-name').value = user.name;
+    }
+    function submitOrder(event) {
+        event.preventDefault();
+        const o = { id: Date.now(), uid: user.uid, email: user.email, name: $('client-name').value, phone: $('client-phone').value, title: $('project-title').value, category: $('project-category').value, details: $('project-details').value, status: 'قيد المراجعة', reviewed: false };
+        appState.orders.unshift(o); sv('pixel_orders', appState.orders);
+        notifyOwner('طلب جديد: ' + o.title, { الاسم: o.name, الهاتف: o.phone, البريد: o.email, المشروع: o.title, النوع: o.category, التفاصيل: o.details });
+        closeOrderModal(); $('order-form').reset(); $('file-label-text').innerText = 'اضغط لاختيار ملف أو اسحبه هنا';
+        toast('تم استلام طلبك يا ' + o.name + '، تابعه من «طلباتي»');
+        updateAdminStats(); loadAdminOrders();
+    }
+    const rate = {};
+    function openMyOrders() {
+        if (!user) { openAuth(); return; }
+        renderMyOrders(); show('my-orders-modal', true);
+    }
+    function renderMyOrders() {
+        const mine = appState.orders.filter(o => o.uid === user.uid);
+        $('my-orders-list').innerHTML = mine.length ? mine.map(o => {
+            const done = o.status === 'مكتمل';
+            const box = !done ? `<p class="text-xs text-slate-500">سيظهر التقييم بعد اكتمال الطلب.</p>`
+                : o.reviewed ? `<p class="text-xs text-emerald-400"><i class="fa-solid fa-circle-check ml-1"></i> شكراً، تقييمك يظهر الآن في الموقع.</p>`
+                : `<div id="rs-${o.id}" class="flex gap-1 mb-2" dir="ltr">${[1, 2, 3, 4, 5].map(n => `<button class="star-btn" onclick="setRate('${o.id}',${n})">★</button>`).join('')}</div>
+                   <textarea id="rt-${o.id}" rows="2" placeholder="اكتب رأيك في التجربة..." class="w-full px-3 py-2 rounded-xl bg-black/50 border border-white/10 text-white text-xs focus:outline-none focus:border-yellow-400 resize-none"></textarea>
+                   <button onclick="submitReview('${o.id}')" class="mt-2 px-4 py-2 rounded-xl bg-yellow-400 text-black font-bold text-xs">إرسال التقييم</button>`;
+            return `<div class="p-4 rounded-2xl bg-black/40 border border-white/10"><div class="flex items-center justify-between mb-3"><h4 class="font-bold text-white text-sm">${esc(o.title)}</h4><span class="px-2.5 py-1 rounded-full text-[10px] ${done ? 'bg-emerald-500/20 text-emerald-400' : 'bg-yellow-500/20 text-yellow-400'}">${esc(o.status)}</span></div>${box}</div>`;
+        }).join('') : `<p class="text-sm text-slate-400 text-center py-8">لا توجد طلبات بعد. ابدأ مشروعك الأول الآن.</p>`;
+    }
+    function setRate(id, n) { rate[id] = n; document.querySelectorAll(`#rs-${id} .star-btn`).forEach((b, i) => b.classList.toggle('on', i < n)); }
+    function submitReview(id) {
+        if (!rate[id]) { toast('اختر عدد النجوم أولاً'); return; }
+        const t = $('rt-' + id).value.trim(); if (t.length < 5) { toast('اكتب رأياً قصيراً من فضلك'); return; }
+        reviews = [{ n: user.name, r: rate[id], t, uid: user.uid }, ...reviews.filter(x => x !== undefined)]; sv('pixel_reviews_v2', reviews);
+        appState.orders = appState.orders.map(o => o.id == id ? { ...o, reviewed: true } : o); sv('pixel_orders', appState.orders);
+        renderReviews(); renderMyOrders(); toast('شكراً لتقييمك!');
+        setTimeout(() => { show('my-orders-modal', false); $('reviews').scrollIntoView({ behavior: 'smooth' }); }, 900);
+    }
+    const _upd = updateOrderStatus;
+    updateOrderStatus = function (id, st) { _upd(id, st); toast('تم تحديث حالة الطلب، يمكن للعميل تقييمه الآن'); };
+
+    // ================= المساعد الذكي =================
+    const quick = ['كم الأسعار؟', 'مدة التسليم؟', 'حالة طلبي', 'أريد متجراً إلكترونياً', 'كيف أتواصل معكم؟'];
+    let aiTyping = false;
+    const catWords = { ecommerce: ['متجر', 'بيع', 'منتجات'], gaming: ['ديسكورد', 'العاب', 'ألعاب', 'جيمنج'], personal: ['شخصي', 'سيرة', 'بورتفوليو'], corporate: ['شركة', 'شركات', 'مؤسسة'], upgrade: ['تطوير', 'تحسين', 'سرعة'] };
+    function aiLocal(q) {
+        const t = q.toLowerCase(), nm = user ? esc(user.name.split(' ')[0]) : '';
+        const has = (...w) => w.some(x => t.includes(x));
+        if (has('مرحبا', 'هلا', 'سلام', 'اهلا', 'أهلا', 'hi', 'hello')) return `أهلاً ${nm}! أنا مساعد بكسل الذكي. أشرح لك الخدمات والأسعار، أتابع حالة طلبك، وأرشح لك النوع المناسب لمشروعك. بماذا تبدأ؟`;
+        if (has('حالة', 'طلبي', 'طلباتي')) {
+            const mine = user ? appState.orders.filter(o => o.uid === user.uid) : [];
+            return mine.length ? 'طلباتك:<br>' + mine.map(o => `• ${esc(o.title)}: <b>${esc(o.status)}</b>`).join('<br>') + (mine.some(o => o.status === 'مكتمل' && !o.reviewed) ? '<br>طلبك جاهز، يمكنك تقييمه من «طلباتي».' : '') : 'لا أجد طلبات على حسابك بعد. اضغط «اطلب تصميم موقع» لنبدأ.';
+        }
+        for (const [c, ws] of Object.entries(catWords)) if (has(...ws)) {
+            const s = appState.services.find(x => x.category === c);
+            if (s) return `<b>${esc(s.title)}</b>: ${esc(s.desc)}<br>${esc(s.price)}. تحب أبدأ لك الطلب؟ اضغط «اطلب تصميم موقع».`;
+        }
+        if (has('سعر', 'تكلفة', 'بكام', 'كم', 'ثمن', 'price')) return 'أسعارنا:<br>' + appState.services.map(s => `• ${esc(s.title)}: ${esc(s.price)}`).join('<br>') + '<br>السعر النهائي يعتمد على المتطلبات.';
+        if (has('مدة', 'وقت', 'تسليم', 'متى', 'يوم')) return 'مدة التسليم تختلف حسب حجم المشروع، وتؤكدها لك الإدارة بعد مراجعة طلبك.';
+        if (has('تواصل', 'واتس', 'ايميل', 'إيميل', 'رقم')) return 'راسلنا على ahmedkhaleduu3@gmail.com أو عبر سيرفر الديسكورد https://discord.gg/Vzp2g9AsHq، أو اترك رسالتك هنا وسيرد عليك فريقنا.';
+        if (has('تقييم', 'رأي', 'اراء', 'آراء')) { const l = reviews.length ? reviews : seedRev; return `متوسط تقييم عملائنا <b>${(l.reduce((a, v) => a + v.r, 0) / l.length).toFixed(1)}</b> من 5 في ${l.length} تقييم. التقييم يفتح لك بعد استلام طلبك.`; }
+        if (has('شكرا', 'شكراً', 'thanks')) return 'العفو! أنا هنا في أي وقت.';
+        return 'لم أفهم تماماً، هل تقصد الأسعار، مدة التسليم، أم نوع موقع معين؟ جرّب الأزرار بالأسفل.';
+    }
+    async function aiReply(q) {
+        if (AI_ENDPOINT) {
+            try {
+                const r = await fetch(AI_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: q, history: appState.messages.slice(-6), user: user && { name: user.name, email: user.email } }) });
+                const j = await r.json(); if (j.reply) return esc(j.reply).replace(/\n/g, '<br>');
+            } catch (e) { /* نستخدم الرد المحلي */ }
+        }
+        return aiLocal(q);
+    }
+    function renderChips() { $('chat-chips').innerHTML = quick.map(c => `<button class="chip" onclick="chatQuick('${c}')">${c}</button>`).join(''); }
+    function chatQuick(c) { $('chat-input').value = c; sendChatMessage(); }
+    function renderChatMessages() {
+        const html = appState.messages.map(m => `
+            <div class="flex flex-col ${m.sender === 'client' ? 'items-end' : 'items-start'} msg-in">
+                <div class="max-w-[85%] p-3 rounded-2xl ${m.sender === 'client' ? 'bg-neonBlue text-black font-semibold rounded-br-none' : 'glass-panel text-slate-200 rounded-bl-none border border-white/10'}">${m.sender === 'client' ? esc(m.text) : m.text}</div>
+                <span class="text-[9px] text-slate-500 mt-1">${esc(m.time)}</span>
+            </div>`).join('') + (aiTyping ? '<div class="glass-panel inline-block p-3 rounded-2xl rounded-bl-none"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>' : '');
+        const c = $('chat-messages'); c.innerHTML = html; c.scrollTop = c.scrollHeight;
+        const a = $('admin-chat-messages'); if (a) { a.innerHTML = html; a.scrollTop = a.scrollHeight; }
+    }
+    function sendChatMessage() {
+        if (!user) { openAuth(); toast('سجّل دخولك لتبدأ المحادثة'); return; }
+        const input = $('chat-input'), text = input.value.trim(); if (!text || aiTyping) return;
+        const tm = () => new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        appState.messages.push({ sender: 'client', text, time: tm() }); sv('pixel_messages', appState.messages);
+        notifyOwner('رسالة جديدة من الشات', { الاسم: user.name, البريد: user.email, الرسالة: text });
+        input.value = ''; aiTyping = true; renderChatMessages();
+        Promise.all([aiReply(text), new Promise(r => setTimeout(r, 900 + Math.random() * 700))]).then(([reply]) => {
+            aiTyping = false; appState.messages.push({ sender: 'bot', text: reply, time: tm() }); sv('pixel_messages', appState.messages); renderChatMessages();
+        });
+    }
+
+    // ================= الحركة والخلفيات =================
+    (function () { // مشهد الأشكال المبرمجة + اسم الموقع
+        const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let mx = -999, my = -999;
+        addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+        const CUBE = [[-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],[-1,-1,1],[1,-1,1],[1,1,1],[-1,1,1]], CE = [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
+        const OCT = [[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]], OE = [[0,2],[0,3],[0,4],[0,5],[1,2],[1,3],[1,4],[1,5],[2,4],[2,5],[3,4],[3,5]];
+        function scene(c, nameY, nameA) {
+            const x = c.getContext('2d'); let W, H, nodes = [], t = 0;
+            const floats = Array.from({ length: 14 }, (_, i) => ({ n: [3, 4, 6, 6, 3][i % 5], x: Math.random(), y: Math.random(), r: 14 + Math.random() * 30, sp: .0003 + Math.random() * .0006, rs: (Math.random() - .5) * .02, rot: Math.random() * 6, col: i % 2 ? 'rgba(0,242,254,.4)' : 'rgba(147,51,234,.5)' }));
+            function size() { W = c.width = c.offsetWidth || innerWidth; H = c.height = c.offsetHeight || innerHeight; nodes = Array.from({ length: Math.min(70, Math.floor(W * H / 20000)) }, () => ({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .5, vy: (Math.random() - .5) * .5 })); }
+            size(); addEventListener('resize', size);
+            function poly(P, E, cx, cy, s, ax, ay, col) {
+                const ca = Math.cos(ax), sa = Math.sin(ax), cb = Math.cos(ay), sb = Math.sin(ay);
+                const Q = P.map(([a, b, d]) => { const y1 = b * ca - d * sa, z1 = b * sa + d * ca, x2 = a * cb + z1 * sb, z2 = -a * sb + z1 * cb, f = 3 / (3 + z2); return [cx + x2 * s * f, cy + y1 * s * f]; });
+                x.strokeStyle = col; x.shadowColor = col; x.shadowBlur = 14; x.lineWidth = 1.5; x.beginPath();
+                E.forEach(([a, b]) => { x.moveTo(Q[a][0], Q[a][1]); x.lineTo(Q[b][0], Q[b][1]); }); x.stroke();
+            }
+            function ngon(n, cx, cy, r, rot, col) { x.strokeStyle = col; x.lineWidth = 1.2; x.beginPath(); for (let i = 0; i <= n; i++) { const a = rot + i * 2 * Math.PI / n, px = cx + Math.cos(a) * r, py = cy + Math.sin(a) * r; i ? x.lineTo(px, py) : x.moveTo(px, py); } x.stroke(); }
+            function frame() {
+                if (c.getClientRects().length) {
+                    if (!reduce) t += .012;
+                    x.clearRect(0, 0, W, H); x.shadowBlur = 0;
+                    const fs = Math.min(W / 6, 180); x.font = `900 ${fs}px Cairo, sans-serif`; x.textAlign = 'center'; x.lineWidth = 1.5;
+                    x.strokeStyle = `rgba(0,242,254,${nameA + .05 * Math.sin(t * 2)})`; x.strokeText('PIXEL STUDIO', W / 2 + Math.sin(t) * 24, H * nameY);
+                    x.strokeStyle = `rgba(147,51,234,${nameA})`; x.strokeText('PIXEL STUDIO', W / 2 + Math.sin(t) * 24 + 4, H * nameY + 4);
+                    nodes.forEach((n, i) => {
+                        if (!reduce) { n.x += n.vx; n.y += n.vy; } if (n.x < 0 || n.x > W) n.vx *= -1; if (n.y < 0 || n.y > H) n.vy *= -1;
+                        x.fillStyle = 'rgba(0,242,254,.7)'; x.fillRect(n.x - 1.5, n.y - 1.5, 3, 3);
+                        for (let j = i + 1; j < nodes.length; j++) { const m = nodes[j], d = Math.hypot(n.x - m.x, n.y - m.y); if (d < 130) { x.strokeStyle = `rgba(147,51,234,${.35 * (1 - d / 130)})`; x.lineWidth = 1; x.beginPath(); x.moveTo(n.x, n.y); x.lineTo(m.x, m.y); x.stroke(); } }
+                        const dm = Math.hypot(n.x - mx, n.y - my); if (dm < 170) { x.strokeStyle = `rgba(0,242,254,${.6 * (1 - dm / 170)})`; x.beginPath(); x.moveTo(n.x, n.y); x.lineTo(mx, my); x.stroke(); }
+                    });
+                    floats.forEach(f => { if (!reduce) { f.y -= f.sp; f.rot += f.rs; if (f.y < -.1) f.y = 1.1; } ngon(f.n, f.x * W, f.y * H, f.r, f.rot, f.col); });
+                    const u = Math.min(W, H) * .11;
+                    poly(CUBE, CE, W * .17, H * .3, u, t * .9, t * 1.1, 'rgba(0,242,254,.8)');
+                    poly(OCT, OE, W * .84, H * .68, u * 1.2, t * .7, t * 1.3, 'rgba(147,51,234,.9)');
+                    poly(CUBE, CE, W * .82, H * .2, u * .55, -t, t * .8, 'rgba(236,72,153,.7)');
+                    poly(OCT, OE, W * .14, H * .78, u * .7, t * 1.2, -t, 'rgba(56,189,248,.8)');
+                }
+                requestAnimationFrame(frame);
+            }
+            frame();
+        }
+        scene($('shape-canvas'), .2, .13);
+        scene($('code-rain'), .5, .05);
+    })();
+    function floatTokens(id, n) {
+        const sec = $(id); if (!sec) return; const tk = ['{ }', '</>', '=>', 'const', '01', '[]', 'fn()', '&&', '<div>', 'git'];
+        for (let i = 0; i < n; i++) { const e = document.createElement('span'); e.className = 'ftok'; e.textContent = tk[i % tk.length]; e.style.cssText = `left:${Math.random() * 94}%;top:${20 + Math.random() * 70}%;font-size:${11 + Math.random() * 12}px;animation-duration:${9 + Math.random() * 9}s;animation-delay:${-Math.random() * 12}s`; sec.prepend(e); }
+    }
+    function setupReveal() {
+        const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), { threshold: .12 });
+        document.querySelectorAll('section h2, section .glass-card, #about .glass-panel, #reviews .marq').forEach(el => { if (!el.classList.contains('rv')) { el.classList.add('rv'); io.observe(el); } });
+    }
+    function setupCounters() {
+        document.querySelectorAll('#hero .grid h3').forEach(el => {
+            const m = el.textContent.match(/^(\d+)(.*)$/); if (!m) return; const to = +m[1], suf = m[2];
+            new IntersectionObserver((es, io) => { if (!es[0].isIntersecting) return; io.disconnect(); const t0 = performance.now(); (function f(t) { const p = Math.min((t - t0) / 1600, 1); el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))) + suf; if (p < 1) requestAnimationFrame(f); })(t0); }).observe(el);
+        });
+    }
+    addEventListener('DOMContentLoaded', () => {
+        initAuth(); renderReviews(); renderChips(); renderChatMessages();
+        floatTokens('hero', 16); floatTokens('reviews', 8); setupReveal(); setupCounters();
+        new MutationObserver(setupReveal).observe($('main-website'), { childList: true, subtree: true });
+    });
+    addEventListener('scroll', () => { const h = document.documentElement; $('progress').style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100 || 0) + '%'; }, { passive: true });
+    const glow = $('cglow');
+    document.addEventListener('mousemove', e => {
+        glow.style.transform = `translate(${e.clientX}px,${e.clientY}px)`;
+        const c = e.target.closest && e.target.closest('.glass-card');
+        document.querySelectorAll('.glass-card[data-tilt]').forEach(el => { if (el !== c) { el.style.transform = ''; delete el.dataset.tilt; } });
+        if (c) { const r = c.getBoundingClientRect(), px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5; c.dataset.tilt = 1; c.style.transform = `perspective(800px) rotateX(${-py * 8}deg) rotateY(${px * 8}deg) translateY(-6px)`; }
+    });
+    </script>
 </body>
 </html>
-
